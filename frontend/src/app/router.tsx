@@ -79,12 +79,12 @@ const adminRoutes = (deps: GuardDeps): RouteObject => ({
     {
       path: 'availability',
       loader: requireStaffFacility(deps, ['schedule:admin']),
-      Component: placeholder(t('shell.admin.blocks'), 'staff'),
+      ...screen(async () => (await import('@/features/admin-availability')).AvailabilityScreen),
     },
     {
       path: 'time-off',
       loader: requireStaffFacility(deps, ['schedule:admin']),
-      Component: placeholder(t('shell.admin.timeOff'), 'staff'),
+      ...screen(async () => (await import('@/features/admin-time-off')).TimeOffScreen),
     },
     {
       path: 'packages',

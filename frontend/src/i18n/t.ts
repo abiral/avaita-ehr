@@ -1,8 +1,8 @@
 import { en, type Messages } from './en'
 
 type Leaves<T, P extends string = ''> = {
-  [K in keyof T & string]: T[K] extends string ? `${P}${K}` : Leaves<T[K], `${P}${K}.`>
-}[keyof T & string]
+  [K in keyof T & (string | number)]: T[K] extends string ? `${P}${K}` : Leaves<T[K], `${P}${K}.`>
+}[keyof T & (string | number)]
 
 export type MessageKey = Leaves<Messages>
 export type MessageParams = Readonly<Record<string, string | number>>

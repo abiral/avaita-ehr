@@ -1,0 +1,228 @@
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+}
+.nav {
+  flex: 1 1 240px;
+  min-width: 0;
+}
+.main {
+  flex: 3 1 560px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.aside {
+  flex: 1 1 300px;
+  min-width: 0;
+}
+.navSearch {
+  padding: 12px 14px;
+}
+.doctor {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 14px;
+  border-top: 1px solid var(--border-soft);
+}
+.doctor:hover {
+  background: var(--row-hover);
+}
+.doctor[aria-pressed='true'] {
+  background: var(--accent-soft);
+}
+.doctor:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+.who {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.35;
+}
+.whoName {
+  font-weight: 500;
+}
+.whoMeta {
+  font-size: 12px;
+  color: var(--muted);
+}
+.dayRow {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 12px 18px;
+  border-top: 1px solid var(--border-soft);
+  flex-wrap: wrap;
+}
+.dayName {
+  width: 44px;
+  font-weight: 600;
+  padding-top: 8px;
+}
+.dayBlocks {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.none {
+  padding-top: 8px;
+  color: var(--muted);
+}
+.blk {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 8px 8px 12px;
+  border-radius: 6px;
+  min-width: 180px;
+  background: var(--hover-strong);
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+.remote {
+  background: var(--accent-soft);
+  box-shadow: inset 0 0 0 1px #c9daf5;
+}
+.blkText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+.blkTime {
+  font-weight: 500;
+  font-size: 13px;
+}
+.blkMeta {
+  font-size: 12px;
+  color: var(--ink-3);
+}
+.remove {
+  all: unset;
+  cursor: pointer;
+  color: var(--muted);
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+.remove:hover {
+  background: rgba(16, 24, 40, 0.06);
+  color: var(--ink);
+}
+.remove:focus-visible {
+  outline: 2px solid var(--accent);
+}
+.legend {
+  display: flex;
+  gap: 6px;
+}
+.rule {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  border-top: 1px solid var(--border-soft);
+  flex-wrap: wrap;
+}
+.ruleText {
+  display: flex;
+  flex-direction: column;
+}
+.ruleLabel {
+  font-weight: 500;
+}
+.ruleHint {
+  font-size: 13px;
+  color: var(--muted);
+}
+.ruleSelect {
+  width: auto;
+  min-width: 180px;
+}
+.form {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.formHead {
+  display: flex;
+  flex-direction: column;
+}
+.formTitle {
+  font-size: 16px;
+  font-weight: 600;
+}
+.dayChips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.dayChip {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 36px;
+  border-radius: 6px;
+  border: 1px solid var(--input-border);
+  font-weight: 500;
+  font-size: 13px;
+}
+.dayChip[aria-pressed='true'] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.dayChip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.preview {
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: var(--row-hover);
+  color: var(--ink-2);
+  font-size: 13px;
+}
+.problem {
+  color: var(--danger);
+  font-size: 13px;
+  font-weight: 500;
+}
+.groupLabel {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
