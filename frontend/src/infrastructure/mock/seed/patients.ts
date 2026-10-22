@@ -209,7 +209,7 @@ export const PATIENTS: readonly SeedPatient[] = [
     null,
     'Ramesh Pandey',
     'male',
-    '1969-12-02',
+    '1965-03-12',
     'NVG-188240',
     null,
     null,

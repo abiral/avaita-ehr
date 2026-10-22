@@ -72,12 +72,19 @@ export function sessionHandlers(db: Db, base: string) {
       db.session.locked = false
       return HttpResponse.json(sessionDto(db))
     }),
-    http.post(`${base}/password-reset`, () => new HttpResponse(null, { status: 204 })),
+    http.post(`${base}/password-reset`, async ({ request }) => {
+      const body = await readJson(request)
+      const id = str(body, 'identifier').trim()
+      const masked = id.includes('@')
+        ? id.replace(/^(.)[^@]*?(\.[^@]*)?@/, (_m, first: string, rest?: string) => `${first}•••••${rest ?? ''}@`)
+        : `•••• ${id.slice(-3)}`
+      return HttpResponse.json({ maskedDestination: masked })
+    }),
     http.post(`${base}/password-reset/confirm`, async ({ request }) => {
       const body = await readJson(request)
       if (!db.resetTokens.has(str(body, 'token')))
         return problem(422, 'validation_failed', 'Invalid link', { token: 'expired' })
-      if (str(body, 'password').length < 12)
+      if (str(body, 'password').length < 10 || !/\d/.test(str(body, 'password')))
         return problem(422, 'validation_failed', 'Weak password', { password: 'too_short' })
       return new HttpResponse(null, { status: 204 })
     }),

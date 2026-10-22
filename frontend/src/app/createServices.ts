@@ -1,6 +1,15 @@
 import { systemClock } from '@/core/clock'
 import { createEmitter } from '@/core/events'
+import { createAppointmentRepository } from '@/infrastructure/api/appointments/repository'
+import { createClinicalRepository } from '@/infrastructure/api/clinical/repository'
+import { createLabRepository } from '@/infrastructure/api/labs/repository'
+import { createMedicationRepository } from '@/infrastructure/api/medications/repository'
+import { createPackageRepository } from '@/infrastructure/api/packages/repository'
+import { createPractitionerRepository } from '@/infrastructure/api/practitioners/repository'
+import { createRegistrationRepository } from '@/infrastructure/api/registration/repository'
+import { createSchedulingRepository } from '@/infrastructure/api/scheduling/repository'
 import { createSessionRepository } from '@/infrastructure/api/session/repository'
+import { createTenancyRepository } from '@/infrastructure/api/tenancy/repository'
 import { createConsoleLogger } from '@/infrastructure/browser/logger'
 import { createDomIdleDetector } from '@/infrastructure/browser/idleDetector'
 import {
@@ -34,6 +43,15 @@ export type ServiceOverrides = Partial<Omit<Services, 'repos'>> & { readonly rep
 
 const createRepositories = (http: HttpClient): Repositories => ({
   session: createSessionRepository(http),
+  registration: createRegistrationRepository(http),
+  tenancy: createTenancyRepository(http),
+  practitioners: createPractitionerRepository(http),
+  scheduling: createSchedulingRepository(http),
+  appointments: createAppointmentRepository(http),
+  packages: createPackageRepository(http),
+  clinical: createClinicalRepository(http),
+  labs: createLabRepository(http),
+  medications: createMedicationRepository(http),
 })
 
 /** Composition root: the only place that creates adapters. Overrides replace any part (tests). */

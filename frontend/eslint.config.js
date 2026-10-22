@@ -40,6 +40,10 @@ export default tseslint.config(
       complexity: ['error', 10],
       'max-params': ['error', 4],
       eqeqeq: 'error',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_', ignoreRestSiblings: true },
+      ],
       'no-console': 'error',
     },
   },
@@ -100,6 +104,16 @@ export default tseslint.config(
     },
   },
   { files: ['src/ui/SafeHtml.tsx'], rules: { 'react/no-danger': 'off' } },
+  // The mock server is dev and test infrastructure only (never in the production bundle): size rules relaxed
+  {
+    files: ['src/infrastructure/mock/**', 'src/infrastructure/api/contract/**'],
+    rules: {
+      'max-lines': ['error', { max: 300, skipBlankLines: true, skipComments: true }],
+      'max-lines-per-function': 'off',
+      complexity: 'off',
+      'max-params': 'off',
+    },
+  },
   // Data files: message catalogs and mock seed data are long by nature
   {
     files: ['src/i18n/messages/**', 'src/infrastructure/mock/seed/**'],
@@ -111,6 +125,7 @@ export default tseslint.config(
       'max-lines': 'off',
       'max-lines-per-function': 'off',
       complexity: 'off',
+      'max-params': 'off',
       '@typescript-eslint/no-non-null-assertion': 'off',
       '@typescript-eslint/no-confusing-void-expression': 'off',
     },

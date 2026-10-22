@@ -1,5 +1,20 @@
 import type { QueryClient } from '@tanstack/react-query'
-import type { IdleDetector, PreferenceStore, Printer, RealtimeChannel, SessionRepository } from '@/application/ports'
+import type {
+  AppointmentRepository,
+  ClinicalRepository,
+  IdleDetector,
+  LabRepository,
+  MedicationRepository,
+  PackageRepository,
+  PractitionerRepository,
+  PreferenceStore,
+  Printer,
+  RealtimeChannel,
+  RegistrationRepository,
+  SchedulingRepository,
+  SessionRepository,
+  TenancyRepository,
+} from '@/application/ports'
 import type { Clock } from '@/core/clock'
 import type { Emitter } from '@/core/events'
 import type { Logger } from '@/core/logger'
@@ -16,6 +31,15 @@ export interface AppEvents {
 
 export interface Repositories {
   readonly session: SessionRepository
+  readonly registration: RegistrationRepository
+  readonly tenancy: TenancyRepository
+  readonly practitioners: PractitionerRepository
+  readonly scheduling: SchedulingRepository
+  readonly appointments: AppointmentRepository
+  readonly packages: PackageRepository
+  readonly clinical: ClinicalRepository
+  readonly labs: LabRepository
+  readonly medications: MedicationRepository
 }
 
 export interface Services {

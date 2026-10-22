@@ -1,7 +1,7 @@
 import type { SessionRepository } from '@/application/ports'
 import { ApiError } from '@/core/errors'
 import type { HttpClient } from '../../http'
-import { SessionDto } from './dto'
+import { ResetRequestedDto, SessionDto } from './dto'
 import { toSession } from './mappers'
 
 export function createSessionRepository(http: HttpClient): SessionRepository {
@@ -23,8 +23,8 @@ export function createSessionRepository(http: HttpClient): SessionRepository {
     async unlock(password) {
       return toSession(await http.send({ method: 'POST', path: '/session/unlock', body: { password } }, SessionDto))
     },
-    requestPasswordReset(email) {
-      return http.sendVoid({ method: 'POST', path: '/password-reset', body: { email } })
+    requestPasswordReset(identifier) {
+      return http.send({ method: 'POST', path: '/password-reset', body: { identifier } }, ResetRequestedDto)
     },
     confirmPasswordReset(input) {
       return http.sendVoid({ method: 'POST', path: '/password-reset/confirm', body: input })

@@ -5,8 +5,8 @@ export interface FakeClock extends Clock {
   advance(ms: number): void
 }
 
-/** Controllable clock. Starts at Tue 20 Oct 2026 08:30 in Kathmandu. */
-export function createFakeClock(start = '2026-10-20T02:45:00Z'): FakeClock {
+/** Controllable clock. Starts at the demo now: Tue 20 Oct 2026 14:20 in Kathmandu. */
+export function createFakeClock(start = '2026-10-20T08:35:00Z'): FakeClock {
   const box = { now: new Date(start) }
   return {
     now: () => new Date(box.now),

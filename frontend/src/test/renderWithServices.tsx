@@ -45,7 +45,7 @@ const MOCK_USER: Record<Exclude<AsWho, 'signed-out'>, string> = {
 /** Builds Services from fakes plus the mock API (MSW node) and signs in as the chosen role. */
 export function setupServices(options: TestOptions = {}) {
   const { as = 'signed-out', clock = createFakeClock(), withFacility = true } = options
-  const db = options.db ?? createDb()
+  const db = options.db ?? createDb(clock)
   server.use(...createHandlers(db, API_BASE))
   const realtime = createFakeRealtime()
   const idle = createFakeIdle()

@@ -11,6 +11,6 @@ export interface SessionRepository {
   signIn(input: SignInInput): Promise<Session>
   signOut(): Promise<void>
   unlock(password: string): Promise<Session>
-  requestPasswordReset(email: string): Promise<void>
+  requestPasswordReset(identifier: string): Promise<{ readonly maskedDestination: string }>
   confirmPasswordReset(input: { token: string; password: string }): Promise<void>
 }

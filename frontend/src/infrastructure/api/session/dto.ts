@@ -35,3 +35,8 @@ export const SignInBody = z.object({
   identifier: z.string(),
   password: z.string(),
 })
+
+export const ResetRequestedDto = z.object({ maskedDestination: z.string() })
+export const ResetRequestBody = z.object({ identifier: z.string() })
+export const ResetConfirmBody = z.object({ token: z.string(), password: z.string() })
+export const UnlockBody = z.object({ password: z.string() })
