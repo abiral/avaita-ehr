@@ -1,7 +1,14 @@
 import type { Clock } from '@/core/clock'
-import type { AppointmentRepository, RegistrationRepository, SchedulingRepository, SessionRepository } from '../ports'
+import type {
+  AppointmentRepository,
+  PackageRepository,
+  RegistrationRepository,
+  SchedulingRepository,
+  SessionRepository,
+} from '../ports'
 import { bookAppointment, cancelAppointment, rescheduleAppointment } from './appointments'
 import { confirmPasswordReset, register, requestPasswordReset, verifyRegistration } from './access'
+import { enrollInPackage, savePackage } from './packages'
 import { createTimeOff, previewTimeOff, saveAvailabilityBlock, saveBookingRules } from './scheduling'
 
 export interface UseCaseDeps {
@@ -11,6 +18,7 @@ export interface UseCaseDeps {
     readonly registration: RegistrationRepository
     readonly scheduling: SchedulingRepository
     readonly appointments: AppointmentRepository
+    readonly packages: PackageRepository
   }
 }
 
@@ -28,6 +36,8 @@ export function createUseCases({ repos, clock }: UseCaseDeps) {
     bookAppointment: bookAppointment({ appointments: repos.appointments, clock }),
     rescheduleAppointment: rescheduleAppointment({ appointments: repos.appointments, clock }),
     cancelAppointment: cancelAppointment({ appointments: repos.appointments, clock }),
+    savePackage: savePackage({ packages: repos.packages }),
+    enrollInPackage: enrollInPackage({ packages: repos.packages }),
   }
 }
 

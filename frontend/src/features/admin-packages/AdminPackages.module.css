@@ -1,0 +1,192 @@
+.tableCard {
+  overflow: hidden;
+}
+.scroll {
+  overflow-x: auto;
+}
+.table {
+  min-width: 820px;
+}
+.thead {
+  padding: 8px 18px;
+  background: var(--table-head);
+  border-bottom: 1px solid var(--border-soft);
+}
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.row {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  width: 100%;
+  padding: 12px 18px;
+  border-top: 1px solid var(--border-soft);
+}
+.rows li:first-child .row {
+  border-top: 0;
+}
+/* After .row so its all: unset does not wipe the grid. */
+.cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr) 150px 80px 100px;
+  gap: 16px;
+  align-items: center;
+}
+.row:hover {
+  background: var(--row-hover);
+}
+.row[aria-pressed='true'] {
+  background: var(--accent-soft);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+.row:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+.nameCell {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.rowName {
+  font-weight: 600;
+}
+.meta {
+  font-size: 12px;
+  color: var(--muted);
+}
+.cell {
+  color: var(--ink-2);
+}
+.num {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+}
+.editor {
+  flex: 3 1 520px;
+  min-width: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.editorHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.editorTitle {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+.pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+  gap: 12px;
+}
+.triple {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr));
+  gap: 12px;
+}
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.groupLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+.items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+.addRow {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+.addSelect {
+  flex: 1 1 220px;
+}
+.portal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 6px;
+  background: var(--row-hover);
+}
+.portalText {
+  display: flex;
+  flex-direction: column;
+}
+.portalTitle {
+  font-weight: 500;
+}
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border-soft);
+  padding-top: 16px;
+}
+.notice {
+  margin-right: auto;
+  align-self: center;
+  font-size: 13px;
+  color: var(--accent-hover);
+}
+.noticeError {
+  color: var(--danger);
+}
+.problems {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--danger);
+  font-size: 13px;
+}
+.preview {
+  flex: 2 1 340px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.previewFoot {
+  font-size: 12px;
+  color: var(--muted);
+}
+.fakeButton {
+  pointer-events: none;
+}

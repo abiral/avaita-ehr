@@ -16,6 +16,22 @@ const isAdmin = (db: Db, caller: Caller): boolean =>
       ?.memberships.some((m) => m.facilityId === caller.facilityId && m.permissions.includes('package:admin')),
   )
 
+const priceAndCap = (
+  body: Record<string, unknown>,
+  fallback?: SeedPackage,
+): Pick<SeedPackage, 'price' | 'monthlyCap'> => {
+  const raw = body.price as { minor?: unknown; currency?: unknown } | null | undefined
+  const price =
+    raw && typeof raw.minor === 'number' && typeof raw.currency === 'string'
+      ? { minor: raw.minor, currency: raw.currency }
+      : raw === null
+        ? null
+        : (fallback?.price ?? null)
+  const monthlyCap =
+    typeof body.monthlyCap === 'number' || body.monthlyCap === null ? body.monthlyCap : (fallback?.monthlyCap ?? null)
+  return { price, monthlyCap }
+}
+
 const parseDraft = (
   body: Record<string, unknown>,
   fallback?: SeedPackage,
@@ -27,7 +43,8 @@ const parseDraft = (
   const practitionerId = str(body, 'practitionerId') || (fallback?.practitionerId ?? '')
   if (!format || !items || !validityDays || !name || !practitionerId) return null
   const published = typeof body.published === 'boolean' ? body.published : (fallback?.published ?? false)
-  return { practitionerId, name, description: str(body, 'description'), format, validityDays, published, items }
+  const description = str(body, 'description')
+  return { practitionerId, name, description, format, validityDays, published, items, ...priceAndCap(body, fallback) }
 }
 
 function adminHandlers(db: Db, base: string) {

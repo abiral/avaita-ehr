@@ -9,6 +9,8 @@ export interface SeedPackage {
   readonly validityDays: number
   readonly published: boolean
   readonly bookedCount: number
+  readonly price: { readonly minor: number; readonly currency: string } | null
+  readonly monthlyCap: number | null
   readonly items: readonly { readonly type: PackageItemType; readonly quantity: number; readonly label: string }[]
 }
 
@@ -31,6 +33,8 @@ const P = (
   validityDays,
   published,
   bookedCount,
+  price: null,
+  monthlyCap: 20,
   items,
 })
 

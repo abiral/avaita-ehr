@@ -3501,7 +3501,7 @@ paths:
                     format: "hybrid"
                     validityDays: 90
                     price: null
-                    monthlyCap: null
+                    monthlyCap: 20
                     published: true
                     items:
                       - type: "consultation"
@@ -3526,7 +3526,7 @@ paths:
                     format: "patient_choice"
                     validityDays: 60
                     price: null
-                    monthlyCap: null
+                    monthlyCap: 20
                     published: true
                     items:
                       - type: "consultation"
@@ -3551,7 +3551,7 @@ paths:
                     format: "onsite"
                     validityDays: 30
                     price: null
-                    monthlyCap: null
+                    monthlyCap: 20
                     published: true
                     items:
                       - type: "consultation"
@@ -3576,7 +3576,7 @@ paths:
                     format: "remote"
                     validityDays: 14
                     price: null
-                    monthlyCap: null
+                    monthlyCap: 20
                     published: true
                     items:
                       - type: "consultation"
@@ -3598,7 +3598,7 @@ paths:
                     format: "onsite"
                     validityDays: 365
                     price: null
-                    monthlyCap: null
+                    monthlyCap: 20
                     published: true
                     items:
                       - type: "consultation"
@@ -3620,7 +3620,7 @@ paths:
                     format: "remote"
                     validityDays: 45
                     price: null
-                    monthlyCap: null
+                    monthlyCap: 20
                     published: true
                     items:
                       - type: "consultation"
@@ -3730,7 +3730,7 @@ paths:
               format: "hybrid"
               validityDays: 60
               price: null
-              monthlyCap: null
+              monthlyCap: 20
               published: false
               items:
                 - type: "consultation"
@@ -3845,7 +3845,7 @@ paths:
                 format: "hybrid"
                 validityDays: 60
                 price: null
-                monthlyCap: null
+                monthlyCap: 20
                 published: false
                 items:
                   - type: "consultation"
@@ -3961,7 +3961,7 @@ paths:
               format: "hybrid"
               validityDays: 60
               price: null
-              monthlyCap: null
+              monthlyCap: 20
               published: false
               items:
                 - type: "consultation"
@@ -4076,7 +4076,7 @@ paths:
                 format: "hybrid"
                 validityDays: 60
                 price: null
-                monthlyCap: null
+                monthlyCap: 20
                 published: false
                 items:
                   - type: "consultation"
@@ -4210,7 +4210,7 @@ paths:
                 format: "hybrid"
                 validityDays: 60
                 price: null
-                monthlyCap: null
+                monthlyCap: 20
                 published: true
                 items:
                   - type: "consultation"

@@ -42,7 +42,7 @@ const portalRoutes = (deps: GuardDeps): RouteObject => ({
   children: [
     { index: true, Component: placeholder(t('shell.portal.home'), 'portal') },
     { path: 'book', ...screen(async () => (await import('@/features/booking')).BookingScreen) },
-    { path: 'packages', Component: placeholder('Consultation packages', 'portal') },
+    { path: 'packages', ...screen(async () => (await import('@/features/patient-packages')).PackagesScreen) },
     { path: 'appointments', ...screen(async () => (await import('@/features/my-appointments')).MyAppointmentsScreen) },
     { path: 'reports', Component: placeholder(t('shell.portal.reports'), 'portal') },
     { path: 'medicines', Component: placeholder(t('shell.portal.medicines'), 'portal') },
@@ -89,7 +89,7 @@ const adminRoutes = (deps: GuardDeps): RouteObject => ({
     {
       path: 'packages',
       loader: requireStaffFacility(deps, ['package:admin']),
-      Component: placeholder(t('shell.admin.packages'), 'staff'),
+      ...screen(async () => (await import('@/features/admin-packages')).AdminPackagesScreen),
     },
     {
       path: 'organization',

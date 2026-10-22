@@ -16,7 +16,7 @@ const PACKAGE = {
   format: 'hybrid',
   validityDays: 60,
   price: null,
-  monthlyCap: null,
+  monthlyCap: 20,
   published: false,
   items: [{ type: 'consultation', quantity: 1, label: '1 on-site consultation' }],
 }
