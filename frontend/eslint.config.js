@@ -132,7 +132,7 @@ export default tseslint.config(
     },
   },
   {
-    files: ['*.config.{js,ts}', '.dependency-cruiser.cjs', 'eslint.config.js'],
+    files: ['*.config.{js,ts}', '.dependency-cruiser.cjs', 'eslint.config.js', 'scripts/**/*.mjs'],
     ...tseslint.configs.disableTypeChecked,
     languageOptions: { ...tseslint.configs.disableTypeChecked.languageOptions, globals: globals.node },
     rules: { ...tseslint.configs.disableTypeChecked.rules, 'no-restricted-exports': 'off' },

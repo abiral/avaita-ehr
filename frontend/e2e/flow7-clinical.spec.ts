@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test'
+import { expect, test } from './fixtures'
 import { expectNoPhiInStorage, openWorkspace, signIn, switchUser } from './helpers'
 
 test('Flow 7: note, lab order, realtime critical result, review and release to the portal', async ({ page }) => {
@@ -15,12 +15,17 @@ test('Flow 7: note, lab order, realtime critical result, review and release to t
   await page.getByLabel('Reason for consultation').fill('Kidney follow-up, potassium 5.3 last week.')
   await page.getByLabel('Assessment').fill('CKD 3b with mild hyperkalaemia.')
   await page.getByRole('button', { name: 'Sign note' }).click()
+  await page.getByRole('button', { name: 'Sign for Ramesh Pandey, NVG-188240' }).click()
   await expect(page.getByText(/Signed at .* by Dr\. Anaya Shrestha\./)).toBeVisible()
 
   await banner.getByRole('link', { name: 'Order labs' }).click()
   await page.getByRole('button', { name: 'Add Renal function panel' }).click()
   await page.getByLabel('Clinical indication').fill('CKD 3b, potassium 5.3')
   await page.getByRole('button', { name: 'Sign and send' }).click()
+  await page
+    .getByRole('alertdialog', { name: 'Sign and send these orders?' })
+    .getByRole('button', { name: 'Sign for Ramesh Pandey, NVG-188240' })
+    .click()
   await expect(page.getByText('Orders signed and sent to the laboratory')).toBeVisible()
 
   const alerts = page.getByRole('region', { name: 'Critical results' })

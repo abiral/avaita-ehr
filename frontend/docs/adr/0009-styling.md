@@ -13,3 +13,7 @@ Tokens live in `src/styles/tokens.css` as CSS variables. Components use CSS Modu
 ## Consequences
 
 No runtime styling cost. Visual changes to tokens propagate everywhere.
+
+## Review (F10)
+
+Still holds. Data-driven positions are the one exception to "no inline style": schedule grid rows (C4), supply bars (P9), range bar markers (P8) and chart coordinates set `style` from computed values. Everything else is in CSS Modules.

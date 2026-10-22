@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test'
+import { expect, test } from './fixtures'
 import { expectNoPhiInStorage, openWorkspace, signIn } from './helpers'
 
 test.describe('Flow 1: register, verify, sign in, forgot password', () => {

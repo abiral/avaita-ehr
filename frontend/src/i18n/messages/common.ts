@@ -60,6 +60,10 @@ export const common = {
     signInAsSomeoneElse: 'Sign in as someone else',
     signedInAs: 'Signed in as {name}',
   },
+  print: {
+    footer: '{patient} · MRN {mrn} · Printed by {by} · {at}',
+    footerNoPatient: 'Contains patient information · Printed by {by} · {at}',
+  },
   footer: {
     help: 'Help',
     status: 'System status',

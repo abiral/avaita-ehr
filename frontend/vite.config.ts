@@ -5,6 +5,8 @@ import { defineConfig } from 'vitest/config'
 export default defineConfig({
   plugins: [react()],
   resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
+  // The manifest lets scripts/bundle-budget.mjs measure what the first route loads.
+  build: { manifest: true },
   server: {
     proxy: { '/api': { target: process.env['API_PROXY_TARGET'] ?? 'http://localhost:8080', changeOrigin: true } },
   },

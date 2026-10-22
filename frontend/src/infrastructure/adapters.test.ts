@@ -107,7 +107,10 @@ describe('browser adapters', () => {
     const print = vi.spyOn(window, 'print').mockImplementation(() => {
       footers.push(document.querySelector('.print-footer')?.textContent ?? '')
     })
-    createBrowserPrinter({ now: () => new Date('2026-10-21T04:35:00Z') }, (d) => d.toISOString()).print({
+    createBrowserPrinter(
+      { now: () => new Date('2026-10-21T04:35:00Z') },
+      (doc, at) => `${doc.patientName} · MRN ${doc.mrn} · Printed by ${doc.printedBy} · ${at.toISOString()}`,
+    ).print({
       title: 'Lab report',
       patientName: 'Ram Bahadur Thapa',
       mrn: 'NVG-204118',

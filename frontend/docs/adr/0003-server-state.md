@@ -13,3 +13,7 @@ Use `@tanstack/react-query`. Every query key is built by `scopedKeys(scope)` and
 ## Consequences
 
 No hand-written caching or polling. Facility switch calls `queryClient.clear()`. A key without scope cannot be written in a feature.
+
+## Review (F10)
+
+Still holds. The C7 "Save for later" basket is kept as query data under `labBasket(patientId)` so it survives switching chart tabs and is cleared with the rest of the cache; it is never written to browser storage.

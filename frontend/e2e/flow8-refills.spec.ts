@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test'
+import { expect, test } from './fixtures'
 import { expectNoPhiInStorage, openWorkspace, signIn, switchUser } from './helpers'
 
 test('Flow 8: refill request, safety check with double confirmation, approval reaches the patient', async ({
@@ -31,6 +31,7 @@ test('Flow 8: refill request, safety check with double confirmation, approval re
 
   await requests.getByRole('button', { name: /Atorvastatin 20 mg tablet/ }).click()
   await page.getByRole('button', { name: 'Approve and send' }).click()
+  await page.getByRole('button', { name: 'Approve for Ramesh Pandey, NVG-188240' }).click()
   await expect(page.getByText(/Approved by Dr\. Anaya Shrestha/)).toBeVisible()
   await expectNoPhiInStorage(page)
 

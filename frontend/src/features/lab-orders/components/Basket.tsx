@@ -130,7 +130,7 @@ export function Basket({ o, now, timeZone }: { readonly o: Order; readonly now: 
         <Button disabled={o.basket.length === 0} onClick={o.keepForLater}>
           {t('clinical.orders.saveLater')}
         </Button>
-        <Button variant="primary" disabled={o.basket.length === 0 || o.sending} onClick={o.submit}>
+        <Button variant="primary" disabled={o.basket.length === 0 || o.sending} onClick={() => void o.submit()}>
           {o.sending ? t('clinical.orders.sending') : t('clinical.orders.send')}
         </Button>
       </div>

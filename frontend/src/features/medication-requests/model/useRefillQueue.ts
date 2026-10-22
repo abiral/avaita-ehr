@@ -4,7 +4,7 @@ import { useServices } from '@/app/ServicesProvider'
 import { useKeys } from '@/app/useKeys'
 import type { MedicationRequestId } from '@/core/branded'
 import { errorCodeOf } from '@/core/errors'
-import { firedChecks, isOpenRefill, type FiredCheck, type RefillRequest } from '@/domain/medications'
+import { firedChecks, isOpenRefill, type DecisionKind, type FiredCheck, type RefillRequest } from '@/domain/medications'
 import { errorMessage, t } from '@/i18n'
 import { useConfirm } from '@/ui'
 import { formProblem, toDecision, type DecisionForm } from './decisionForm'
@@ -13,6 +13,19 @@ import { formProblem, toDecision, type DecisionForm } from './decisionForm'
 export const sortQueue = (requests: readonly RefillRequest[], now: Date): RefillRequest[] => {
   const rank = (r: RefillRequest) => (isOpenRefill(r.status) ? 0 : 2) + (firedChecks(r, now).length > 0 ? 0 : 1)
   return [...requests].sort((a, b) => rank(a) - rank(b) || a.requestedAt.getTime() - b.requestedAt.getTime())
+}
+
+/** Every decision is confirmed in a control that names the patient and MRN (section 1). */
+function useDecisionConfirm() {
+  const confirm = useConfirm()
+  return (r: RefillRequest, kind: DecisionKind) =>
+    confirm({
+      title: t(`clinical.refills.decisionTitle.${kind}`),
+      description: t('clinical.refills.decisionBody', { medication: r.medicationName }),
+      confirmLabel: t(`clinical.refills.decisionConfirm.${kind}`, { patient: r.patientName, mrn: r.mrn }),
+      cancelLabel: t('clinical.refills.confirmCancel'),
+      ...(kind === 'decline' ? { tone: 'danger' as const } : {}),
+    })
 }
 
 /** Asks again, naming every fired check and the patient, before an approval goes out. */
@@ -34,6 +47,7 @@ export function useRefillQueue() {
   const keys = useKeys()
   const client = useQueryClient()
   const askAgain = useSecondConfirmation()
+  const confirmDecision = useDecisionConfirm()
   const queue = useQuery({
     queryKey: keys.medicationRequests,
     queryFn: ({ signal }) => repos.medications.queue(signal),
@@ -59,7 +73,8 @@ export function useRefillQueue() {
     setTried(true)
     if (!open || formProblem(form)) return
     const needsConfirm = form.kind === 'approve' && fired.length > 0
-    if (needsConfirm && !(await askAgain(open, fired))) return
+    const confirmed = needsConfirm ? await askAgain(open, fired) : await confirmDecision(open, form.kind)
+    if (!confirmed) return
     decide.mutate({ request: open, form, acknowledged: needsConfirm ? fired.map((f) => f.id) : [] })
   }
   const select = (id: MedicationRequestId) => {

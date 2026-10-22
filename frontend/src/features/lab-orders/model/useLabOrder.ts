@@ -6,8 +6,22 @@ import { useKeys } from '@/app/useKeys'
 import type { PatientId } from '@/core/branded'
 import { errorCodeOf } from '@/core/errors'
 import { duplicateWarnings, type LabCategory, type LabOrder } from '@/domain/labs'
-import { errorMessage } from '@/i18n'
+import { errorMessage, t } from '@/i18n'
+import { useConfirm } from '@/ui'
 import type { BasketItem } from './basket'
+
+/** The confirm control names the patient and MRN before orders are signed (section 1). */
+function useSendConfirm() {
+  const confirm = useConfirm()
+  const banner = useChartPatient().summary.data?.banner
+  return (count: number) =>
+    confirm({
+      title: t('clinical.orders.confirmTitle'),
+      description: count === 1 ? t('clinical.orders.confirmBodyOne') : t('clinical.orders.confirmBody', { count }),
+      confirmLabel: t('clinical.orders.confirmSend', { patient: banner?.displayName ?? '', mrn: banner?.mrn ?? '' }),
+      cancelLabel: t('clinical.orders.confirmCancel'),
+    })
+}
 
 function useCatalogueFilter() {
   const [q, setQ] = useState('')
@@ -48,6 +62,7 @@ export function useLabOrder() {
     () => client.getQueryData(keys.labBasket(patientId)) ?? [],
   )
   const filter = useCatalogueFilter()
+  const confirmSend = useSendConfirm()
   const [indication, setIndication] = useState('')
   const [tried, setTried] = useState(false)
   const [sent, setSent] = useState<LabOrder | null>(null)
@@ -62,16 +77,15 @@ export function useLabOrder() {
     setIndication('')
     setTried(false)
   })
-  const submit = () => {
+  const submit = async () => {
     setTried(true)
-    if (basket.length > 0 && indication.trim())
-      send.mutate({ items: basket, indication }, { onSuccess: ({ value }) => setSent(value) })
+    if (basket.length === 0 || !indication.trim() || !(await confirmSend(basket.length))) return
+    send.mutate({ items: basket, indication }, { onSuccess: ({ value }) => setSent(value) })
   }
   const keepForLater = () => {
     client.setQueryData(keys.labBasket(patientId), basket)
     setKeptForLater(true)
   }
-  const error = send.error ? errorMessage(errorCodeOf(send.error)) : null
   return {
     patientId,
     catalogue,
@@ -89,7 +103,7 @@ export function useLabOrder() {
     submit,
     sending: send.isPending,
     sent,
-    error,
+    error: send.error ? errorMessage(errorCodeOf(send.error)) : null,
     keepForLater,
     keptForLater,
   }

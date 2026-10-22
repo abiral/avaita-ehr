@@ -27,7 +27,7 @@ import {
 import { createBrowserPrinter } from '@/infrastructure/print/browserPrinter'
 import { createSseChannel } from '@/infrastructure/realtime/sseChannel'
 import { createPreferenceStore } from '@/infrastructure/storage/preferenceStore'
-import { formatDate, formatTime } from '@/i18n'
+import { formatDate, formatTime, t } from '@/i18n'
 import { createDraftStore } from './drafts'
 import { createQueryClient } from './queryClient'
 import type { AppEvents, Repositories, Services } from './services'
@@ -69,7 +69,15 @@ export function createServices(config: AppConfig, overrides: ServiceOverrides = 
     tenant: createTenantSource(),
     logger: createConsoleLogger(config.dev),
     prefs: createPreferenceStore(window.localStorage),
-    printer: createBrowserPrinter(clock, (d) => `${formatDate(d, zone)} ${formatTime(d, zone)}`),
+    printer: createBrowserPrinter(clock, (doc, at) => {
+      const params = {
+        patient: doc.patientName,
+        mrn: doc.mrn,
+        by: doc.printedBy,
+        at: `${formatDate(at, zone)} ${formatTime(at, zone)}`,
+      }
+      return doc.mrn ? t('common.print.footer', params) : t('common.print.footerNoPatient', params)
+    }),
     realtime: createSseChannel({ url: `${config.apiBase}/events` }),
     idle: createDomIdleDetector(window),
     drafts: createDraftStore(),

@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test'
+import { expect, test } from './fixtures'
 import { expectNoPhiInStorage, openWorkspace, signIn, switchUser } from './helpers'
 
 test.describe('Flow 2 and 3: book, cancel, see the slot open in the clinic schedule', () => {
