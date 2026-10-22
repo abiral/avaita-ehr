@@ -15,6 +15,7 @@ import type {
   SessionRepository,
   TenancyRepository,
 } from '@/application/ports'
+import type { UseCases } from '@/application/usecases'
 import type { Clock } from '@/core/clock'
 import type { Emitter } from '@/core/events'
 import type { Logger } from '@/core/logger'
@@ -55,4 +56,5 @@ export interface Services {
   readonly drafts: DraftStore
   readonly queryClient: QueryClient
   readonly repos: Repositories
+  readonly useCases: UseCases
 }

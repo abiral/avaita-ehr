@@ -1,1 +1,1 @@
-export {}
+export { WorkspaceScreen } from './WorkspaceScreen'

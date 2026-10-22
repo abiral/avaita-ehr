@@ -1,1 +1,1 @@
-export {}
+export { RegistrationScreen } from './RegistrationScreen'

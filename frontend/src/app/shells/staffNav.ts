@@ -19,6 +19,6 @@ export const isOrgAdmin = (staff: StaffSession | null, tenant: TenantApi): boole
 
 export const switcherMeta = (tenant: TenantApi): string => {
   const dept = tenant.department
-  if (dept) return `${dept.name} · ${dept.unit}`
+  if (dept) return dept.unit ? `${dept.name} · ${dept.unit}` : dept.name
   return tenant.membership?.role ?? ''
 }

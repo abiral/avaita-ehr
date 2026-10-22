@@ -82,7 +82,9 @@ export function sessionHandlers(db: Db, base: string) {
     }),
     http.post(`${base}/password-reset/confirm`, async ({ request }) => {
       const body = await readJson(request)
-      if (!db.resetTokens.has(str(body, 'token')))
+      // Demo: the emailed link is not available in the mock, so an empty token stands in for it.
+      const token = str(body, 'token')
+      if (token && !db.resetTokens.has(token))
         return problem(422, 'validation_failed', 'Invalid link', { token: 'expired' })
       if (str(body, 'password').length < 10 || !/\d/.test(str(body, 'password')))
         return problem(422, 'validation_failed', 'Weak password', { password: 'too_short' })

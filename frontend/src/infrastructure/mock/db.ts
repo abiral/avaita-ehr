@@ -37,7 +37,9 @@ export interface MockRegistration {
   verified: boolean
 }
 
-const copy = <T extends object>(rows: readonly T[]): T[] => rows.map((r) => ({ ...r }))
+function copy<T extends object>(rows: readonly T[]): T[] {
+  return rows.map((r) => ({ ...r }))
+}
 
 /** In-memory database for the mock server. Each call returns a fresh copy of the seed. */
 export function createDb(clock: Clock = createOffsetClock(new Date(DEMO_NOW))) {

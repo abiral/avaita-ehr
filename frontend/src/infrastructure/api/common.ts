@@ -15,8 +15,9 @@ export type FacilityDto = z.infer<typeof FacilityDto>
 
 export const MoneyDto = z.object({ minor: z.number().int(), currency: z.string().length(3) })
 
-export const listOf = <T extends z.ZodType>(item: T) =>
-  z.object({ items: z.array(item), nextCursor: z.string().nullable() })
+export function listOf<T extends z.ZodType>(item: T) {
+  return z.object({ items: z.array(item), nextCursor: z.string().nullable() })
+}
 
 export const toDate = (iso: string): Date => new Date(iso)
 export const toDateOrNull = (iso: string | null): Date | null => (iso ? new Date(iso) : null)

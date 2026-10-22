@@ -39,6 +39,7 @@ export default tseslint.config(
       'max-lines-per-function': ['error', { max: 60, skipBlankLines: true, skipComments: true }],
       complexity: ['error', 10],
       'max-params': ['error', 4],
+      '@typescript-eslint/no-confusing-void-expression': ['error', { ignoreArrowShorthand: true }],
       eqeqeq: 'error',
       '@typescript-eslint/no-unused-vars': [
         'error',

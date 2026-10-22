@@ -1,0 +1,52 @@
+.card {
+  width: 100%;
+  max-width: 400px;
+  padding: 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-dialog);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.w420 {
+  max-width: 420px;
+}
+.w520 {
+  max-width: 520px;
+  gap: 24px;
+}
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.title {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.sub {
+  color: var(--muted);
+}
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 480px) {
+  .card {
+    padding: 24px 20px;
+  }
+}

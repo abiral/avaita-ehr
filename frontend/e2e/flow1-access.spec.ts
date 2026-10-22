@@ -1,0 +1,61 @@
+import { expect, test } from '@playwright/test'
+import { expectNoPhiInStorage, openWorkspace, signIn } from './helpers'
+
+test.describe('Flow 1: register, verify, sign in, forgot password', () => {
+  test('a patient registers, verifies the mobile and reaches the portal', async ({ page }) => {
+    await page.goto('/login')
+    await page.getByRole('link', { name: 'Create an account' }).click()
+    await expect(page.getByRole('heading', { name: 'Create your patient account' })).toBeVisible()
+    await page.getByLabel('First name').fill('Ramesh')
+    await page.getByLabel('Last name').fill('Pandey')
+    await page.getByLabel('Date of birth').fill('1965-03-12')
+    await page.getByLabel('Mobile number').fill('+977 9841234567')
+    await page.getByLabel('Email').fill('ramesh.second@mail.com')
+    await page.getByLabel('Password').fill('kathmandu2026')
+    await page.getByLabel('Hospital number (optional)').fill('NVG-188240')
+    await page.getByRole('checkbox').check()
+    await page.getByRole('button', { name: 'Continue' }).click()
+    await expect(page.getByRole('heading', { name: 'Verify your mobile' })).toBeVisible()
+    for (const [i, d] of '481026'.split('').entries()) await page.getByLabel(`Digit ${i + 1}`).fill(d)
+    await page.getByRole('button', { name: 'Verify' }).click()
+    await expect(page.getByRole('heading', { name: 'Your account is ready' })).toBeVisible()
+    await expect(page.getByText('NVG-188240')).toBeVisible()
+    await page.getByRole('link', { name: 'Go to my health' }).click()
+    await expect(page).toHaveURL(/\/portal$/)
+    await expectNoPhiInStorage(page)
+  })
+
+  test('sign in, sign out and sign in again as staff through facility selection', async ({ page }) => {
+    await signIn(page, 'patient')
+    await expect(page).toHaveURL(/\/portal$/)
+    await page.getByRole('button', { name: 'Sign out' }).click()
+    await expect(page).toHaveURL(/\/login/)
+    await signIn(page, 'staff')
+    await openWorkspace(page)
+    await expect(page.getByRole('link', { name: /Switch facility or department/ })).toContainText('Northvale General')
+    await expectNoPhiInStorage(page)
+  })
+
+  test('forgot password: request, check email, choose a new password', async ({ page }) => {
+    await page.goto('/login')
+    await page.getByRole('link', { name: 'Forgot password?' }).click()
+    await expect(page.getByRole('heading', { name: 'Reset your password' })).toBeVisible()
+    await page.getByLabel('Email or mobile number').fill('ramesh.pandey@mail.com')
+    await page.getByRole('button', { name: 'Send reset link' }).click()
+    await expect(page.getByText('r•••••.pandey@mail.com')).toBeVisible()
+    await page.getByRole('button', { name: 'I have the link, set a new password' }).click()
+    await page.getByLabel('New password', { exact: true }).fill('kathmandu2026')
+    await page.getByLabel('Confirm new password').fill('kathmandu2026')
+    await page.getByRole('button', { name: 'Update password and sign in' }).click()
+    await expect(page.getByText('Your password was updated. Sign in with the new password.')).toBeVisible()
+  })
+
+  test('a protected link opens after sign in (returnTo)', async ({ page }) => {
+    await page.goto('/portal/medicines')
+    await expect(page).toHaveURL(/\/login\?returnTo=%2Fportal%2Fmedicines/)
+    await page.getByLabel('Email or mobile number').fill('ramesh.pandey@mail.com')
+    await page.getByLabel('Password', { exact: true }).fill('demo-password')
+    await page.getByRole('button', { name: 'Sign in', exact: true }).click()
+    await expect(page).toHaveURL(/\/portal\/medicines$/)
+  })
+})

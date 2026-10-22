@@ -1,3 +1,4 @@
+import type { ComponentType } from 'react'
 import { createBrowserRouter, type RouteObject } from 'react-router'
 import { t } from '@/i18n'
 import { redirectHome, requireRole, requireSignedOut, requireStaffFacility, type GuardDeps } from './guards'
@@ -10,6 +11,11 @@ import { AuthShell } from './shells/AuthShell'
 import { PortalShell } from './shells/PortalShell'
 import { StaffShellRoute } from './shells/StaffShellRoute'
 
+/** Lazy-loads a screen so each area ships in its own chunk. */
+const screen = (load: () => Promise<ComponentType>): Pick<RouteObject, 'lazy'> => ({
+  lazy: async () => ({ Component: await load() }),
+})
+
 const placeholder = (title: string, area: 'portal' | 'staff') =>
   function PlaceholderScreen() {
     return <Placeholder title={title} area={area} />
@@ -19,9 +25,12 @@ const authRoutes = (deps: GuardDeps): RouteObject => ({
   Component: AuthShell,
   loader: requireSignedOut(deps),
   children: [
-    { path: paths.login, Component: placeholder('Sign in', 'portal') },
-    { path: paths.register, Component: placeholder('Create an account', 'portal') },
-    { path: paths.forgotPassword, Component: placeholder('Reset password', 'portal') },
+    { path: paths.login, ...screen(async () => (await import('@/features/auth')).SignInScreen) },
+    { path: paths.register, ...screen(async () => (await import('@/features/registration')).RegistrationScreen) },
+    {
+      path: paths.forgotPassword,
+      ...screen(async () => (await import('@/features/password-reset')).PasswordResetScreen),
+    },
   ],
 })
 
@@ -44,7 +53,7 @@ const staffRoutes = (deps: GuardDeps): RouteObject[] => [
   {
     path: paths.staff.workspace,
     loader: requireRole(deps, 'staff'),
-    Component: placeholder('Select a workspace', 'staff'),
+    ...screen(async () => (await import('@/features/workspace')).WorkspaceScreen),
   },
   {
     path: paths.staff.today,

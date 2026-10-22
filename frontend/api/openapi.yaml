@@ -443,11 +443,11 @@ paths:
                         name: "Internal Medicine"
                         unit: "4C"
                       - id: "dep_ed"
-                        name: "Emergency"
-                        unit: "cover"
+                        name: "Emergency (cover)"
+                        unit: ""
                       - id: "dep_opd"
                         name: "Outpatient clinic"
-                        unit: "OPD"
+                        unit: ""
                     permissions:
                       - "chart:read"
                       - "note:write"
@@ -469,7 +469,7 @@ paths:
                     departments:
                       - id: "dep_nve_opd"
                         name: "Outpatient clinic"
-                        unit: "OPD"
+                        unit: ""
                     permissions:
                       - "chart:read"
                       - "note:write"
@@ -716,11 +716,11 @@ paths:
                         name: "Internal Medicine"
                         unit: "4C"
                       - id: "dep_ed"
-                        name: "Emergency"
-                        unit: "cover"
+                        name: "Emergency (cover)"
+                        unit: ""
                       - id: "dep_opd"
                         name: "Outpatient clinic"
-                        unit: "OPD"
+                        unit: ""
                     permissions:
                       - "chart:read"
                       - "note:write"
@@ -742,7 +742,7 @@ paths:
                     departments:
                       - id: "dep_nve_opd"
                         name: "Outpatient clinic"
-                        unit: "OPD"
+                        unit: ""
                     permissions:
                       - "chart:read"
                       - "note:write"

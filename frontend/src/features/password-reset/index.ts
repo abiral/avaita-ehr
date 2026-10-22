@@ -1,1 +1,1 @@
-export {}
+export { PasswordResetScreen } from './PasswordResetScreen'

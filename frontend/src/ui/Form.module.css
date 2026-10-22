@@ -144,3 +144,7 @@ textarea.control {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
+/* Keep the live region in the tree but take no space while empty. */
+.error:empty {
+  margin-top: -6px;
+}

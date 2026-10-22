@@ -1,3 +1,4 @@
+import { createUseCases } from '@/application/usecases'
 import { systemClock } from '@/core/clock'
 import { createEmitter } from '@/core/events'
 import { createAppointmentRepository } from '@/infrastructure/api/appointments/repository'
@@ -39,7 +40,9 @@ export interface AppConfig {
   readonly dev: boolean
 }
 
-export type ServiceOverrides = Partial<Omit<Services, 'repos'>> & { readonly repos?: Partial<Repositories> }
+export type ServiceOverrides = Partial<Omit<Services, 'repos' | 'useCases'>> & {
+  readonly repos?: Partial<Repositories>
+}
 
 const createRepositories = (http: HttpClient): Repositories => ({
   session: createSessionRepository(http),
@@ -85,5 +88,6 @@ export function createServices(config: AppConfig, overrides: ServiceOverrides = 
     fetchTerminal(config.apiBase),
   )
   wireTenant(base.sessionStore, base.tenant, base.prefs)
-  return { ...base, repos: { ...createRepositories(http), ...repoOverrides } }
+  const repos = { ...createRepositories(http), ...repoOverrides }
+  return { ...base, repos, useCases: createUseCases({ clock: base.clock, repos }) }
 }

@@ -45,7 +45,12 @@ export const staffSession: StaffSession = {
     {
       facility: nvg,
       role: 'Hospitalist',
-      departments: [{ id: 'dep_im4b', name: 'Internal Medicine', unit: '4B' }],
+      departments: [
+        { id: 'dep_im4b', name: 'Internal Medicine', unit: '4B' },
+        { id: 'dep_im4c', name: 'Internal Medicine', unit: '4C' },
+        { id: 'dep_ed', name: 'Emergency (cover)', unit: '' },
+        { id: 'dep_opd', name: 'Outpatient clinic', unit: '' },
+      ],
       permissions: [
         'chart:read',
         'note:write',
@@ -62,7 +67,7 @@ export const staffSession: StaffSession = {
     {
       facility: nve,
       role: 'Physician',
-      departments: [{ id: 'dep_nve_opd', name: 'Outpatient clinic', unit: 'OPD' }],
+      departments: [{ id: 'dep_nve_opd', name: 'Outpatient clinic', unit: '' }],
       permissions: ['chart:read'],
     },
   ],

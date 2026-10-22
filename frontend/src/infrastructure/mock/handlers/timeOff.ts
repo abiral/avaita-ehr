@@ -9,8 +9,9 @@ import { addLocalDays, daysBetween, localDateOf } from '@/domain/time'
 
 type SeedTimeOff = Db['timeOff'][number]
 
-const oneOf = <T extends string>(values: readonly T[], v: string, fallback: T): T =>
-  values.includes(v as T) ? (v as T) : fallback
+function oneOf<T extends string>(values: readonly T[], v: string, fallback: T): T {
+  return values.includes(v as T) ? (v as T) : fallback
+}
 
 const parse = (body: Record<string, unknown>) => ({
   practitionerId: str(body, 'practitionerId'),
