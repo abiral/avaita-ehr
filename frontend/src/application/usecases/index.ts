@@ -3,6 +3,7 @@ import type {
   AppointmentRepository,
   ClinicalRepository,
   LabRepository,
+  MedicationRepository,
   PackageRepository,
   RegistrationRepository,
   SchedulingRepository,
@@ -11,6 +12,7 @@ import type {
 import { bookAppointment, cancelAppointment, rescheduleAppointment } from './appointments'
 import { acknowledgeResult, addAddendum, placeLabOrder, releaseResult, saveNoteDraft, signNote } from './clinical'
 import { confirmPasswordReset, register, requestPasswordReset, verifyRegistration } from './access'
+import { decideRefill, requestRefill } from './medications'
 import { bookPackage, savePackage } from './packages'
 import { createTimeOff, previewTimeOff, saveAvailabilityBlock, saveBookingRules } from './scheduling'
 
@@ -24,6 +26,7 @@ export interface UseCaseDeps {
     readonly packages: PackageRepository
     readonly clinical: ClinicalRepository
     readonly labs: LabRepository
+    readonly medications: MedicationRepository
   }
 }
 
@@ -49,6 +52,8 @@ export function createUseCases({ repos, clock }: UseCaseDeps) {
     placeLabOrder: placeLabOrder({ labs: repos.labs }),
     acknowledgeResult: acknowledgeResult({ labs: repos.labs }),
     releaseResult: releaseResult({ labs: repos.labs }),
+    requestRefill: requestRefill({ medications: repos.medications }),
+    decideRefill: decideRefill({ medications: repos.medications, clock }),
   }
 }
 

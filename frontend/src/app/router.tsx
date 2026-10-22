@@ -46,7 +46,7 @@ const portalRoutes = (deps: GuardDeps): RouteObject => ({
     { path: 'packages', ...screen(async () => (await import('@/features/patient-packages')).PackagesScreen) },
     { path: 'appointments', ...screen(async () => (await import('@/features/my-appointments')).MyAppointmentsScreen) },
     { path: 'reports', ...screen(async () => (await import('@/features/patient-reports')).ReportsScreen) },
-    { path: 'medicines', Component: placeholder(t('shell.portal.medicines'), 'portal') },
+    { path: 'medicines', ...screen(async () => (await import('@/features/patient-medicines')).MedicinesScreen) },
   ],
 })
 
@@ -91,7 +91,10 @@ const staffRoutes = (deps: GuardDeps): RouteObject[] => [
         ...screen(async () => (await import('@/features/results-review')).ResultsInboxScreen),
       },
       chartRoutes(),
-      { path: 'medication-requests', Component: placeholder(t('shell.staff.medicationRequests'), 'staff') },
+      {
+        path: 'medication-requests',
+        ...screen(async () => (await import('@/features/medication-requests')).RequestsScreen),
+      },
     ],
   },
 ]

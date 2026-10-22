@@ -1,5 +1,7 @@
 import { http, HttpResponse } from 'msw'
-import { PICKUPS } from '@/domain/medications/types'
+import type { MedicationRequestId, PatientId } from '@/core/branded'
+import { firedChecks, unacknowledged } from '@/domain/medications/safetyChecks'
+import { PICKUPS, type RefillRequest } from '@/domain/medications/types'
 import { nextId, type Db } from '../db'
 import { guard, isResponse, list, problem, readJson, str } from '../http'
 
@@ -42,7 +44,7 @@ const refillView = (db: Db, r: SeedRefill) => {
     id: r.id,
     patientId: p?.id ?? '',
     patientName: p?.displayName ?? '',
-    patientSex: p?.sex ?? 'other',
+    patientSex: p?.sex ?? ('other' as const),
     patientBirthDate: p?.birthDate ?? '1970-01-01',
     mrn: p?.mrn ?? '',
     medicationName: m?.name ?? '',
@@ -63,6 +65,20 @@ const refillView = (db: Db, r: SeedRefill) => {
 }
 
 const DECIDED = { approve: 'approved', change: 'changed', decline: 'declined' } as const
+
+/** The same request the frontend sees, with dates, so the server runs the same safety checks. */
+const asRequest = (db: Db, r: SeedRefill): RefillRequest => {
+  const v = refillView(db, r)
+  return {
+    ...v,
+    id: v.id as MedicationRequestId,
+    patientId: v.patientId as PatientId,
+    lastDispensed: v.lastDispensed ? { at: new Date(v.lastDispensed.at), quantity: v.lastDispensed.quantity } : null,
+    requestedAt: new Date(v.requestedAt),
+    decidedAt: v.decidedAt ? new Date(v.decidedAt) : null,
+    labs: v.labs.map((l) => ({ ...l, at: new Date(l.at) })),
+  }
+}
 
 export function medicationHandlers(db: Db, base: string) {
   return [
@@ -113,9 +129,16 @@ export function medicationHandlers(db: Db, base: string) {
       const current = db.refills[i]
       if (!current) return problem(404, 'not_found', 'No such request')
       if (!OPEN.has(current.status)) return problem(409, 'conflict', 'Already decided')
-      const kind = str(await readJson(request), 'kind')
+      const body = await readJson(request)
+      const kind = str(body, 'kind')
       if (kind !== 'approve' && kind !== 'change' && kind !== 'decline')
         return problem(422, 'validation_failed', 'Invalid decision', { kind: 'invalid' })
+      const acknowledged = Array.isArray(body.acknowledgedChecks) ? body.acknowledgedChecks.map(String) : []
+      if (
+        kind === 'approve' &&
+        unacknowledged(firedChecks(asRequest(db, current), db.clock.now()), acknowledged).length > 0
+      )
+        return problem(409, 'refill_not_allowed', 'Confirm the safety checks before approving')
       const next: SeedRefill = {
         ...current,
         status: DECIDED[kind],

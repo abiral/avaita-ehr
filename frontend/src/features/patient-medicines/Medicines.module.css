@@ -1,0 +1,239 @@
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.title {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+.intro {
+  margin: 0;
+  color: var(--ink-3);
+}
+.allergy {
+  color: var(--danger);
+  font-weight: 500;
+}
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+}
+.list {
+  flex: 3 1 560px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.med {
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.medTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.medText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.medName {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+.how {
+  color: var(--ink-2);
+}
+.why {
+  font-size: 13px;
+  color: var(--muted);
+}
+.supplyRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.supply {
+  flex: 1 1 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.supplyHead {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+.track {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--neutral-tag);
+  overflow: hidden;
+}
+.fill {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--accent);
+}
+.fillLow {
+  background: var(--danger);
+}
+.progress {
+  list-style: none;
+  margin: 0;
+  padding: 14px 0 0;
+  border-top: 1px solid var(--border-soft);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.step::before {
+  content: '';
+  height: 3px;
+  border-radius: 2px;
+  background: var(--border);
+}
+.stepDone {
+  color: var(--ink);
+  font-weight: 500;
+}
+.stepDone::before {
+  background: var(--accent);
+}
+.stepCurrent {
+  color: var(--ink);
+  font-weight: 500;
+}
+.stepCurrent::before {
+  background: #9db8e6;
+}
+.past {
+  overflow: hidden;
+}
+.pastRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 20px;
+  color: var(--ink-3);
+  border-top: 1px solid var(--border-soft);
+}
+.pastRow:first-child {
+  border-top: 0;
+}
+.pastName {
+  font-weight: 500;
+  color: var(--ink);
+}
+.small {
+  font-size: 13px;
+}
+.aside {
+  flex: 2 1 340px;
+  min-width: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.panelHead {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.panelTitle {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+.muted {
+  color: var(--ink-3);
+}
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.groupLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+.three {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.opt {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.opt[aria-pressed='true'] {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+  background: #fafcff;
+}
+.opt:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.optName {
+  font-weight: 600;
+}
+.optSub {
+  font-size: 12px;
+  color: var(--muted);
+}
+.buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+.foot {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+}

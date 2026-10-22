@@ -181,11 +181,11 @@ export const clinicalLabEndpoints: readonly Endpoint[] = [
       repeats: 0,
       sendTo: 'hospital-pharmacy',
       message: 'Approved. Please keep your blood test on 3 November.',
-      acknowledgedChecks: ['potassium-arb'],
+      acknowledgedChecks: ['potassium'],
     },
     request: DecisionBody,
     response: RefillRequestDto,
     status: 200,
-    errors: ['conflict'],
+    errors: ['conflict', 'refill_not_allowed'],
   },
 ]
