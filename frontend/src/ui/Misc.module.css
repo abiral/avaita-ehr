@@ -1,0 +1,120 @@
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: 36px 20px;
+  color: var(--muted);
+}
+.emptyTitle {
+  font-weight: 600;
+  color: var(--ink);
+}
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--avatar-bg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  flex: none;
+}
+.avatarLg {
+  width: 44px;
+  height: 44px;
+  font-size: 14px;
+}
+.skeleton {
+  display: block;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #eef1f5 0%, #f7f9fb 50%, #eef1f5 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+}
+.search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  background: var(--row-hover);
+  color: var(--muted);
+}
+.search:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-ring);
+  background: var(--surface);
+}
+.searchLg {
+  height: 48px;
+  padding: 0 14px;
+  border-color: var(--input-border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+.searchLg input {
+  font-size: 15px;
+}
+.search input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font: 400 14px var(--font-sans);
+  color: var(--ink);
+  width: 100%;
+  min-width: 0;
+}
+.kbd {
+  font: 400 11px var(--font-mono);
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  padding: 0 5px;
+  background: var(--surface);
+}
+.pageHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.pageTitleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.pageTitle {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+.pageSub {
+  color: var(--ink-3);
+}
+.pageActions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}

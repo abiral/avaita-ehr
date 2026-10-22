@@ -1,0 +1,38 @@
+.banner {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 18px;
+  border-radius: 8px;
+}
+.info {
+  background: var(--accent-soft);
+  color: var(--accent-hover);
+}
+.critical {
+  background: var(--danger-soft);
+  color: var(--danger);
+  box-shadow: inset 0 0 0 1px #fecdca;
+}
+.warn {
+  background: var(--warn-soft);
+  color: var(--warn-text);
+}
+.neutral {
+  background: var(--row-hover);
+  color: var(--ink-2);
+}
+.icon {
+  flex: none;
+  margin-top: 2px;
+}
+.body {
+  flex: 1;
+  min-width: 0;
+}
+.title {
+  font-weight: 600;
+}
+.action {
+  flex: none;
+}

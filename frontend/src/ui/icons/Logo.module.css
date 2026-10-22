@@ -1,0 +1,16 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+}
+.word {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.md .word {
+  font-size: 17px;
+}
+.lg .word {
+  font-size: 22px;
+}

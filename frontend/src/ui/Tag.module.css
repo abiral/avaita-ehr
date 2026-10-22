@@ -1,0 +1,38 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: var(--radius-tag);
+  font-size: 12px;
+  font-weight: 500;
+  background: var(--neutral-tag);
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+.info {
+  background: var(--accent-soft);
+  color: var(--accent-hover);
+}
+.alert {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+.critical {
+  background: var(--danger);
+  color: #fff;
+}
+.warn {
+  background: var(--warn-soft);
+  color: var(--warn-text);
+}
+.outline {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--input-border);
+}
+.sm {
+  height: 20px;
+  padding: 0 6px;
+  font-size: 11px;
+}

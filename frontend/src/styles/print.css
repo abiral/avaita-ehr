@@ -1,0 +1,31 @@
+#print-root {
+  display: none;
+}
+
+@media print {
+  body > #root {
+    display: none;
+  }
+  #print-root {
+    display: block;
+    font-family: var(--font-sans);
+    color: #000;
+  }
+  #print-root h1 {
+    font-size: 18pt;
+    margin: 0 0 12pt;
+  }
+  #print-root h2 {
+    font-size: 12pt;
+    margin: 12pt 0 4pt;
+  }
+  .print-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 9pt;
+    border-top: 1px solid #999;
+    padding-top: 4pt;
+  }
+}

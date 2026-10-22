@@ -1,0 +1,31 @@
+.scroll {
+  overflow-x: auto;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.table th {
+  text-align: left;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--table-head);
+  padding: 8px 20px;
+  border-top: 1px solid var(--border-soft);
+  white-space: nowrap;
+}
+.table td {
+  padding: 12px 20px;
+  border-top: 1px solid var(--border-soft);
+  vertical-align: middle;
+}
+.table tbody tr:hover {
+  background: var(--row-hover);
+}
+.table [data-align='right'] {
+  text-align: right;
+}

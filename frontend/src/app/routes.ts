@@ -1,0 +1,36 @@
+/** Typed route table (section 13.1). Path params are opaque ids only. */
+export const paths = {
+  root: '/',
+  login: '/login',
+  register: '/register',
+  forgotPassword: '/forgot-password',
+  portal: {
+    home: '/portal',
+    book: '/portal/book',
+    packages: '/portal/packages',
+    appointments: '/portal/appointments',
+    reports: '/portal/reports',
+    medicines: '/portal/medicines',
+  },
+  staff: {
+    workspace: '/staff/workspace',
+    today: '/staff',
+    patients: '/staff/patients',
+    schedule: '/staff/schedule',
+    results: '/staff/results',
+    medicationRequests: '/staff/medication-requests',
+    chart: (patientId: string) => `/staff/patients/${patientId}`,
+    notes: (patientId: string) => `/staff/patients/${patientId}/notes`,
+    newNote: (patientId: string) => `/staff/patients/${patientId}/notes/new`,
+    orders: (patientId: string) => `/staff/patients/${patientId}/orders`,
+    newOrder: (patientId: string) => `/staff/patients/${patientId}/orders/new`,
+    chartResults: (patientId: string) => `/staff/patients/${patientId}/results`,
+    chartMedications: (patientId: string) => `/staff/patients/${patientId}/medications`,
+  },
+  admin: {
+    availability: '/admin/availability',
+    timeOff: '/admin/time-off',
+    packages: '/admin/packages',
+    organization: '/admin/organization',
+  },
+} as const

@@ -1,0 +1,94 @@
+.head {
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  min-width: 140px;
+  text-align: center;
+}
+.legend {
+  display: flex;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--ink-3);
+  flex-wrap: wrap;
+}
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+.scroll {
+  overflow-x: auto;
+}
+.grid {
+  min-width: 640px;
+  border-top: 1px solid var(--border-soft);
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+.weekday {
+  padding: 8px;
+  border-right: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--table-head);
+}
+.cell {
+  min-height: 76px;
+  padding: 6px 8px;
+  border-right: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  background: var(--surface);
+}
+.muted {
+  background: #fafbfc;
+}
+.today {
+  background: #f2f6fd;
+}
+.num {
+  font: 400 12px var(--font-mono);
+  color: var(--ink-2);
+}
+.today .num {
+  font-weight: 600;
+  color: var(--accent-hover);
+}
+.mark {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 1px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.leave {
+  background: #fde7d9;
+  color: #7a2e0e;
+}
+.part {
+  background: var(--avatar-bg);
+  color: var(--ink-2);
+}

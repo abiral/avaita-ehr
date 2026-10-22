@@ -100,12 +100,19 @@ export default tseslint.config(
     },
   },
   { files: ['src/ui/SafeHtml.tsx'], rules: { 'react/no-danger': 'off' } },
+  // Data files: message catalogs and mock seed data are long by nature
+  {
+    files: ['src/i18n/messages/**', 'src/infrastructure/mock/seed/**'],
+    rules: { 'max-lines': 'off', 'max-params': 'off' },
+  },
   {
     files: ['**/*.test.{ts,tsx}', 'src/test/**', 'e2e/**'],
     rules: {
       'max-lines': 'off',
       'max-lines-per-function': 'off',
+      complexity: 'off',
       '@typescript-eslint/no-non-null-assertion': 'off',
+      '@typescript-eslint/no-confusing-void-expression': 'off',
     },
   },
   {

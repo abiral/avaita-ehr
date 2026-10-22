@@ -58,5 +58,10 @@
     "coverage": "vitest run --coverage",
     "e2e": "playwright test",
     "check": "npm run typecheck && npm run lint && npm run format:check && npm run arch && npm run test:run && vite build"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }

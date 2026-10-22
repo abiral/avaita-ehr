@@ -1,0 +1,68 @@
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  min-width: 0;
+}
+.clip {
+  overflow: hidden;
+}
+.padded {
+  padding: 20px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  flex-wrap: wrap;
+}
+.title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+.sub {
+  font-size: 13px;
+  color: var(--muted);
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 20px;
+  border-top: 1px solid var(--border-soft);
+  color: var(--ink);
+}
+a.row:hover,
+button.row:hover {
+  background: var(--row-hover);
+  color: var(--ink);
+}
+button.row {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 20px;
+  border-top: 1px solid var(--border-soft);
+}
+.row[aria-current='true'],
+.row[aria-pressed='true'] {
+  background: var(--accent-soft);
+}
+.stack {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.meta {
+  font-size: 13px;
+  color: var(--muted);
+}

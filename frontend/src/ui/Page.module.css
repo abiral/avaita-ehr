@@ -1,0 +1,39 @@
+.page {
+  box-sizing: border-box;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.staff {
+  padding: 28px 32px 64px;
+}
+.portal {
+  padding: 32px 24px 72px;
+  max-width: 1120px;
+  gap: 28px;
+}
+.inner {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: inherit;
+}
+.w1160 {
+  max-width: 1160px;
+}
+.w1200 {
+  max-width: 1200px;
+}
+.w920 {
+  max-width: 920px;
+}
+@media (max-width: 640px) {
+  .staff {
+    padding: 20px 16px 48px;
+  }
+  .portal {
+    padding: 24px 16px 56px;
+  }
+}
