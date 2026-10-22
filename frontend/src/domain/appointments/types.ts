@@ -7,7 +7,7 @@ export type AppointmentStatus = (typeof APPOINTMENT_STATUSES)[number]
 export const APPOINTMENT_KINDS = ['consultation', 'lab'] as const
 export type AppointmentKind = (typeof APPOINTMENT_KINDS)[number]
 
-export const CANCEL_REASONS = ['feeling-better', 'cannot-attend', 'booked-by-mistake', 'other'] as const
+export const CANCEL_REASONS = ['feeling-better', 'time-no-longer-works', 'another-doctor', 'other'] as const
 export type CancelReason = (typeof CANCEL_REASONS)[number]
 
 export const CANCELLED_BY = ['patient', 'staff'] as const
@@ -40,4 +40,6 @@ export interface NewAppointment {
   readonly start: Date
   readonly mode: VisitMode
   readonly reason: string
+  /** Staff bookings: text the patient a confirmation. */
+  readonly notifyBySms?: boolean
 }

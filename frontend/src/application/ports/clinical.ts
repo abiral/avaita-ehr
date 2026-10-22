@@ -16,6 +16,8 @@ export interface StaffToday {
 
 export interface ClinicalRepository {
   patients(signal?: AbortSignal): Promise<PatientListItem[]>
+  /** Any patient registered at the facility, by name or MRN. */
+  searchPatients(q: string, signal?: AbortSignal): Promise<PatientListItem[]>
   summary(id: PatientId, signal?: AbortSignal): Promise<PatientSummary>
   today(signal?: AbortSignal): Promise<StaffToday>
   notes(id: PatientId, signal?: AbortSignal): Promise<ClinicalNote[]>

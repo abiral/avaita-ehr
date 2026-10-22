@@ -82,12 +82,21 @@ function listHandler(db: Db, base: string) {
   })
 }
 
+const canBookForPatient = (db: Db, caller: Caller): boolean =>
+  db.staff
+    .find((s) => s.id === caller.userId)
+    ?.memberships.some(
+      (m) => m.facilityId === caller.facilityId && m.permissions.includes('schedule:book-for-patient'),
+    ) ?? false
+
 function bookHandler(db: Db, base: string) {
   return http.post(`${base}/appointments`, async ({ request }) => {
     const caller = guard(db, request)
     if (isResponse(caller)) return caller
     const body = await readJson(request)
     const patientId = caller.kind === 'patient' ? caller.userId : str(body, 'patientId')
+    if (caller.kind === 'staff' && !canBookForPatient(db, caller))
+      return problem(403, 'forbidden', 'Missing permission')
     if (caller.kind === 'staff' && !db.patients.some((p) => p.id === patientId))
       return problem(422, 'validation_failed', 'Patient required', { patientId: 'required' })
     const mode = str(body, 'mode') === 'remote' ? 'remote' : 'onsite'

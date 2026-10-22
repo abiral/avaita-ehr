@@ -4,6 +4,8 @@ import type { Practitioner } from '@/domain/scheduling/types'
 export interface PractitionerFilter {
   readonly category?: string
   readonly q?: string
+  /** Only clinicians who hold a staff account at the facility (clinic schedule). */
+  readonly staffOnly?: boolean
 }
 
 export interface PractitionerRepository {

@@ -9,6 +9,12 @@ export function createClinicalRepository(http: HttpClient): ClinicalRepository {
       const res = await http.send({ method: 'GET', path: '/patients', signal }, PatientListDto)
       return res.items.map(toPatientListItem)
     },
+    async searchPatients(q, signal) {
+      // Patient names never go in the address bar (section 3).
+      const headers = { 'X-Search': encodeURIComponent(q) }
+      const res = await http.send({ method: 'GET', path: '/patients', headers, signal }, PatientListDto)
+      return res.items.map(toPatientListItem)
+    },
     async summary(id, signal) {
       return toSummary(await http.send({ method: 'GET', path: `/patients/${id}/summary`, signal }, SummaryDto))
     },

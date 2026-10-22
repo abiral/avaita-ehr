@@ -38,9 +38,15 @@ export function practitionerHandlers(db: Db, base: string) {
       if (isResponse(caller)) return caller
       const url = new URL(request.url)
       const category = url.searchParams.get('category') ?? ''
+      const staffOnly = url.searchParams.get('staffOnly') === 'true'
       const q = decodeURIComponent(request.headers.get('X-Search') ?? '')
       const items = db.practitioners
         .filter((d) => !category || d.category === category)
+        .filter(
+          (d) =>
+            !staffOnly ||
+            db.staff.some((s) => s.id === d.staffId && s.memberships.some((m) => m.facilityId === caller.facilityId)),
+        )
         .filter((d) => matchesQuery(`${d.displayName} ${d.category} ${d.keywords.join(' ')}`, q))
         .map((d) => view(db, d, caller.facilityId))
       return list(items)

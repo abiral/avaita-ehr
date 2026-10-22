@@ -1,5 +1,6 @@
 import { http, HttpResponse } from 'msw'
 import { NOTE_SECTION_KEYS } from '@/domain/clinical/types'
+import { matchesQuery } from '@/shared/string'
 import { nextId, type Db } from '../db'
 import { guard, isResponse, list, problem, readJson, str } from '../http'
 import { criticalUnacked, listItemView, noteView, summaryView } from '../clinicalViews'
@@ -61,9 +62,22 @@ function todayHandler(db: Db, base: string) {
   })
 }
 
+const SEARCH_LIMIT = 8
+
+function searchPatients(db: Db, request: Request, q: string) {
+  const caller = guard(db, request, { kind: 'staff', permission: 'schedule:book-for-patient' })
+  if (isResponse(caller)) return caller
+  const rows = db.patients
+    .filter((p) => p.facilityId === caller.facilityId && matchesQuery(`${p.displayName} ${p.mrn}`, q))
+    .slice(0, SEARCH_LIMIT)
+  return list(rows.map((p) => listItemView(db, p, caller.userId)))
+}
+
 function patientHandlers(db: Db, base: string) {
   return [
     http.get(`${base}/patients`, ({ request }) => {
+      const q = decodeURIComponent(request.headers.get('X-Search') ?? '')
+      if (q) return searchPatients(db, request, q)
       const caller = guard(db, request, { kind: 'staff', permission: 'chart:read' })
       if (isResponse(caller)) return caller
       return list(

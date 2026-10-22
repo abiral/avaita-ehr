@@ -1,1 +1,1 @@
-export {}
+export { ScheduleScreen } from './ScheduleScreen'

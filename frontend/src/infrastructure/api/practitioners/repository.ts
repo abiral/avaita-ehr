@@ -9,7 +9,13 @@ export function createPractitionerRepository(http: HttpClient): PractitionerRepo
       // The search text travels in a header, not the address bar (section 3).
       const headers: Record<string, string> = filter.q ? { 'X-Search': encodeURIComponent(filter.q) } : {}
       const res = await http.send(
-        { method: 'GET', path: '/practitioners', query: { category: filter.category }, headers, signal },
+        {
+          method: 'GET',
+          path: '/practitioners',
+          query: { category: filter.category, staffOnly: filter.staffOnly ? 'true' : undefined },
+          headers,
+          signal,
+        },
         PractitionerListDto,
       )
       return res.items.map(toPractitioner)

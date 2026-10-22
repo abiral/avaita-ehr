@@ -1371,9 +1371,14 @@ paths:
       operationId: "listPractitioners"
       tags:
         - "Practitioners"
-      summary: "Search doctors by category; the search text travels in X-Search"
+      summary: "Search doctors by category; the search text travels in X-Search; staffOnly limits to facility staff"
       parameters:
         - name: "category"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+        - name: "staffOnly"
           in: "query"
           required: false
           schema:
@@ -1385,7 +1390,7 @@ paths:
             type: "string"
       responses:
         "200":
-          description: "Search doctors by category; the search text travels in X-Search"
+          description: "Search doctors by category; the search text travels in X-Search; staffOnly limits to facility staff"
           content:
             application/json:
               schema:
@@ -2603,8 +2608,8 @@ paths:
                             - type: "string"
                               enum:
                                 - "feeling-better"
-                                - "cannot-attend"
-                                - "booked-by-mistake"
+                                - "time-no-longer-works"
+                                - "another-doctor"
                                 - "other"
                             - type: "null"
                         cancelledBy:
@@ -2754,7 +2759,7 @@ paths:
                     status: "cancelled"
                     location: "Internal Medicine · OPD Block B, Room 3"
                     preparation: ""
-                    cancelReason: "cannot-attend"
+                    cancelReason: "time-no-longer-works"
                     cancelledBy: "patient"
                     packageEnrollmentId: null
                     hasSummary: false
@@ -2787,6 +2792,8 @@ paths:
                     - "remote"
                 reason:
                   type: "string"
+                notifyBySms:
+                  type: "boolean"
               required:
                 - "patientId"
                 - "practitionerId"
@@ -2857,8 +2864,8 @@ paths:
                       - type: "string"
                         enum:
                           - "feeling-better"
-                          - "cannot-attend"
-                          - "booked-by-mistake"
+                          - "time-no-longer-works"
+                          - "another-doctor"
                           - "other"
                       - type: "null"
                   cancelledBy:
@@ -2942,8 +2949,8 @@ paths:
                   type: "string"
                   enum:
                     - "feeling-better"
-                    - "cannot-attend"
-                    - "booked-by-mistake"
+                    - "time-no-longer-works"
+                    - "another-doctor"
                     - "other"
               required:
                 - "reason"
@@ -3007,8 +3014,8 @@ paths:
                       - type: "string"
                         enum:
                           - "feeling-better"
-                          - "cannot-attend"
-                          - "booked-by-mistake"
+                          - "time-no-longer-works"
+                          - "another-doctor"
                           - "other"
                       - type: "null"
                   cancelledBy:
@@ -3138,8 +3145,8 @@ paths:
                       - type: "string"
                         enum:
                           - "feeling-better"
-                          - "cannot-attend"
-                          - "booked-by-mistake"
+                          - "time-no-longer-works"
+                          - "another-doctor"
                           - "other"
                       - type: "null"
                   cancelledBy:
@@ -3284,8 +3291,8 @@ paths:
                       - type: "string"
                         enum:
                           - "feeling-better"
-                          - "cannot-attend"
-                          - "booked-by-mistake"
+                          - "time-no-longer-works"
+                          - "another-doctor"
                           - "other"
                       - type: "null"
                   cancelledBy:
@@ -4326,10 +4333,10 @@ paths:
       operationId: "listPatients"
       tags:
         - "Clinical"
-      summary: "Ward census (C3)"
+      summary: "Ward census (C3); with X-Search, any facility patient by name or MRN"
       responses:
         "200":
-          description: "Ward census (C3)"
+          description: "Ward census (C3); with X-Search, any facility patient by name or MRN"
           content:
             application/json:
               schema:

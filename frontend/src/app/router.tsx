@@ -41,9 +41,9 @@ const portalRoutes = (deps: GuardDeps): RouteObject => ({
   ErrorBoundary: RouteError,
   children: [
     { index: true, Component: placeholder(t('shell.portal.home'), 'portal') },
-    { path: 'book', Component: placeholder('Book an appointment', 'portal') },
+    { path: 'book', ...screen(async () => (await import('@/features/booking')).BookingScreen) },
     { path: 'packages', Component: placeholder('Consultation packages', 'portal') },
-    { path: 'appointments', Component: placeholder(t('shell.portal.appointments'), 'portal') },
+    { path: 'appointments', ...screen(async () => (await import('@/features/my-appointments')).MyAppointmentsScreen) },
     { path: 'reports', Component: placeholder(t('shell.portal.reports'), 'portal') },
     { path: 'medicines', Component: placeholder(t('shell.portal.medicines'), 'portal') },
   ],
@@ -63,7 +63,7 @@ const staffRoutes = (deps: GuardDeps): RouteObject[] => [
     children: [
       { index: true, Component: placeholder(t('shell.staff.today'), 'staff') },
       { path: 'patients', Component: placeholder(t('shell.staff.patients'), 'staff') },
-      { path: 'schedule', Component: placeholder(t('shell.staff.schedule'), 'staff') },
+      { path: 'schedule', ...screen(async () => (await import('@/features/clinic-schedule')).ScheduleScreen) },
       { path: 'results', Component: placeholder(t('shell.staff.results'), 'staff') },
       { path: 'medication-requests', Component: placeholder(t('shell.staff.medicationRequests'), 'staff') },
     ],

@@ -9,9 +9,17 @@ export interface LinkTabItem {
 }
 
 /** Navigation styled as tabs (chart tabs). Uses aria-current, not the tab role. */
-export function LinkTabs({ label, items }: { readonly label: string; readonly items: readonly LinkTabItem[] }) {
+export function LinkTabs({
+  label,
+  items,
+  compact = true,
+}: {
+  readonly label: string
+  readonly items: readonly LinkTabItem[]
+  readonly compact?: boolean
+}) {
   return (
-    <nav className={cx(styles.tabs, styles.compact)} aria-label={label}>
+    <nav className={cx(styles.tabs, compact && styles.compact)} aria-label={label}>
       {items.map((item) => (
         <NavLink key={item.to} to={item.to} end={item.end ?? false} className={styles.tab ?? ''}>
           {item.label}

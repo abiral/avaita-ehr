@@ -73,7 +73,7 @@ export const APPOINTMENTS: readonly SeedAppointment[] = [
   { ...A('ap_r5', 'pt_ramesh', null, '2026-10-19', '07:45', 15, 'Report ready', 'completed'), ...LAB },
   {
     ...A('ap_r6', 'pt_ramesh', 'pr_anaya', '2026-08-14', '11:00', 20, 'General review', 'cancelled'),
-    cancelReason: 'cannot-attend',
+    cancelReason: 'time-no-longer-works',
     cancelledBy: 'patient',
   },
   // Clinic schedule, Tuesday 20 October (C4)
@@ -87,7 +87,7 @@ export const APPOINTMENTS: readonly SeedAppointment[] = [
   A('ap_s8', 'pt_usha', 'pr_karki', '2026-10-20', '11:00', 30, 'Joint injection', 'completed'),
   {
     ...A('ap_s9', 'pt_nabin', 'pr_karki', '2026-10-20', '15:30', 30, 'Follow-up', 'cancelled'),
-    cancelReason: 'cannot-attend',
+    cancelReason: 'time-no-longer-works',
     cancelledBy: 'patient',
   },
   // Booked slots on Wednesday 21 October (P5 shows these as taken)

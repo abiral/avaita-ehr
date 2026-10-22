@@ -9,7 +9,8 @@ export const scopedKeys = (s: TenantScope) => {
   return {
     facility: f,
     organization: o,
-    practitioners: (filter: { category?: string; q?: string }) => [...f, 'practitioners', filter] as const,
+    practitioners: (filter: { category?: string; q?: string; staffOnly?: boolean }) =>
+      [...f, 'practitioners', filter] as const,
     allPractitioners: [...f, 'practitioners'] as const,
     practitioner: (id: PractitionerId) => [...f, 'practitioners', id] as const,
     availability: (id: PractitionerId) => [...f, 'availability', id] as const,
@@ -22,6 +23,7 @@ export const scopedKeys = (s: TenantScope) => {
     practitionerDay: (id: PractitionerId, day: string) => [...f, 'appointments', 'practitioner', id, day] as const,
     packages: [...f, 'packages'] as const,
     patients: [...f, 'patients'] as const,
+    patientSearch: (q: string) => [...f, 'patients', 'search', q] as const,
     today: [...f, 'today'] as const,
     patientSummary: (id: PatientId) => [...o, 'patients', id, 'summary'] as const,
     notes: (id: PatientId) => [...o, 'patients', id, 'notes'] as const,

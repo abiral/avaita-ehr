@@ -32,6 +32,7 @@ export const NewAppointmentBody = z.object({
   start: IsoDateTime,
   mode: z.enum(VISIT_MODES),
   reason: z.string(),
+  notifyBySms: z.boolean().optional(),
 })
 export const CancelBody = z.object({ reason: z.enum(CANCEL_REASONS) })
 export const RescheduleBody = z.object({ start: IsoDateTime })

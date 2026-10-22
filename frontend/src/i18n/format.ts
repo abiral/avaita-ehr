@@ -54,3 +54,14 @@ export const formatNumber = (n: number, digits = 0): string =>
 
 export const formatMoney = (minor: number, currency: string): string =>
   new Intl.NumberFormat(LOCALE, { style: 'currency', currency, maximumFractionDigits: 0 }).format(minor / 100)
+
+/** Wed 21 Oct */
+export const formatShortDay = (d: Date, timeZone: string): string =>
+  `${formatWeekdayShort(d, timeZone)} ${String(Number(formatDayOfMonth(d, timeZone)))} ${formatMonthShort(d, timeZone)}`
+
+/** Wednesday 21 Oct */
+export const formatLongDayShortMonth = (d: Date, timeZone: string): string =>
+  `${formatWeekday(d, timeZone)} ${String(Number(formatDayOfMonth(d, timeZone)))} ${formatMonthShort(d, timeZone)}`
+
+/** The viewer's own zone, used only to show a remote patient's local time next to the facility time. */
+export const viewerTimeZone = (): string => Intl.DateTimeFormat().resolvedOptions().timeZone

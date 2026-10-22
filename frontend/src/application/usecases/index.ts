@@ -1,5 +1,6 @@
 import type { Clock } from '@/core/clock'
-import type { RegistrationRepository, SchedulingRepository, SessionRepository } from '../ports'
+import type { AppointmentRepository, RegistrationRepository, SchedulingRepository, SessionRepository } from '../ports'
+import { bookAppointment, cancelAppointment, rescheduleAppointment } from './appointments'
 import { confirmPasswordReset, register, requestPasswordReset, verifyRegistration } from './access'
 import { createTimeOff, previewTimeOff, saveAvailabilityBlock, saveBookingRules } from './scheduling'
 
@@ -9,11 +10,12 @@ export interface UseCaseDeps {
     readonly session: SessionRepository
     readonly registration: RegistrationRepository
     readonly scheduling: SchedulingRepository
+    readonly appointments: AppointmentRepository
   }
 }
 
 /** Builds every use case from repositories (called once in the composition root). */
-export function createUseCases({ repos }: UseCaseDeps) {
+export function createUseCases({ repos, clock }: UseCaseDeps) {
   return {
     register: register({ registration: repos.registration }),
     verifyRegistration: verifyRegistration({ registration: repos.registration, session: repos.session }),
@@ -23,6 +25,9 @@ export function createUseCases({ repos }: UseCaseDeps) {
     saveBookingRules: saveBookingRules({ scheduling: repos.scheduling }),
     previewTimeOff: previewTimeOff({ scheduling: repos.scheduling }),
     createTimeOff: createTimeOff({ scheduling: repos.scheduling }),
+    bookAppointment: bookAppointment({ appointments: repos.appointments, clock }),
+    rescheduleAppointment: rescheduleAppointment({ appointments: repos.appointments, clock }),
+    cancelAppointment: cancelAppointment({ appointments: repos.appointments, clock }),
   }
 }
 

@@ -10,6 +10,20 @@ const ALLOWED_KEYS = ['folio.pref.lastFacilityId', 'folio.pref.sidebarCollapsed'
 
 export async function signIn(page: Page, who: keyof typeof ACCOUNTS, returnTo?: string): Promise<void> {
   await page.goto(returnTo ? `/login?returnTo=${encodeURIComponent(returnTo)}` : '/login')
+  await fillSignIn(page, who)
+}
+
+/**
+ * Signs out and in as someone else without reloading: the mock database lives in the page,
+ * so a reload would reset what the previous user changed.
+ */
+export async function switchUser(page: Page, who: keyof typeof ACCOUNTS): Promise<void> {
+  await page.getByRole('button', { name: 'Sign out' }).click()
+  await expect(page).toHaveURL(/\/login/)
+  await fillSignIn(page, who)
+}
+
+async function fillSignIn(page: Page, who: keyof typeof ACCOUNTS): Promise<void> {
   if (who !== 'patient') await page.getByRole('button', { name: 'Hospital staff' }).click()
   await page.getByLabel(who === 'patient' ? 'Email or mobile number' : 'Work email').fill(ACCOUNTS[who])
   await page.getByLabel('Password', { exact: true }).fill('demo-password')

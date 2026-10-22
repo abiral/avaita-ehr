@@ -94,7 +94,7 @@ export const serviceEndpoints: readonly Endpoint[] = [
     group: 'Clinical',
     method: 'get',
     path: '/patients',
-    summary: 'Ward census (C3)',
+    summary: 'Ward census (C3); with X-Search, any facility patient by name or MRN',
     as: 'staff',
     response: PatientListDto,
     status: 200,
