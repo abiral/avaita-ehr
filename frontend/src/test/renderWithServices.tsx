@@ -1,3 +1,4 @@
+import type { RealtimeEventName } from '@/application/ports'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { render } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
@@ -48,6 +49,10 @@ export function setupServices(options: TestOptions = {}) {
   const db = options.db ?? createDb(clock)
   server.use(...createHandlers(db, API_BASE))
   const realtime = createFakeRealtime()
+  // The mock server's events (ids only) reach the app as they would over SSE.
+  db.listeners.add((event, data) => {
+    realtime.emit(event as RealtimeEventName, JSON.parse(data))
+  })
   const idle = createFakeIdle()
   const printer = createRecordingPrinter()
   const services = createServices(

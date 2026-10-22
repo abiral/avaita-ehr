@@ -1,0 +1,152 @@
+.critical {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.criticalLink {
+  color: inherit;
+  font-weight: 600;
+}
+.hd {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  gap: 12px;
+}
+.hdTitle {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+.muted {
+  font-size: 13px;
+  color: var(--muted);
+}
+.vitals {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr));
+  border-top: 1px solid var(--border-soft);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.vital {
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-right: 1px solid var(--border-soft);
+}
+.vitalValue {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.big {
+  font: 500 22px var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+.unit {
+  font-size: 12px;
+  color: var(--muted);
+}
+.small {
+  font-size: 12px;
+  color: var(--muted);
+}
+.cols {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+}
+.wide {
+  flex: 2 1 520px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.narrow {
+  flex: 1 1 320px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.clip {
+  overflow: hidden;
+}
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 18px;
+  border-top: 1px solid var(--border-soft);
+  color: var(--ink);
+  text-decoration: none;
+}
+a.li:hover {
+  background: var(--row-hover);
+}
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+.med {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+.strong {
+  font-weight: 500;
+}
+.labValue {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+.abnormal {
+  color: var(--danger);
+}
+.labUnit {
+  font-size: 12px;
+  color: var(--muted);
+  width: 52px;
+}
+.flag {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--danger);
+  width: 12px;
+}
+.team {
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.teamRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.empty {
+  padding: 12px 18px 16px;
+  font-size: 13px;
+  color: var(--muted);
+}

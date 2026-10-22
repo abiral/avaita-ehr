@@ -4802,6 +4802,31 @@ paths:
                         - "at"
                         - "status"
                       additionalProperties: false
+                  latestResults:
+                    type: "array"
+                    items:
+                      type: "object"
+                      properties:
+                        name:
+                          type: "string"
+                        value:
+                          type: "number"
+                        unit:
+                          type: "string"
+                        flag:
+                          type: "string"
+                          enum:
+                            - "normal"
+                            - "high"
+                            - "low"
+                            - "critical-high"
+                            - "critical-low"
+                      required:
+                        - "name"
+                        - "value"
+                        - "unit"
+                        - "flag"
+                      additionalProperties: false
                 required:
                   - "banner"
                   - "alert"
@@ -4812,6 +4837,7 @@ paths:
                   - "medications"
                   - "careTeam"
                   - "notes"
+                  - "latestResults"
                 additionalProperties: false
               example:
                 banner:
@@ -4913,6 +4939,27 @@ paths:
                     role: "Nephrology"
                   - name: "Pema Sherpa, RN"
                     role: "Primary nurse"
+                latestResults:
+                  - name: "WBC"
+                    value: 13.2
+                    unit: "×10⁹/L"
+                    flag: "high"
+                  - name: "CRP"
+                    value: 86
+                    unit: "mg/L"
+                    flag: "high"
+                  - name: "Potassium"
+                    value: 6.1
+                    unit: "mmol/L"
+                    flag: "critical-high"
+                  - name: "Creatinine"
+                    value: 168
+                    unit: "µmol/L"
+                    flag: "high"
+                  - name: "eGFR"
+                    value: 34
+                    unit: "mL/min"
+                    flag: "low"
                 notes:
                   - id: "note_ram_prog"
                     title: "Progress note"

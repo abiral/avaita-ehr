@@ -1,7 +1,7 @@
 import type { PackageId, PractitionerId } from '@/core/branded'
 import { draftProblems, type ConsultationPackage, type PackageDraft } from '@/domain/packages'
 import type { PackageRepository } from '../ports'
-import { enrollInPackage, savePackage } from './packages'
+import { bookPackage, savePackage } from './packages'
 
 const draft: PackageDraft = {
   id: null,
@@ -68,7 +68,7 @@ describe('package use cases', () => {
 
   it('books the first visit of a hybrid package on-site and rejects formats not offered', async () => {
     const { calls, repo } = fakeRepo()
-    const enroll = enrollInPackage({ packages: repo })
+    const enroll = bookPackage({ packages: repo })
     const start = new Date('2026-10-22T03:15:00Z')
     await enroll({ pkg: { id: saved.id, format: 'hybrid' }, chosenFormat: 'hybrid', start })
     await enroll({ pkg: { id: saved.id, format: 'patient_choice' }, chosenFormat: 'remote', start })

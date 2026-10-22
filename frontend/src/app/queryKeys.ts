@@ -30,6 +30,7 @@ export const scopedKeys = (s: TenantScope) => {
     patientResults: (id: PatientId) => [...f, 'results', 'patient', id] as const,
     recentCollections: (id: PatientId) => [...f, 'results', 'recent', id] as const,
     labCatalogue: [...f, 'lab-catalogue'] as const,
+    labBasket: (id: PatientId) => [...f, 'lab-basket', id] as const,
     resultsInbox: [...f, 'results', 'inbox'] as const,
     allResults: [...f, 'results'] as const,
     result: (id: LabResultId) => [...f, 'results', id] as const,

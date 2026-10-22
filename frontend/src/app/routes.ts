@@ -18,6 +18,7 @@ export const paths = {
     patients: '/staff/patients',
     schedule: '/staff/schedule',
     results: '/staff/results',
+    result: (resultId: string) => `/staff/results/${resultId}`,
     medicationRequests: '/staff/medication-requests',
     chart: (patientId: string) => `/staff/patients/${patientId}`,
     notes: (patientId: string) => `/staff/patients/${patientId}/notes`,
@@ -25,6 +26,7 @@ export const paths = {
     orders: (patientId: string) => `/staff/patients/${patientId}/orders`,
     newOrder: (patientId: string) => `/staff/patients/${patientId}/orders/new`,
     chartResults: (patientId: string) => `/staff/patients/${patientId}/results`,
+    chartResult: (patientId: string, resultId: string) => `/staff/patients/${patientId}/results/${resultId}`,
     chartMedications: (patientId: string) => `/staff/patients/${patientId}/medications`,
   },
   admin: {

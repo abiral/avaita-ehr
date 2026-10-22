@@ -2,6 +2,7 @@ import type { ComponentType } from 'react'
 import { createBrowserRouter, type RouteObject } from 'react-router'
 import { t } from '@/i18n'
 import { redirectHome, requireRole, requireSignedOut, requireStaffFacility, type GuardDeps } from './guards'
+import { ChartLayout } from './chart/ChartLayout'
 import { RootLayout } from './RootLayout'
 import { paths } from './routes'
 import { Placeholder } from './screens/Placeholder'
@@ -44,8 +45,28 @@ const portalRoutes = (deps: GuardDeps): RouteObject => ({
     { path: 'book', ...screen(async () => (await import('@/features/booking')).BookingScreen) },
     { path: 'packages', ...screen(async () => (await import('@/features/patient-packages')).PackagesScreen) },
     { path: 'appointments', ...screen(async () => (await import('@/features/my-appointments')).MyAppointmentsScreen) },
-    { path: 'reports', Component: placeholder(t('shell.portal.reports'), 'portal') },
+    { path: 'reports', ...screen(async () => (await import('@/features/patient-reports')).ReportsScreen) },
     { path: 'medicines', Component: placeholder(t('shell.portal.medicines'), 'portal') },
+  ],
+})
+
+const notes = screen(async () => (await import('@/features/clinical-notes')).NotesScreen)
+const orders = screen(async () => (await import('@/features/lab-orders')).OrdersScreen)
+const chartResults = screen(async () => (await import('@/features/results-review')).ChartResultsScreen)
+
+/** C5 to C8 share the chart layout route, which renders the patient banner. */
+const chartRoutes = (): RouteObject => ({
+  path: 'patients/:patientId',
+  Component: ChartLayout,
+  children: [
+    { index: true, ...screen(async () => (await import('@/features/patient-chart')).ChartSummaryScreen) },
+    { path: 'notes', ...notes },
+    { path: 'notes/new', ...notes },
+    { path: 'orders', ...orders },
+    { path: 'orders/new', ...orders },
+    { path: 'results', ...chartResults },
+    { path: 'results/:resultId', ...chartResults },
+    { path: 'medications', Component: placeholder(t('clinical.banner.tab.medications'), 'staff') },
   ],
 })
 
@@ -64,7 +85,12 @@ const staffRoutes = (deps: GuardDeps): RouteObject[] => [
       { index: true, Component: placeholder(t('shell.staff.today'), 'staff') },
       { path: 'patients', Component: placeholder(t('shell.staff.patients'), 'staff') },
       { path: 'schedule', ...screen(async () => (await import('@/features/clinic-schedule')).ScheduleScreen) },
-      { path: 'results', Component: placeholder(t('shell.staff.results'), 'staff') },
+      { path: 'results', ...screen(async () => (await import('@/features/results-review')).ResultsInboxScreen) },
+      {
+        path: 'results/:resultId',
+        ...screen(async () => (await import('@/features/results-review')).ResultsInboxScreen),
+      },
+      chartRoutes(),
       { path: 'medication-requests', Component: placeholder(t('shell.staff.medicationRequests'), 'staff') },
     ],
   },

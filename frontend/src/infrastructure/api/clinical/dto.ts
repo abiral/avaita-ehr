@@ -1,3 +1,4 @@
+import { LAB_FLAGS } from '@/domain/labs/types'
 import { z } from 'zod'
 import { NOTE_SECTION_KEYS, NOTE_STATUSES, PATIENT_FLAGS, PROBLEM_STATUSES, SEXES } from '@/domain/clinical/types'
 import { IsoDateTime, listOf, LocalDate } from '../common'
@@ -65,6 +66,7 @@ export const SummaryDto = z.object({
   medications: z.array(z.object({ name: z.string(), detail: z.string() })),
   careTeam: z.array(PersonDto),
   notes: z.array(NoteSummaryDto),
+  latestResults: z.array(z.object({ name: z.string(), value: z.number(), unit: z.string(), flag: z.enum(LAB_FLAGS) })),
 })
 export type SummaryDto = z.infer<typeof SummaryDto>
 

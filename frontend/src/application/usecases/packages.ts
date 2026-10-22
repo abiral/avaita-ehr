@@ -21,7 +21,7 @@ export const savePackage =
   }
 
 /** Books a package; the first visit mode comes from the format strategy (hybrid starts on-site). */
-export const enrollInPackage =
+export const bookPackage =
   (deps: { packages: Pick<PackageRepository, 'enroll'> }) =>
   async (input: {
     pkg: Pick<ConsultationPackage, 'id' | 'format'>

@@ -65,3 +65,7 @@ export const formatLongDayShortMonth = (d: Date, timeZone: string): string =>
 
 /** The viewer's own zone, used only to show a remote patient's local time next to the facility time. */
 export const viewerTimeZone = (): string => Intl.DateTimeFormat().resolvedOptions().timeZone
+
+/** Lab values as reported: up to two decimals, no padding ("6.1", "168"). */
+export const formatLabValue = (n: number): string =>
+  new Intl.NumberFormat(LOCALE, { maximumFractionDigits: 2, useGrouping: false }).format(n)

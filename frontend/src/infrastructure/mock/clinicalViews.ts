@@ -77,6 +77,20 @@ export const noteView = (n: SeedNote) => {
   return rest
 }
 
+const LATEST_LIMIT = 5
+
+/** Newest value per analyte across the patient's results, newest report first. */
+function latestResults(db: Db, patientId: string) {
+  const seen = new Set<string>()
+  return db.results
+    .filter((r) => r.patientId === patientId)
+    .sort((a, b) => b.reportedAt.localeCompare(a.reportedAt))
+    .flatMap((r) => r.analytes)
+    .filter((a) => (seen.has(a.code) ? false : (seen.add(a.code), true)))
+    .slice(0, LATEST_LIMIT)
+    .map((a) => ({ name: a.name, value: a.value, unit: a.unit, flag: labFlag(a.value, a.range) }))
+}
+
 export function summaryView(db: Db, p: SeedPatient) {
   const chart = db.charts.find((c) => c.patientId === p.id)
   const critical = criticalUnacked(db, p.id)[0]
@@ -102,6 +116,7 @@ export function summaryView(db: Db, p: SeedPatient) {
       { name: staffName(db, p.attendingId) ?? 'Unassigned', role: 'Attending' },
       ...DEFAULT_CARE_TEAM,
     ],
+    latestResults: latestResults(db, p.id),
     notes: db.notes
       .filter((n) => n.patientId === p.id && n.status === 'signed')
       .map((n) => ({

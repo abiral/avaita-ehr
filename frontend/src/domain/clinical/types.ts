@@ -1,4 +1,5 @@
 import type { NoteId, PatientId } from '@/core/branded'
+import type { LabFlag } from '../labs/types'
 
 export const SEXES = ['male', 'female', 'other'] as const
 export type Sex = (typeof SEXES)[number]
@@ -94,6 +95,15 @@ export interface PatientSummary {
   readonly medications: readonly ActiveMedication[]
   readonly careTeam: readonly CareTeamMember[]
   readonly notes: readonly NoteSummary[]
+  /** Most recent value of each analyte, newest panel first. */
+  readonly latestResults: readonly LatestResult[]
+}
+
+export interface LatestResult {
+  readonly name: string
+  readonly value: number
+  readonly unit: string
+  readonly flag: LabFlag
 }
 
 export const NOTE_STATUSES = ['draft', 'signed'] as const

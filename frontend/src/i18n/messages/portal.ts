@@ -128,6 +128,28 @@ export const portal = {
       patient_choice: { name: 'Patient chooses', desc: 'On-site or by video' },
     },
   },
+  reports: {
+    title: 'Lab reports',
+    list: 'Reports',
+    all: 'All reports',
+    new: 'New',
+    outside: '{count} outside range',
+    outsideOne: '1 outside range',
+    allIn: 'All in range',
+    meta: '{date} · {flags}',
+    print: 'Print report',
+    noteFrom: 'Note from {doctor}',
+    columns: { test: 'Test', result: 'Result', range: 'Normal range', flag: 'Flag' },
+    flag: { high: 'High', low: 'Low', normal: 'Normal', 'critical-high': 'High', 'critical-low': 'Low' },
+    rangeAria: '{test} {value} {unit}, {flag}',
+    footer:
+      'Results outside the normal range are not always a problem. Your care team will contact you if anything needs action.',
+    none: 'No lab reports yet',
+    noneBody: 'Reports appear here after your doctor has reviewed them.',
+    loading: 'Loading reports',
+    loadFailed: 'Reports could not be loaded.',
+    retry: 'Try again',
+  },
   modes: {
     onsite: {
       name: 'On-site visit',

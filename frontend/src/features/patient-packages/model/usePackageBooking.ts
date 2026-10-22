@@ -18,7 +18,7 @@ export function usePackageBooking(packages: readonly ConsultationPackage[]) {
   const enroll = useMutation({
     mutationFn: (input: { pkg: ConsultationPackage; start: Date }) => {
       if (!state.format) throw new Error('format required')
-      return useCases.enrollInPackage({ pkg: input.pkg, chosenFormat: state.format, start: input.start })
+      return useCases.bookPackage({ pkg: input.pkg, chosenFormat: state.format, start: input.start })
     },
     onSuccess: async ({ value }) => {
       dispatch({ type: 'booked', enrollmentId: value.id })
