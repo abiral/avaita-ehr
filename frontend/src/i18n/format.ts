@@ -69,3 +69,6 @@ export const viewerTimeZone = (): string => Intl.DateTimeFormat().resolvedOption
 /** Lab values as reported: up to two decimals, no padding ("6.1", "168"). */
 export const formatLabValue = (n: number): string =>
   new Intl.NumberFormat(LOCALE, { maximumFractionDigits: 2, useGrouping: false }).format(n)
+
+/** November */
+export const formatMonthLong = (d: Date, timeZone: string): string => fmt(timeZone, { month: 'long' }).format(d)

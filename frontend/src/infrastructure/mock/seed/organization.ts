@@ -1,3 +1,5 @@
+import { k } from './time'
+
 export const FACILITY_STATS: Readonly<
   Record<string, { code: string; type: string; beds: number | null; staffCount: number; patientCount: number | null }>
 > = {
@@ -8,6 +10,7 @@ export const FACILITY_STATS: Readonly<
 
 export const ONBOARDING = {
   facilityName: 'Lakeview Hospital',
+  goLive: k('2026-12-01', '09:00'),
   steps: [
     {
       title: 'Facility profile and departments',

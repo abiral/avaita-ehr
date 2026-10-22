@@ -1,11 +1,9 @@
 import type { ComponentType } from 'react'
 import { createBrowserRouter, type RouteObject } from 'react-router'
-import { t } from '@/i18n'
 import { redirectHome, requireRole, requireSignedOut, requireStaffFacility, type GuardDeps } from './guards'
 import { ChartLayout } from './chart/ChartLayout'
 import { RootLayout } from './RootLayout'
 import { paths } from './routes'
-import { Placeholder } from './screens/Placeholder'
 import { NotFound, RouteError } from './screens/RouteError'
 import { AdminShell } from './shells/AdminShell'
 import { AuthShell } from './shells/AuthShell'
@@ -16,11 +14,6 @@ import { StaffShellRoute } from './shells/StaffShellRoute'
 const screen = (load: () => Promise<ComponentType>): Pick<RouteObject, 'lazy'> => ({
   lazy: async () => ({ Component: await load() }),
 })
-
-const placeholder = (title: string, area: 'portal' | 'staff') =>
-  function PlaceholderScreen() {
-    return <Placeholder title={title} area={area} />
-  }
 
 const authRoutes = (deps: GuardDeps): RouteObject => ({
   Component: AuthShell,
@@ -41,7 +34,7 @@ const portalRoutes = (deps: GuardDeps): RouteObject => ({
   loader: requireRole(deps, 'patient'),
   ErrorBoundary: RouteError,
   children: [
-    { index: true, Component: placeholder(t('shell.portal.home'), 'portal') },
+    { index: true, ...screen(async () => (await import('@/features/portal-home')).HomeScreen) },
     { path: 'book', ...screen(async () => (await import('@/features/booking')).BookingScreen) },
     { path: 'packages', ...screen(async () => (await import('@/features/patient-packages')).PackagesScreen) },
     { path: 'appointments', ...screen(async () => (await import('@/features/my-appointments')).MyAppointmentsScreen) },
@@ -66,7 +59,7 @@ const chartRoutes = (): RouteObject => ({
     { path: 'orders/new', ...orders },
     { path: 'results', ...chartResults },
     { path: 'results/:resultId', ...chartResults },
-    { path: 'medications', Component: placeholder(t('clinical.banner.tab.medications'), 'staff') },
+    { path: 'medications', ...screen(async () => (await import('@/features/patient-chart')).ChartMedicationsScreen) },
   ],
 })
 
@@ -82,8 +75,8 @@ const staffRoutes = (deps: GuardDeps): RouteObject[] => [
     loader: requireStaffFacility(deps),
     ErrorBoundary: RouteError,
     children: [
-      { index: true, Component: placeholder(t('shell.staff.today'), 'staff') },
-      { path: 'patients', Component: placeholder(t('shell.staff.patients'), 'staff') },
+      { index: true, ...screen(async () => (await import('@/features/ward')).TodayScreen) },
+      { path: 'patients', ...screen(async () => (await import('@/features/ward')).PatientsScreen) },
       { path: 'schedule', ...screen(async () => (await import('@/features/clinic-schedule')).ScheduleScreen) },
       { path: 'results', ...screen(async () => (await import('@/features/results-review')).ResultsInboxScreen) },
       {
@@ -123,7 +116,7 @@ const adminRoutes = (deps: GuardDeps): RouteObject => ({
     {
       path: 'organization',
       loader: requireStaffFacility(deps, ['org:admin']),
-      Component: placeholder(t('shell.admin.facilities'), 'staff'),
+      ...screen(async () => (await import('@/features/organization')).OrganizationScreen),
     },
   ],
 })

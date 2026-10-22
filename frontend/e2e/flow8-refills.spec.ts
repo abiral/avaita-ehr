@@ -35,7 +35,7 @@ test('Flow 8: refill request, safety check with double confirmation, approval re
   await expectNoPhiInStorage(page)
 
   await switchUser(page, 'patient')
-  await page.getByRole('link', { name: 'Medicines' }).click()
+  await page.getByRole('navigation', { name: 'Patient portal' }).getByRole('link', { name: 'Medicines' }).click()
   const losartan = page.getByRole('article', { name: 'Losartan 50 mg tablet' })
   await expect(losartan.getByText('Refill approved')).toBeVisible()
   await expect(

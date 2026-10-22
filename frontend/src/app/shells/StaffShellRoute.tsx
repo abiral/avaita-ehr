@@ -1,16 +1,18 @@
-import { t } from '@/i18n'
-import { SearchInput } from '@/ui'
 import { CriticalAlerts } from '../chart/CriticalAlerts'
 import { useCriticalAlerts } from '../chart/useCriticalAlerts'
+import { PatientSearch } from './PatientSearch'
 import { StaffShell } from './StaffShell'
+import { useNavCounts } from './useNavCounts'
 
-/** Fills the staff shell slots (patient search, critical results banner, nav counts). */
+/** Fills the staff shell slots: patient search, critical results banner and nav counts. */
 export function StaffShellRoute() {
   const alerts = useCriticalAlerts()
+  const counts = useNavCounts()
   return (
     <StaffShell
-      search={<SearchInput label={t('shell.staff.searchPatients')} placeholder={t('shell.staff.searchPlaceholder')} />}
+      search={<PatientSearch />}
       banner={alerts.length > 0 ? <CriticalAlerts alerts={alerts} /> : null}
+      counts={counts}
     />
   )
 }

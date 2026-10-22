@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { listOf } from '../common'
+import { IsoDateTime, listOf } from '../common'
 
 export const FacilityDetailDto = z.object({
   id: z.string(),
@@ -20,6 +20,7 @@ export const OrganizationDto = z.object({
   onboarding: z
     .object({
       facilityName: z.string(),
+      goLive: IsoDateTime.nullable(),
       steps: z.array(
         z.object({
           title: z.string(),

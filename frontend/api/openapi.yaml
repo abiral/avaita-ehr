@@ -1195,6 +1195,11 @@ paths:
                         properties:
                           facilityName:
                             type: "string"
+                          goLive:
+                            anyOf:
+                              - type: "string"
+                                format: "date-time"
+                              - type: "null"
                           steps:
                             type: "array"
                             items:
@@ -1221,6 +1226,7 @@ paths:
                               additionalProperties: false
                         required:
                           - "facilityName"
+                          - "goLive"
                           - "steps"
                         additionalProperties: false
                       - type: "null"
@@ -1298,6 +1304,7 @@ paths:
                     membershipNote: null
                 onboarding:
                   facilityName: "Lakeview Hospital"
+                  goLive: "2026-12-01T03:15:00.000Z"
                   steps:
                     - title: "Facility profile and departments"
                       detail: "14 departments, 9 wards"
@@ -5071,7 +5078,7 @@ paths:
                   - kind: "critical-result"
                     title: "Potassium 6.1 mmol/L"
                     patientName: "Ram Bahadur Thapa"
-                    context: "Bed 12 · 2026-10-20T00:25:00.000Z"
+                    context: "Bed 12 · 06:10"
                     target:
                       type: "result"
                       id: "res_ram_renal"

@@ -36,7 +36,7 @@ test('Flow 7: note, lab order, realtime critical result, review and release to t
   await expectNoPhiInStorage(page)
 
   await switchUser(page, 'patient')
-  await page.getByRole('link', { name: 'Lab reports' }).click()
+  await page.getByRole('navigation', { name: 'Patient portal' }).getByRole('link', { name: 'Lab reports' }).click()
   const reports = page.getByRole('navigation', { name: 'Reports' })
   await expect(reports.getByRole('button', { name: /Renal function panel.*New/ })).toBeVisible()
   await expect(page.getByText('Your potassium is high. Please come in today for a repeat test.')).toBeVisible()

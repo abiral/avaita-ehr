@@ -23,7 +23,12 @@ export function SideNav({
       {items.map((item) => (
         <NavLink key={item.to} to={item.to} end={item.end ?? false}>
           {item.label}
-          {item.count ? <span className={styles.count}>{item.count}</span> : null}
+          {item.count ? (
+            <>
+              {' '}
+              <span className={styles.count}>{item.count}</span>
+            </>
+          ) : null}
         </NavLink>
       ))}
     </nav>

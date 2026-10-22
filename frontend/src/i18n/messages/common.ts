@@ -60,9 +60,6 @@ export const common = {
     signInAsSomeoneElse: 'Sign in as someone else',
     signedInAs: 'Signed in as {name}',
   },
-  placeholder: {
-    body: 'This screen is part of a later build phase.',
-  },
   footer: {
     help: 'Help',
     status: 'System status',

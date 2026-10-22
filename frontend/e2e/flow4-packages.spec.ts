@@ -10,7 +10,7 @@ test.describe('Flow 4: consultation packages', () => {
     await expect(page.getByText('Published to the patient portal')).toBeVisible()
 
     await switchUser(page, 'patient')
-    await page.getByRole('link', { name: 'Appointments' }).click()
+    await page.getByRole('navigation', { name: 'Patient portal' }).getByRole('link', { name: 'Appointments' }).click()
     await page.getByRole('link', { name: 'Book an appointment' }).click()
     await page.getByRole('link', { name: 'Consultation packages' }).click()
     await page.getByRole('button', { name: 'Orthopaedics' }).click()

@@ -1,5 +1,6 @@
 import { http, HttpResponse } from 'msw'
 import { NOTE_SECTION_KEYS } from '@/domain/clinical/types'
+import { localTimeOf } from '@/domain/time'
 import { matchesQuery } from '@/shared/string'
 import { nextId, type Db } from '../db'
 import { guard, isResponse, list, problem, readJson, str } from '../http'
@@ -32,7 +33,7 @@ function todayHandler(db: Db, base: string) {
         kind: 'critical-result' as const,
         title: `${a?.name ?? r.panel} ${String(a?.value ?? '')} ${a?.unit ?? ''}`,
         patientName: p?.displayName ?? '',
-        context: `Bed ${p?.bed ?? ''} · ${r.reportedAt}`,
+        context: `Bed ${p?.bed ?? ''} · ${localTimeOf(new Date(r.reportedAt), 'Asia/Kathmandu')}`,
         target: { type: 'result' as const, id: r.id, patientId: r.patientId },
       }
     })
@@ -64,11 +65,17 @@ function todayHandler(db: Db, base: string) {
 
 const SEARCH_LIMIT = 8
 
+const SEARCH_PERMISSIONS = ['chart:read', 'schedule:book-for-patient'] as const
+
 function searchPatients(db: Db, request: Request, q: string) {
-  const caller = guard(db, request, { kind: 'staff', permission: 'schedule:book-for-patient' })
+  const caller = guard(db, request, { kind: 'staff' })
   if (isResponse(caller)) return caller
+  const perms =
+    db.staff.find((s) => s.id === caller.userId)?.memberships.find((m) => m.facilityId === caller.facilityId)
+      ?.permissions ?? []
+  if (!SEARCH_PERMISSIONS.some((p) => perms.includes(p))) return problem(403, 'forbidden', 'Missing permission')
   const rows = db.patients
-    .filter((p) => p.facilityId === caller.facilityId && matchesQuery(`${p.displayName} ${p.mrn}`, q))
+    .filter((p) => p.facilityId === caller.facilityId && matchesQuery(`${p.displayName} ${p.mrn} ${p.bed ?? ''}`, q))
     .slice(0, SEARCH_LIMIT)
   return list(rows.map((p) => listItemView(db, p, caller.userId)))
 }

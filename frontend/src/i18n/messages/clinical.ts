@@ -47,6 +47,7 @@ export const clinical = {
     allResults: 'All results',
     noResults: 'No results yet.',
     careTeam: 'Care team',
+    refillQueue: 'Refill requests are reviewed in Medication requests',
   },
   flags: {
     normal: 'Normal',

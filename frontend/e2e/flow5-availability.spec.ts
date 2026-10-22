@@ -11,7 +11,7 @@ test.describe('Flow 5 and 6: blocks make slots bookable, leave shows as On leave
     await expect(page.getByText(/New slots are live in the patient portal\./)).toBeVisible()
 
     await switchUser(page, 'patient')
-    await page.getByRole('link', { name: 'Appointments' }).click()
+    await page.getByRole('navigation', { name: 'Patient portal' }).getByRole('link', { name: 'Appointments' }).click()
     await page.getByRole('link', { name: 'Book an appointment' }).click()
     await page.getByRole('button', { name: 'Select Dr. Prakash Karki' }).click()
     await page.getByRole('button', { name: /On-site visit/ }).click()
@@ -33,7 +33,7 @@ test.describe('Flow 5 and 6: blocks make slots bookable, leave shows as On leave
     await expect(page.getByText(/Dr. Prakash Karki is blocked Thu 22 to Fri 23 Oct/)).toBeVisible()
 
     await switchUser(page, 'patient')
-    await page.getByRole('link', { name: 'Appointments' }).click()
+    await page.getByRole('navigation', { name: 'Patient portal' }).getByRole('link', { name: 'Appointments' }).click()
     await page.getByRole('link', { name: 'Book an appointment' }).click()
     await page.getByRole('button', { name: 'Select Dr. Prakash Karki' }).click()
     await page.getByRole('button', { name: /On-site visit/ }).click()

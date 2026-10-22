@@ -20,6 +20,7 @@ export const shell = {
     switchFacility: 'Switch facility or department, current: {name}',
     searchPatients: 'Search patients',
     searchPlaceholder: 'Search patient, MRN or bed',
+    noPatients: 'No patients match',
     criticalBanner: 'Critical result: {count} unacknowledged. Review now.',
     criticalBannerOne: 'Critical result needs review.',
     reviewNow: 'Review',

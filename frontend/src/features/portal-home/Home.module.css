@@ -1,0 +1,137 @@
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.title {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+.muted {
+  margin: 0;
+  color: var(--ink-3);
+}
+.prep {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 18px;
+  border-radius: 8px;
+  background: var(--accent-soft);
+  color: var(--accent-hover);
+}
+.prepIcon {
+  flex: none;
+  margin-top: 2px;
+}
+.actions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: 12px;
+}
+.act {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px;
+  height: 100%;
+  box-sizing: border-box;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  color: var(--ink);
+  text-decoration: none;
+}
+.act:hover {
+  border-color: #b7c0cc;
+  color: var(--ink);
+}
+.act:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.ico {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.actTitle {
+  font-weight: 600;
+}
+.actSub {
+  font-size: 13px;
+  color: var(--muted);
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+}
+.half {
+  flex: 1 1 420px;
+  min-width: 0;
+}
+.clip {
+  overflow: hidden;
+}
+.cardHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+}
+.cardTitle {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+.small {
+  font-size: 13px;
+}
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  border-top: 1px solid var(--border-soft);
+  color: var(--ink);
+  text-decoration: none;
+}
+a.li:hover {
+  background: var(--row-hover);
+  color: var(--ink);
+}
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+.strong {
+  font-weight: 500;
+}
+.sub {
+  font-size: 13px;
+  color: var(--muted);
+}
+.empty {
+  padding: 0 20px 16px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}

@@ -18,7 +18,10 @@ export function createTenancyRepository(http: HttpClient): TenancyRepository {
     },
     async organization(signal) {
       const res = await http.send({ method: 'GET', path: '/organization', signal }, OrganizationDto)
-      return { ...res, facilities: res.facilities.map(toFacilityDetail) }
+      const onboarding = res.onboarding
+        ? { ...res.onboarding, goLive: res.onboarding.goLive ? new Date(res.onboarding.goLive) : null }
+        : null
+      return { ...res, onboarding, facilities: res.facilities.map(toFacilityDetail) }
     },
   }
 }

@@ -33,7 +33,11 @@ export interface RoleAccess {
 
 export interface OrganizationOverview {
   readonly facilities: readonly FacilityDetail[]
-  readonly onboarding: { readonly facilityName: string; readonly steps: readonly OnboardingStep[] } | null
+  readonly onboarding: {
+    readonly facilityName: string
+    readonly goLive: Date | null
+    readonly steps: readonly OnboardingStep[]
+  } | null
   readonly settings: readonly SettingScope[]
   readonly roles: readonly RoleAccess[]
 }

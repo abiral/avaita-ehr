@@ -23,7 +23,7 @@ describe('shells and guards', () => {
       await screen.findByRole('link', { name: /Switch facility or department, current: Northvale General/ }),
     ).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Facilities and access' })).toBeInTheDocument()
-    expect(screen.getByRole('searchbox', { name: 'Search patients' })).toBeInTheDocument()
+    expect(screen.getByRole('combobox', { name: 'Search patients' })).toBeInTheDocument()
     await expectNoA11yViolations(container)
   })
 
