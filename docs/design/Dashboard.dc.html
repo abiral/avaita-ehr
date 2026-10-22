@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Folio · Today</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F9;color:#101828;font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:#1F56B4;text-decoration:none}a:hover{color:#174595}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.cap{font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:#5D6B7E}
+.nav a{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:38px;padding:0 12px;border-radius:6px;color:#344054;font-weight:500}
+.nav a:hover{background:#F2F4F7;color:#101828}
+.nav a.on{background:#EAF1FC;color:#174595}
+.count{font:500 12px 'IBM Plex Mono',monospace;color:#5D6B7E}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 16px;border-radius:6px;border:1px solid #D0D6DE;background:#fff;color:#101828;font:500 14px 'IBM Plex Sans',sans-serif;cursor:pointer;box-sizing:border-box;white-space:nowrap}
+.btn:hover{background:#F7F9FB;color:#101828}
+.btn.pri{background:#1F56B4;border-color:#1F56B4;color:#fff}
+.btn.pri:hover{background:#174595;color:#fff}
+.ibtn{all:unset;cursor:pointer;width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;color:#344054}
+.ibtn:hover{background:#F2F4F7}
+.card{background:#fff;border:1px solid #E2E6EC;border-radius:8px}
+.tag{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:4px;font-size:12px;font-weight:500;background:#EEF1F5;color:#344054;white-space:nowrap}
+.tag.alert{background:#FEF3F2;color:#B42318}
+.tag.blue{background:#EAF1FC;color:#174595}
+.search{display:flex;align-items:center;gap:10px;height:38px;padding:0 12px;border:1px solid #E2E6EC;border-radius:6px;background:#F7F9FB;color:#5D6B7E;box-sizing:border-box}
+.search input{border:0;outline:0;background:transparent;font:400 14px 'IBM Plex Sans',sans-serif;color:#101828;width:100%}
+.trow{display:grid;align-items:center;gap:16px;padding:12px 20px;border-top:1px solid #EDF0F4;color:#101828}
+a.trow:hover{background:#F7F9FB;color:#101828}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #F4F6F9">
+  <aside style="flex: 1 1 240px; max-width: 100%; box-sizing: border-box; padding: 14px 14px 20px; display: flex; flex-direction: column; gap: 22px; background: #FFFFFF; border-right: 1px solid #E2E6EC">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 10px; height: 32px">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="#1F56B4"></rect><path d="M7 7h8M7 11h6M7 15h4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg>
+      <span style="font-size: 17px; font-weight: 600; letter-spacing: -0.01em">Folio</span>
+    </div>
+    <a href="Workspace.dc.html" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border: 1px solid #E2E6EC; border-radius: 6px; color: #101828">
+      <span style="display: flex; flex-direction: column; line-height: 1.35; min-width: 0"><span style="font-weight: 500">Northvale General</span><span style="color: #5D6B7E; font-size: 12px">Internal Medicine · 4B</span></span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5D6B7E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 9 5-5 5 5M7 15l5 5 5-5"></path></svg>
+    </a>
+    <nav class="nav" aria-label="Primary" style="display: flex; flex-direction: column; gap: 2px">
+      <a href="Dashboard.dc.html" class="on" aria-current="page">Today</a>
+      <a href="Patients.dc.html">Patients <span class="count">8</span></a>
+      <a href="Schedule.dc.html">Schedule</a>
+      <a href="Results.dc.html">Results <span class="count">6</span></a>
+      <a href="Requests.dc.html">Medication requests <span class="count">4</span></a>
+    </nav>
+    <nav class="nav" aria-label="Organization" style="display: flex; flex-direction: column; gap: 2px">
+      <span class="cap" style="padding: 0 12px 6px">Organization</span>
+      <a href="Admin.dc.html">Facilities and access</a>
+    </nav>
+  </aside>
+
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+    <header style="min-height: 60px; box-sizing: border-box; padding: 10px 32px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; background: #FFFFFF; border-bottom: 1px solid #E2E6EC">
+      <label class="search" style="width: 380px; max-width: 100%">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m20 20-4.2-4.2"></path></svg>
+        <input type="search" placeholder="Search patient, MRN or bed" aria-label="Search patients">
+        <span class="mono" style="font-size: 11px; border: 1px solid #D0D6DE; border-radius: 4px; padding: 0 5px; background: #fff">/</span>
+      </label>
+      <div style="display: flex; align-items: center; gap: 8px">
+        <button type="button" class="ibtn" aria-label="Notifications"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15z"></path><path d="M10 20a2 2 0 0 0 4 0"></path></svg></button>
+        <span style="width: 1px; height: 24px; background: #E2E6EC"></span>
+        <span style="display: flex; align-items: center; gap: 10px; padding-left: 6px">
+          <span style="width: 32px; height: 32px; border-radius: 50%; background: #E3E8EF; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">AS</span>
+          <span style="display: flex; flex-direction: column; line-height: 1.25"><span style="font-weight: 500">Dr. Anaya Shrestha</span><span style="font-size: 12px; color: #5D6B7E">Hospitalist</span></span>
+        </span>
+      </div>
+    </header>
+
+    <main style="box-sizing: border-box; padding: 28px 32px 64px">
+      <div style="max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap">
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <span class="cap">Tuesday, 20 October</span>
+            <h1 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.2">Today</h1>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap">
+            <a class="btn" href="Patients.dc.html">Handover list</a>
+            <a class="btn pri" href="Patients.dc.html">New admission</a>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 12px">
+          <sc-for list="{{stats}}" as="s" hint-placeholder-count="4">
+            <a href="{{s.href}}" class="card" style="padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; color: #101828">
+              <span style="font-size: 13px; color: #5D6B7E">{{s.label}}</span>
+              <span class="mono" style="font-size: 26px; font-weight: 500; line-height: 1.2; color: {{s.color}}">{{s.value}}</span>
+            </a>
+          </sc-for>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+          <section class="card" style="flex: 2 1 560px; min-width: 0; overflow: hidden" aria-labelledby="mine">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 20px">
+              <h2 id="mine" style="margin: 0; font-size: 15px; font-weight: 600">My patients</h2>
+              <a href="Patients.dc.html" style="font-size: 13px">View ward list</a>
+            </div>
+            <div style="overflow-x: auto">
+              <div style="min-width: 640px">
+                <div class="trow cap" style="grid-template-columns: 44px minmax(0, 1.5fr) minmax(0, 1.5fr) 150px 56px; padding-top: 8px; padding-bottom: 8px; background: #F8FAFC">
+                  <span>Bed</span><span>Patient</span><span>Reason for admission</span><span>Next</span><span style="text-align: right">Seen</span>
+                </div>
+                <sc-for list="{{patients}}" as="p" hint-placeholder-count="8">
+                  <a class="trow" href="Chart.dc.html" style="grid-template-columns: 44px minmax(0, 1.5fr) minmax(0, 1.5fr) 150px 56px">
+                    <span class="mono" style="color: #5D6B7E">{{p.bed}}</span>
+                    <span style="display: flex; flex-direction: column; line-height: 1.35"><span style="font-weight: 500">{{p.name}}</span><span class="mono" style="font-size: 12px; color: #5D6B7E">{{p.demo}}</span></span>
+                    <span style="color: #344054">{{p.dx}}</span>
+                    <span><span class="{{p.tagCls}}">{{p.next}}</span></span>
+                    <span class="mono" style="text-align: right; color: #5D6B7E; font-size: 13px">{{p.seen}}</span>
+                  </a>
+                </sc-for>
+              </div>
+            </div>
+          </section>
+
+          <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+            <section class="card" style="overflow: hidden" aria-labelledby="att">
+              <div style="padding: 14px 20px; display: flex; justify-content: space-between; align-items: center">
+                <h2 id="att" style="margin: 0; font-size: 15px; font-weight: 600">Needs attention</h2>
+                <span class="count">3</span>
+              </div>
+              <sc-for list="{{attention}}" as="a" hint-placeholder-count="3">
+                <a href="{{a.href}}" style="display: flex; gap: 12px; padding: 14px 20px; border-top: 1px solid #EDF0F4; color: #101828">
+                  <span style="width: 8px; height: 8px; border-radius: 2px; margin-top: 7px; flex: none; background: {{a.dot}}"></span>
+                  <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+                    <span style="font-size: 12px; font-weight: 600; color: {{a.kindColor}}">{{a.kind}}</span>
+                    <span style="font-weight: 500">{{a.title}}</span>
+                    <span style="font-size: 13px; color: #5D6B7E">{{a.who}}</span>
+                  </span>
+                </a>
+              </sc-for>
+            </section>
+
+            <section class="card" style="padding: 14px 20px 8px; display: flex; flex-direction: column; gap: 8px" aria-labelledby="day">
+              <div style="display: flex; justify-content: space-between; align-items: center">
+                <h2 id="day" style="margin: 0; font-size: 15px; font-weight: 600">Agenda</h2>
+                <a href="Schedule.dc.html" style="font-size: 13px">Schedule</a>
+              </div>
+              <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column">
+                <sc-for list="{{agenda}}" as="e" hint-placeholder-count="4">
+                  <li style="display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-top: 1px solid #EDF0F4">
+                    <span class="mono" style="color: #5D6B7E; font-size: 13px">{{e.t}}</span>
+                    <span>{{e.what}}</span>
+                  </li>
+                </sc-for>
+              </ol>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const t = (k) => k === 'alert' ? 'tag alert' : k === 'blue' ? 'tag blue' : 'tag';
+    const patients = [
+      ['12', 'Ram Bahadur Thapa', '68 M · NVG-204118', 'Community-acquired pneumonia', 'Critical result', 'alert', '06:10'],
+      ['03', 'Sita Gurung', '54 F · NVG-198330', 'Heart failure, acute on chronic', 'Med reconciliation', '', '07:45'],
+      ['05', 'Maya Tamang', '72 F · NVG-201907', 'Hip fracture, post-op day 2', 'Family 11:30', '', 'Mon'],
+      ['07', 'Bikash Rai', '41 M · NVG-205662', 'Diabetic ketoacidosis, resolving', 'Cosign note', '', '07:20'],
+      ['09', 'Kamala Adhikari', '63 F · NVG-187215', 'COPD exacerbation', 'Discharge today', 'blue', '07:30'],
+      ['14', 'Hari Prasad Joshi', '79 M · NVG-176044', 'Delirium, urinary infection', 'Geriatrics consult', '', 'Mon'],
+      ['16', 'Sunita Maharjan', '35 F · NVG-206001', 'Pyelonephritis', 'Stable', '', '07:55'],
+      ['18', 'Deepak Basnet', '58 M · NVG-199478', 'Upper GI bleed', 'Endoscopy 13:00', '', '08:05']
+    ].map(([bed, name, demo, dx, next, k, seen]) => ({ bed, name, demo, dx, next, seen, tagCls: t(k) }));
+    return {
+      patients,
+      stats: [
+        { label: 'My patients', value: '8', color: '#101828', href: 'Patients.dc.html' },
+        { label: 'Critical results', value: '1', color: '#B42318', href: 'Results.dc.html' },
+        { label: 'Notes to sign', value: '2', color: '#101828', href: 'Note.dc.html' },
+        { label: 'Planned discharges', value: '1', color: '#101828', href: 'Patients.dc.html' }
+      ],
+      attention: [
+        { kind: 'Critical result', kindColor: '#B42318', dot: '#D92D20', title: 'Potassium 6.1 mmol/L', who: 'Ram Bahadur Thapa · Bed 12 · 06:10', href: 'Results.dc.html' },
+        { kind: 'Cosign', kindColor: '#475467', dot: '#1F56B4', title: 'Admission note by Dr. Prakash Karki', who: 'Bikash Rai · Bed 07', href: 'Note.dc.html' },
+        { kind: 'Medication', kindColor: '#475467', dot: '#1F56B4', title: 'Reconcile home medications', who: 'Sita Gurung · Bed 03', href: 'Chart.dc.html' }
+      ],
+      agenda: [
+        { t: '08:30', what: 'Ward round, 4B' },
+        { t: '11:30', what: 'Family meeting, Maya Tamang' },
+        { t: '13:00', what: 'Multidisciplinary team review' },
+        { t: '15:30', what: 'Handover to evening cover' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

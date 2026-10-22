@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Folio Admin · Leave and blocked time</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F9;color:#101828;font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:#1F56B4;text-decoration:none}a:hover{color:#174595}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.cap{font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:#5D6B7E}
+.nav a{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:38px;padding:0 12px;border-radius:6px;color:#344054;font-weight:500}
+.nav a:hover{background:#F2F4F7;color:#101828}
+.nav a.on{background:#EAF1FC;color:#174595}
+.btn{all:unset;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 16px;border-radius:6px;border:1px solid #D0D6DE;background:#fff;color:#101828;font:500 14px 'IBM Plex Sans',sans-serif;cursor:pointer;box-sizing:border-box;white-space:nowrap}
+.btn:hover{background:#F7F9FB;color:#101828}
+.btn.pri{background:#1F56B4;border-color:#1F56B4;color:#fff}
+.btn.pri:hover{background:#174595;color:#fff}
+.ibtn{all:unset;cursor:pointer;width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;border:1px solid #D0D6DE;color:#344054}
+.card{background:#fff;border:1px solid #E2E6EC;border-radius:8px}
+.tag{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:4px;font-size:12px;font-weight:500;background:#EEF1F5;color:#344054;white-space:nowrap}
+.tag.blue{background:#EAF1FC;color:#174595}
+.tag.warn{background:#FFFAEB;color:#93370D}
+.search{display:flex;align-items:center;gap:10px;height:38px;padding:0 12px;border:1px solid #E2E6EC;border-radius:6px;background:#F7F9FB;color:#5D6B7E;box-sizing:border-box}
+.search input{border:0;outline:0;background:transparent;font:400 14px 'IBM Plex Sans',sans-serif;color:#101828;width:100%}
+.cell{min-height:76px;padding:6px 8px;border-right:1px solid #EDF0F4;border-bottom:1px solid #EDF0F4;display:flex;flex-direction:column;gap:3px;box-sizing:border-box;min-width:0}
+.mark{font-size:11px;font-weight:500;padding:1px 6px;border-radius:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field label,.field .l{font-size:12px;font-weight:500;color:#475467}
+.field select,.field input,.field textarea{min-height:38px;box-sizing:border-box;padding:0 10px;border:1px solid #D0D6DE;border-radius:6px;background:#fff;font:400 14px 'IBM Plex Sans',sans-serif;color:#101828;width:100%}
+.field textarea{padding:8px 10px}
+.seg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:3px;border-radius:8px;background:#E9EDF2;gap:3px}
+.seg button{all:unset;cursor:pointer;min-height:34px;border-radius:6px;font-weight:500;color:#475467;text-align:center;font-size:13px}
+.seg button.on{background:#fff;color:#101828;box-shadow:0 1px 2px rgba(16,24,40,.08)}
+.radio{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1px solid #E2E6EC;border-radius:6px;cursor:pointer;color:#344054}
+.radio input{margin-top:3px;accent-color:#1F56B4}
+.li{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:14px 18px;border-top:1px solid #EDF0F4;flex-wrap:wrap}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #F4F6F9">
+  <aside style="flex: 1 1 240px; max-width: 100%; box-sizing: border-box; padding: 14px 14px 20px; display: flex; flex-direction: column; gap: 22px; background: #FFFFFF; border-right: 1px solid #E2E6EC">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 10px; height: 32px">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="#1F56B4"></rect><path d="M7 7h8M7 11h6M7 15h4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg>
+      <span style="font-size: 17px; font-weight: 600; letter-spacing: -0.01em">Folio</span>
+      <span class="tag" style="margin-left: auto">Admin</span>
+    </div>
+    <a href="Workspace.dc.html" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border: 1px solid #E2E6EC; border-radius: 6px; color: #101828">
+      <span style="display: flex; flex-direction: column; line-height: 1.35; min-width: 0"><span style="font-weight: 500">Northvale General</span><span style="color: #5D6B7E; font-size: 12px">Admin console</span></span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5D6B7E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 9 5-5 5 5M7 15l5 5 5-5"></path></svg>
+    </a>
+    <nav class="nav" aria-label="Scheduling" style="display: flex; flex-direction: column; gap: 2px">
+      <span class="cap" style="padding: 0 12px 6px">Scheduling</span>
+      <a href="AdminAvail.dc.html">Appointment blocks</a>
+      <a href="AdminLeave.dc.html" class="on" aria-current="page">Leave and blocked time</a>
+    </nav>
+    <nav class="nav" aria-label="Services" style="display: flex; flex-direction: column; gap: 2px">
+      <span class="cap" style="padding: 0 12px 6px">Services</span>
+      <a href="AdminPackages.dc.html">Consultation packages</a>
+    </nav>
+    <nav class="nav" aria-label="Organization" style="display: flex; flex-direction: column; gap: 2px">
+      <span class="cap" style="padding: 0 12px 6px">Organization</span>
+      <a href="Admin.dc.html">Facilities and access</a>
+    </nav>
+    <a href="Dashboard.dc.html" style="margin-top: auto; padding: 0 12px; font-size: 13px">Open clinician workspace</a>
+  </aside>
+
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+    <header style="min-height: 60px; box-sizing: border-box; padding: 10px 32px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; background: #FFFFFF; border-bottom: 1px solid #E2E6EC">
+      <label class="search" style="width: 380px; max-width: 100%">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m20 20-4.2-4.2"></path></svg>
+        <input type="search" placeholder="Search doctors, staff or services" aria-label="Search">
+      </label>
+      <span style="display: flex; align-items: center; gap: 10px">
+        <span style="width: 32px; height: 32px; border-radius: 50%; background: #E3E8EF; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">SJ</span>
+        <span style="display: flex; flex-direction: column; line-height: 1.25"><span style="font-weight: 500">Sarita Joshi</span><span style="font-size: 12px; color: #5D6B7E">Facility admin</span></span>
+      </span>
+    </header>
+
+    <main style="box-sizing: border-box; padding: 28px 32px 64px">
+      <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px">
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <span class="cap">Scheduling</span>
+          <h1 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.015em">Leave and blocked time</h1>
+          <span style="color: #475467">Blocked time removes slots from booking. Patients already booked are told and offered new times.</span>
+        </div>
+
+        <sc-if value="{{toast}}" hint-placeholder-val="{{ false }}">
+          <div role="status" style="padding: 12px 16px; border-radius: 8px; background: #101828; color: #fff">{{toast}}</div>
+        </sc-if>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+          <div style="flex: 3 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+            <section class="card" style="overflow: hidden" aria-labelledby="cal">
+              <div style="padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap">
+                <div style="display: flex; align-items: center; gap: 8px">
+                  <button type="button" class="ibtn" aria-label="Previous month"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"></path></svg></button>
+                  <h2 id="cal" style="margin: 0; font-size: 16px; font-weight: 600; min-width: 120px; text-align: center">October 2026</h2>
+                  <button type="button" class="ibtn" aria-label="Next month"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg></button>
+                </div>
+                <span style="display: flex; gap: 10px; font-size: 12px; color: #475467; flex-wrap: wrap">
+                  <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 2px; background: #FDE7D9"></span>Leave</span>
+                  <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 2px; background: #E3E8EF"></span>Part-day block</span>
+                </span>
+              </div>
+              <div style="overflow-x: auto">
+                <div style="min-width: 640px; border-top: 1px solid #EDF0F4">
+                  <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); background: #F8FAFC">
+                    <sc-for list="{{wd}}" as="w" hint-placeholder-count="7"><span class="cap" style="padding: 8px; border-right: 1px solid #EDF0F4; border-bottom: 1px solid #EDF0F4">{{w}}</span></sc-for>
+                  </div>
+                  <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr))">
+                    <sc-for list="{{cells}}" as="c" hint-placeholder-count="35">
+                      <div class="cell" style="background: {{c.bg}}">
+                        <span class="mono" style="font-size: 12px; font-weight: {{c.fw}}; color: {{c.color}}">{{c.n}}</span>
+                        <sc-for list="{{c.marks}}" as="m" hint-placeholder-count="1"><span class="mark" style="{{m.style}}" title="{{m.full}}">{{m.l}}</span></sc-for>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="card" style="overflow: hidden" aria-labelledby="up">
+              <div style="padding: 14px 18px"><h2 id="up" style="margin: 0; font-size: 16px; font-weight: 600">Upcoming leave and blocks</h2></div>
+              <sc-for list="{{items}}" as="i" hint-placeholder-count="4">
+                <div class="li">
+                  <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+                    <span style="font-weight: 600">{{i.doc}}</span>
+                    <span style="color: #344054">{{i.when}} · {{i.reason}}</span>
+                    <span style="font-size: 13px; color: #5D6B7E">{{i.impact}}</span>
+                  </span>
+                  <span style="display: flex; gap: 8px; align-items: center"><span class="{{i.tagCls}}">{{i.kind}}</span><button type="button" class="btn" style="min-height: 34px; padding: 0 12px; font-size: 13px">Edit</button></span>
+                </div>
+              </sc-for>
+            </section>
+          </div>
+
+          <aside class="card" style="flex: 1 1 320px; min-width: 0; padding: 18px; display: flex; flex-direction: column; gap: 16px" aria-labelledby="bt">
+            <h2 id="bt" style="margin: 0; font-size: 16px; font-weight: 600">Block time</h2>
+
+            <sc-if value="{{isForm}}" hint-placeholder-val="{{ true }}">
+              <div style="display: flex; flex-direction: column; gap: 14px">
+                <div class="field"><label for="dc">Doctor</label><select id="dc"><option>Dr. Sabina Thapa Magar</option><option>Dr. Prakash Karki</option><option>Dr. Anaya Shrestha</option><option>Dr. Rohan Adhikari</option><option>Dr. Meena Rai</option></select></div>
+                <div class="field">
+                  <span class="l">Type</span>
+                  <div class="seg" role="group" aria-label="Type">
+                    <sc-for list="{{types}}" as="t" hint-placeholder-count="3"><button type="button" class="{{t.cls}}" onClick="{{t.pick}}" aria-pressed="{{t.on}}">{{t.l}}</button></sc-for>
+                  </div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+                  <div class="field"><label for="fr">From</label><input id="fr" value="Thu 29 Oct"></div>
+                  <div class="field"><label for="to">To</label><input id="to" value="{{toVal}}"></div>
+                </div>
+                <sc-if value="{{isPart}}" hint-placeholder-val="{{ false }}">
+                  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+                    <div class="field"><label for="ts">Start time</label><select id="ts"><option>13:00</option><option>09:00</option><option>14:00</option></select></div>
+                    <div class="field"><label for="te">End time</label><select id="te"><option>17:00</option><option>12:00</option><option>16:00</option></select></div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{isRecur}}" hint-placeholder-val="{{ false }}">
+                  <div class="field"><label for="rr">Repeats</label><select id="rr"><option>Every Friday afternoon until 31 Dec</option><option>First Monday of each month</option></select></div>
+                </sc-if>
+                <div class="field"><label for="rs">Reason</label><select id="rs"><option>Personal leave</option><option>Annual leave</option><option>Sick leave</option><option>Conference or training</option><option>Theatre or ward duty</option><option>Other</option></select></div>
+                <div class="field"><label for="nt">Note shown to patients (optional)</label><textarea id="nt" rows="2">Dr. Thapa Magar is away. We are sorry for the change.</textarea></div>
+                <fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+                  <legend class="l" style="font-size: 12px; font-weight: 500; color: #475467; margin-bottom: 6px">Booked appointments in this time</legend>
+                  <label class="radio"><input type="radio" name="h" checked><span><span style="font-weight: 500">Notify patients and offer new times</span><br><span style="font-size: 12px; color: #5D6B7E">SMS and portal message with a rebooking link</span></span></label>
+                  <label class="radio"><input type="radio" name="h"><span><span style="font-weight: 500">Move to a covering doctor</span><br><span style="font-size: 12px; color: #5D6B7E">Same time, same speciality</span></span></label>
+                  <label class="radio"><input type="radio" name="h"><span><span style="font-weight: 500">Keep them</span><br><span style="font-size: 12px; color: #5D6B7E">The front desk will handle them</span></span></label>
+                </fieldset>
+                <button type="button" class="btn pri" onClick="{{check}}">Check impact</button>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{isImpact}}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; flex-direction: column; gap: 14px">
+                <div style="padding: 12px 14px; border-radius: 6px; background: #FFFAEB; border: 1px solid #FEDF89; color: #93370D">
+                  <strong style="font-weight: 600">4 booked appointments</strong> fall inside Thu 29 to Fri 30 Oct. 22 open slots will be removed.
+                </div>
+                <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column">
+                  <sc-for list="{{affected}}" as="a" hint-placeholder-count="4">
+                    <li style="display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-top: 1px solid #EDF0F4"><span>{{a.who}}</span><span class="mono" style="font-size: 13px; color: #475467">{{a.t}}</span></li>
+                  </sc-for>
+                </ul>
+                <span style="font-size: 13px; color: #475467">Each patient gets an SMS and a portal message with three new times to choose from.</span>
+                <div style="display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap">
+                  <button type="button" class="btn" onClick="{{backForm}}">Back</button>
+                  <button type="button" class="btn pri" onClick="{{confirm}}">Block and notify 4 patients</button>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{isSaved}}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start">
+                <span class="tag blue">Saved</span>
+                <span>Dr. Sabina Thapa Magar is blocked from Thu 29 to Fri 30 Oct. 4 patients notified.</span>
+                <button type="button" class="btn" onClick="{{again}}">Block more time</button>
+              </div>
+            </sc-if>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1200}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { view: 'form', type: 'full', saved: false }; }
+  renderVals() {
+    const st = this.state;
+    const LEAVE = 'background: #FDE7D9; color: #7A2E0E';
+    const PART = 'background: #E3E8EF; color: #344054';
+    const marks = {
+      22: [{ l: 'RA 14:00 to 16:00', full: 'Dr. Rohan Adhikari · department meeting', style: PART }],
+      26: [{ l: 'PK Conference', full: 'Dr. Prakash Karki · conference', style: LEAVE }],
+      27: [{ l: 'PK Conference', full: 'Dr. Prakash Karki · conference', style: LEAVE }],
+      28: [{ l: 'PK Conference', full: 'Dr. Prakash Karki · conference', style: LEAVE }]
+    };
+    if (st.saved) { [29, 30].forEach(d => { marks[d] = (marks[d] || []).concat({ l: 'ST Leave', full: 'Dr. Sabina Thapa Magar · personal leave', style: LEAVE }); }); }
+    const cells = [];
+    for (let i = 0; i < 3; i++) cells.push({ n: '', marks: [], bg: '#FAFBFC', fw: 400, color: '#5D6B7E' });
+    for (let d = 1; d <= 31; d++) {
+      const dow = (d + 2) % 7; const weekend = dow === 5;
+      cells.push({ n: String(d), marks: marks[d] || [], bg: d === 21 ? '#F2F6FD' : weekend ? '#FAFBFC' : '#FFFFFF', fw: d === 21 ? 600 : 400, color: d === 21 ? '#174595' : '#344054' });
+    }
+    while (cells.length % 7) cells.push({ n: '', marks: [], bg: '#FAFBFC', fw: 400, color: '#5D6B7E' });
+    const items = [
+      { doc: 'Dr. Rohan Adhikari', when: 'Thu 22 Oct, 14:00 to 16:00', reason: 'Department meeting', impact: 'No booked appointments affected', kind: 'Part day', tagCls: 'tag' },
+      { doc: 'Dr. Prakash Karki', when: 'Mon 26 to Wed 28 Oct', reason: 'Conference', impact: '14 appointments affected · 9 rebooked, 5 waiting for the patient', kind: 'Leave', tagCls: 'tag warn' },
+      { doc: 'Dr. Meena Rai', when: 'Wed 4 Nov, 13:00 to 17:00', reason: 'Training', impact: '3 appointments moved to Dr. Anaya Shrestha', kind: 'Part day', tagCls: 'tag' },
+      { doc: 'Dr. Anaya Shrestha', when: 'Tue 10 to Sat 14 Nov', reason: 'Annual leave', impact: '22 appointments affected · patients notified', kind: 'Leave', tagCls: 'tag warn' }
+    ];
+    if (st.saved) items.splice(2, 0, { doc: 'Dr. Sabina Thapa Magar', when: 'Thu 29 to Fri 30 Oct', reason: 'Personal leave', impact: '4 appointments affected · patients notified just now', kind: 'Leave', tagCls: 'tag warn' });
+    return {
+      wd: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], cells, items,
+      isForm: st.view === 'form', isImpact: st.view === 'impact', isSaved: st.view === 'saved',
+      isPart: st.type === 'part', isRecur: st.type === 'recur',
+      toVal: st.type === 'part' ? 'Thu 29 Oct' : 'Fri 30 Oct',
+      types: [['full', 'Full day(s)'], ['part', 'Part of day'], ['recur', 'Recurring']].map(([id, l]) => ({ l, on: st.type === id, cls: st.type === id ? 'on' : '', pick: () => this.setState({ type: id }) })),
+      check: () => this.setState({ view: 'impact' }), backForm: () => this.setState({ view: 'form' }),
+      confirm: () => this.setState({ view: 'saved', saved: true }), again: () => this.setState({ view: 'form' }),
+      toast: st.saved ? 'Leave saved. 22 slots removed from the patient portal and 4 patients notified.' : '',
+      affected: [
+        { who: 'Gita Shrestha', t: 'Thu 29 Oct 09:20' }, { who: 'Prakash Lama', t: 'Thu 29 Oct 10:40' },
+        { who: 'Sunita KC', t: 'Fri 30 Oct 09:00' }, { who: 'Bishnu Tamang', t: 'Fri 30 Oct 11:20' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

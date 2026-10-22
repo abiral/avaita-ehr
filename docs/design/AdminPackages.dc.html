@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Folio Admin · Consultation packages</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F9;color:#101828;font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:#1F56B4;text-decoration:none}a:hover{color:#174595}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.cap{font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:#5D6B7E}
+.nav a{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:38px;padding:0 12px;border-radius:6px;color:#344054;font-weight:500}
+.nav a:hover{background:#F2F4F7;color:#101828}
+.nav a.on{background:#EAF1FC;color:#174595}
+.btn{all:unset;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 16px;border-radius:6px;border:1px solid #D0D6DE;background:#fff;color:#101828;font:500 14px 'IBM Plex Sans',sans-serif;cursor:pointer;box-sizing:border-box;white-space:nowrap}
+.btn:hover{background:#F7F9FB;color:#101828}
+.btn.pri{background:#1F56B4;border-color:#1F56B4;color:#fff}
+.btn.pri:hover{background:#174595;color:#fff}
+.btn.sm{min-height:32px;padding:0 10px;font-size:13px}
+.card{background:#fff;border:1px solid #E2E6EC;border-radius:8px}
+.tag{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:4px;font-size:12px;font-weight:500;background:#EEF1F5;color:#344054;white-space:nowrap}
+.tag.blue{background:#EAF1FC;color:#174595}
+.tag.line{background:transparent;box-shadow:inset 0 0 0 1px #D0D6DE}
+.search{display:flex;align-items:center;gap:10px;height:38px;padding:0 12px;border:1px solid #E2E6EC;border-radius:6px;background:#F7F9FB;color:#5D6B7E;box-sizing:border-box}
+.search input{border:0;outline:0;background:transparent;font:400 14px 'IBM Plex Sans',sans-serif;color:#101828;width:100%}
+.trow{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:grid;align-items:center;gap:16px;padding:12px 18px;border-top:1px solid #EDF0F4}
+.trow:hover{background:#F7F9FB}
+.trow.on{background:#EAF1FC}
+.thead{display:grid;gap:16px;padding:8px 18px;background:#F8FAFC;border-top:1px solid #EDF0F4}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field label,.field .l{font-size:12px;font-weight:500;color:#475467}
+.field select,.field input,.field textarea{min-height:38px;box-sizing:border-box;padding:0 10px;border:1px solid #D0D6DE;border-radius:6px;background:#fff;font:400 14px 'IBM Plex Sans',sans-serif;color:#101828;width:100%}
+.field textarea{padding:8px 10px;resize:vertical}
+.seg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:3px;border-radius:8px;background:#E9EDF2;gap:3px}
+.seg button{all:unset;cursor:pointer;min-height:34px;border-radius:6px;font-weight:500;color:#475467;text-align:center;font-size:13px}
+.seg button.on{background:#fff;color:#101828;box-shadow:0 1px 2px rgba(16,24,40,.08)}
+.item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 10px;border:1px solid #E2E6EC;border-radius:6px}
+.switch{all:unset;cursor:pointer;width:40px;height:24px;border-radius:12px;position:relative;flex:none}
+.inc{display:flex;gap:10px;align-items:flex-start}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #F4F6F9">
+  <aside style="flex: 1 1 240px; max-width: 100%; box-sizing: border-box; padding: 14px 14px 20px; display: flex; flex-direction: column; gap: 22px; background: #FFFFFF; border-right: 1px solid #E2E6EC">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 10px; height: 32px">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="#1F56B4"></rect><path d="M7 7h8M7 11h6M7 15h4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg>
+      <span style="font-size: 17px; font-weight: 600; letter-spacing: -0.01em">Folio</span>
+      <span class="tag" style="margin-left: auto">Admin</span>
+    </div>
+    <a href="Workspace.dc.html" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border: 1px solid #E2E6EC; border-radius: 6px; color: #101828">
+      <span style="display: flex; flex-direction: column; line-height: 1.35; min-width: 0"><span style="font-weight: 500">Northvale General</span><span style="color: #5D6B7E; font-size: 12px">Admin console</span></span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5D6B7E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 9 5-5 5 5M7 15l5 5 5-5"></path></svg>
+    </a>
+    <nav class="nav" aria-label="Scheduling" style="display: flex; flex-direction: column; gap: 2px">
+      <span class="cap" style="padding: 0 12px 6px">Scheduling</span>
+      <a href="AdminAvail.dc.html">Appointment blocks</a>
+      <a href="AdminLeave.dc.html">Leave and blocked time</a>
+    </nav>
+    <nav class="nav" aria-label="Services" style="display: flex; flex-direction: column; gap: 2px">
+      <span class="cap" style="padding: 0 12px 6px">Services</span>
+      <a href="AdminPackages.dc.html" class="on" aria-current="page">Consultation packages</a>
+    </nav>
+    <nav class="nav" aria-label="Organization" style="display: flex; flex-direction: column; gap: 2px">
+      <span class="cap" style="padding: 0 12px 6px">Organization</span>
+      <a href="Admin.dc.html">Facilities and access</a>
+    </nav>
+    <a href="Dashboard.dc.html" style="margin-top: auto; padding: 0 12px; font-size: 13px">Open clinician workspace</a>
+  </aside>
+
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+    <header style="min-height: 60px; box-sizing: border-box; padding: 10px 32px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; background: #FFFFFF; border-bottom: 1px solid #E2E6EC">
+      <label class="search" style="width: 380px; max-width: 100%">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m20 20-4.2-4.2"></path></svg>
+        <input type="search" placeholder="Search doctors, staff or services" aria-label="Search">
+      </label>
+      <span style="display: flex; align-items: center; gap: 10px">
+        <span style="width: 32px; height: 32px; border-radius: 50%; background: #E3E8EF; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">SJ</span>
+        <span style="display: flex; flex-direction: column; line-height: 1.25"><span style="font-weight: 500">Sarita Joshi</span><span style="font-size: 12px; color: #5D6B7E">Facility admin</span></span>
+      </span>
+    </header>
+
+    <main style="box-sizing: border-box; padding: 28px 32px 64px">
+      <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap">
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <span class="cap">Services</span>
+            <h1 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.015em">Consultation packages</h1>
+            <span style="color: #475467">Bundle a doctor's consultations, tests and follow-ups into one service patients can book.</span>
+          </div>
+          <button type="button" class="btn pri" onClick="{{newPkg}}">New package</button>
+        </div>
+
+        <section class="card" style="overflow: hidden" aria-label="Packages">
+          <div style="overflow-x: auto">
+            <div style="min-width: 820px">
+              <div class="thead cap" style="grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr) 150px 80px 100px">
+                <span>Package</span><span>Doctor</span><span>Format</span><span style="text-align: right">Booked</span><span>Status</span>
+              </div>
+              <sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
+                <button type="button" class="{{r.cls}}" onClick="{{r.pick}}" aria-pressed="{{r.on}}" style="grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr) 150px 80px 100px">
+                  <span style="display: flex; flex-direction: column; min-width: 0"><span style="font-weight: 600">{{r.name}}</span><span style="font-size: 12px; color: #5D6B7E">{{r.cat}} · valid {{r.valid}}</span></span>
+                  <span style="color: #344054">{{r.doc}}</span>
+                  <span style="color: #344054">{{r.fmtL}}</span>
+                  <span class="mono" style="text-align: right">{{r.booked}}</span>
+                  <span><span class="{{r.stCls}}">{{r.status}}</span></span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+        </section>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+          <section class="card" style="flex: 3 1 520px; min-width: 0; padding: 20px; display: flex; flex-direction: column; gap: 16px" aria-labelledby="ed">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+              <h2 id="ed" style="margin: 0; font-size: 16px; font-weight: 600">{{editTitle}}</h2>
+              <span class="{{stCls}}">{{statusL}}</span>
+            </div>
+            <div class="field"><label for="pn">Package name</label><input id="pn" value="{{f.name}}" onChange="{{onName}}"></div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 12px">
+              <div class="field"><label for="dr">Doctor</label><select id="dr" onChange="{{onDoc}}"><sc-for list="{{docOpts}}" as="o" hint-placeholder-count="8"><option value="{{o.id}}" selected="{{o.sel}}">{{o.name}}</option></sc-for></select></div>
+              <div class="field"><label for="ct">Category</label><input id="ct" value="{{f.cat}}" readonly></div>
+            </div>
+            <div class="field"><label for="ds">Description for patients</label><textarea id="ds" rows="2" value="{{f.desc}}" onChange="{{onDesc}}"></textarea></div>
+            <div class="field">
+              <span class="l">Visit format</span>
+              <div class="seg" role="group" aria-label="Visit format">
+                <sc-for list="{{fmts}}" as="m" hint-placeholder-count="4"><button type="button" class="{{m.cls}}" onClick="{{m.pick}}" aria-pressed="{{m.on}}">{{m.l}}</button></sc-for>
+              </div>
+            </div>
+            <div class="field">
+              <span class="l">What is included</span>
+              <div style="display: flex; flex-direction: column; gap: 6px">
+                <sc-for list="{{items}}" as="i" hint-placeholder-count="4">
+                  <div class="item"><span>{{i.t}}</span><button type="button" class="btn sm" onClick="{{i.remove}}" aria-label="Remove {{i.t}}">Remove</button></div>
+                </sc-for>
+              </div>
+              <div style="display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap">
+                <select aria-label="Item to add" onChange="{{onAddSel}}" style="flex: 1 1 220px; min-height: 38px; padding: 0 10px; border: 1px solid #D0D6DE; border-radius: 6px; font: 400 14px 'IBM Plex Sans', sans-serif; background: #fff"><sc-for list="{{presets}}" as="p" hint-placeholder-count="6"><option value="{{p}}">{{p}}</option></sc-for></select>
+                <button type="button" class="btn" onClick="{{addItem}}">Add item</button>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr)); gap: 12px">
+              <div class="field"><label for="vl">Valid for</label><select id="vl" onChange="{{onValid}}"><sc-for list="{{validOpts}}" as="o" hint-placeholder-count="5"><option value="{{o.v}}" selected="{{o.sel}}">{{o.v}}</option></sc-for></select></div>
+              <div class="field"><label for="pr">Price</label><input id="pr" placeholder="[PACKAGE PRICE]"></div>
+              <div class="field"><label for="cap">Bookings per month</label><input id="cap" value="20"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 6px; background: #F7F9FB">
+              <span style="display: flex; flex-direction: column"><span style="font-weight: 500">Show in patient portal</span><span style="font-size: 12px; color: #5D6B7E">Patients can find and book it under Consultation packages</span></span>
+              <button type="button" class="switch" role="switch" aria-checked="{{f.live}}" aria-label="Show in patient portal" onClick="{{toggleLive}}" style="background: {{switchBg}}"><span style="position: absolute; top: 3px; left: {{knob}}; width: 18px; height: 18px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(16,24,40,.2)"></span></button>
+            </div>
+            <div style="display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; border-top: 1px solid #EDF0F4; padding-top: 16px">
+              <span style="margin-right: auto; align-self: center; font-size: 13px; color: #174595">{{savedMsg}}</span>
+              <button type="button" class="btn" onClick="{{saveDraft}}">Save draft</button>
+              <button type="button" class="btn pri" onClick="{{publish}}">Publish</button>
+            </div>
+          </section>
+
+          <aside style="flex: 2 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 10px" aria-label="Patient preview">
+            <span class="cap">Patient preview</span>
+            <article class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 12px">
+              <div style="display: flex; justify-content: space-between; gap: 8px"><span class="tag">{{f.cat}}</span><span class="tag blue">{{fmtLabel}}</span></div>
+              <div style="display: flex; flex-direction: column; gap: 2px">
+                <h3 style="margin: 0; font-size: 17px; font-weight: 600">{{previewName}}</h3>
+                <span style="font-size: 13px; color: #475467">{{docName}}</span>
+              </div>
+              <span style="font-size: 13px; color: #475467">{{f.desc}}</span>
+              <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; color: #344054; font-size: 13px">
+                <sc-for list="{{items}}" as="i" hint-placeholder-count="4">
+                  <li class="inc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F56B4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-top: 3px; flex: none"><path d="m5 12 4.5 4.5L19 7"></path></svg>{{i.t}}</li>
+                </sc-for>
+              </ul>
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; border-top: 1px solid #EDF0F4; padding-top: 12px">
+                <span style="display: flex; flex-direction: column"><span style="font-weight: 600">[PACKAGE PRICE]</span><span style="font-size: 12px; color: #5D6B7E">Valid {{f.valid}}</span></span>
+                <a class="btn pri" href="Packages.dc.html" style="min-height: 38px">View package</a>
+              </div>
+            </article>
+            <span style="font-size: 12px; color: #5D6B7E">Visits in this package use {{docName}}'s appointment blocks. <a href="AdminAvail.dc.html">Check availability</a></span>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1300}}'>
+class Component extends DCLogic {
+  constructor(p) {
+    super(p);
+    const pk = (id, name, doc, mode, valid, booked, live, desc, items) => ({ id, name, doc, mode, valid, booked, live, desc, items });
+    const P = [
+      pk('kid', 'Kidney care, 3 months', 'pk', 'hy', '90 days', 18, true, 'Regular review of kidney function with diet support and a direct line to your care team.', ['3 consultations: 1 on-site, 2 by video', '2 kidney function panels', '1 session with a renal dietitian', 'Message your care team for 90 days']),
+      pk('dia', 'Diabetes review', 'mr', 'both', '60 days', 31, true, 'A focused check of blood sugar control and diabetes complications.', ['2 consultations', 'HbA1c and lipid profile', 'Diabetic foot check', 'Eye screening referral']),
+      pk('hrt', 'Heart health check', 'ra', 'on', '30 days', 12, true, 'Tests and a cardiology review in one visit.', ['1 on-site consultation', 'ECG and echocardiogram', 'Lipid profile and blood sugar', 'Written summary for your records']),
+      pk('sec', 'Second opinion', 'as', 're', '14 days', 7, true, 'An independent review of your diagnosis and treatment plan.', ['1 video consultation, 40 minutes', 'Review of reports you upload', 'Written opinion within 48 hours']),
+      pk('bab', 'Baby’s first year', 'kg', 'on', '12 months', 9, true, 'Well-baby visits through the first year.', ['5 well-baby visits', 'Growth and development checks', 'Vaccination schedule reminders']),
+      pk('jnt', 'Knee pain programme', 'sb', 'hy', '60 days', 0, false, 'Assessment, imaging and physiotherapy follow-up for knee pain.', ['1 on-site consultation', 'Knee X-ray', '4 physiotherapy sessions', '1 video follow-up'])
+    ];
+    this.state = { pkgs: P, sel: 'kid', f: { ...P[0], items: P[0].items.slice() }, addSel: '1 consultation', saved: '' };
+  }
+  renderVals() {
+    const st = this.state, f = st.f;
+    const D = [['pk', 'Dr. Prakash Karki', 'Nephrology'], ['as', 'Dr. Anaya Shrestha', 'Internal Medicine'], ['sm', 'Dr. Sabina Thapa Magar', 'Internal Medicine'], ['ra', 'Dr. Rohan Adhikari', 'Cardiology'], ['mr', 'Dr. Meena Rai', 'Endocrinology'], ['sb', 'Dr. Suresh Bhattarai', 'Orthopaedics'], ['kg', 'Dr. Kabita Gurung', 'Paediatrics'], ['np', 'Dr. Nisha Pradhan', 'Dermatology']];
+    const docOf = (id) => D.find(d => d[0] === id) || D[0];
+    const FL = { on: 'On-site', re: 'Remote', hy: 'Hybrid', both: 'Patient chooses' };
+    const PL = { on: 'On-site', re: 'Remote', hy: 'On-site and remote', both: 'On-site or remote' };
+    const set = (patch) => this.setState({ f: { ...f, ...patch }, saved: '' });
+    const pickRow = (p) => () => this.setState({ sel: p.id, f: { ...p, items: p.items.slice() }, saved: '' });
+    const commit = (live, msg) => {
+      const nf = { ...f, live }; const list = st.pkgs.slice(); const i = list.findIndex(p => p.id === nf.id);
+      if (i > -1) list[i] = nf; else list.push(nf);
+      this.setState({ pkgs: list, f: nf, sel: nf.id, saved: msg });
+    };
+    const isNew = !st.pkgs.find(p => p.id === f.id);
+    return {
+      rows: st.pkgs.map(p => ({ ...p, doc: docOf(p.doc)[1], cat: docOf(p.doc)[2], fmtL: FL[p.mode], status: p.live ? 'Published' : 'Draft', stCls: p.live ? 'tag blue' : 'tag line', on: st.sel === p.id, cls: st.sel === p.id ? 'trow on' : 'trow', pick: pickRow(p) })),
+      f: { ...f, cat: docOf(f.doc)[2] },
+      editTitle: isNew ? 'New package' : 'Edit package',
+      statusL: f.live ? 'Published' : 'Draft', stCls: f.live ? 'tag blue' : 'tag line',
+      onName: (e) => set({ name: e.target.value }), onDesc: (e) => set({ desc: e.target.value }),
+      onDoc: (e) => set({ doc: e.target.value }), onValid: (e) => set({ valid: e.target.value }),
+      docOpts: D.map(([id, name]) => ({ id, name, sel: f.doc === id })),
+      validOpts: ['14 days', '30 days', '60 days', '90 days', '12 months'].map(v => ({ v, sel: f.valid === v })),
+      fmts: ['on', 're', 'hy', 'both'].map(id => ({ l: FL[id], on: f.mode === id, cls: f.mode === id ? 'on' : '', pick: () => set({ mode: id }) })),
+      items: f.items.map((t, i) => ({ t, remove: () => { const a = f.items.slice(); a.splice(i, 1); set({ items: a }); } })),
+      presets: ['1 consultation', '1 video follow-up', 'Kidney function panel', 'Complete blood count', 'ECG', '1 dietitian session', 'Message your care team for 30 days', 'Written summary report'],
+      onAddSel: (e) => this.setState({ addSel: e.target.value }),
+      addItem: () => set({ items: f.items.concat(st.addSel) }),
+      toggleLive: () => set({ live: !f.live }), switchBg: f.live ? '#1F56B4' : '#B7C0CC', knob: f.live ? '19px' : '3px',
+      saveDraft: () => commit(false, 'Saved as draft'), publish: () => commit(true, 'Published to the patient portal'),
+      savedMsg: st.saved,
+      newPkg: () => this.setState({ sel: null, saved: '', f: { id: 'new' + st.pkgs.length, name: '', doc: 'pk', mode: 'hy', valid: '60 days', booked: 0, live: false, desc: 'Describe who this package is for.', items: ['1 consultation'] } }),
+      fmtLabel: PL[f.mode], docName: docOf(f.doc)[1], previewName: f.name || 'Untitled package'
+    };
+  }
+}
+</script>
+</body>
+</html>

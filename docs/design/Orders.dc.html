@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Folio · Lab order</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F9;color:#101828;font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:#1F56B4;text-decoration:none}a:hover{color:#174595}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.cap{font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:#5D6B7E}
+.nav a{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:38px;padding:0 12px;border-radius:6px;color:#344054;font-weight:500}
+.nav a:hover{background:#F2F4F7;color:#101828}
+.nav a.on{background:#EAF1FC;color:#174595}
+.count{font:500 12px 'IBM Plex Mono',monospace;color:#5D6B7E}
+.btn{all:unset;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 16px;border-radius:6px;border:1px solid #D0D6DE;background:#fff;color:#101828;font:500 14px 'IBM Plex Sans',sans-serif;cursor:pointer;box-sizing:border-box;white-space:nowrap}
+.btn:hover{background:#F7F9FB;color:#101828}
+.btn.pri{background:#1F56B4;border-color:#1F56B4;color:#fff}
+.btn.pri:hover{background:#174595;color:#fff}
+.btn.sm{min-height:36px;padding:0 12px;font-size:13px}
+.card{background:#fff;border:1px solid #E2E6EC;border-radius:8px}
+.tag{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:4px;font-size:12px;font-weight:500;background:#EEF1F5;color:#344054;white-space:nowrap}
+.tag.alert{background:#FEF3F2;color:#B42318}
+.tag.blue{background:#EAF1FC;color:#174595}
+.ctabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid #E2E6EC}
+.ctabs a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;color:#475467;font-weight:500;border-bottom:2px solid transparent;margin-bottom:-1px}
+.ctabs a.on{color:#101828;border-bottom-color:#1F56B4}
+.search{display:flex;align-items:center;gap:10px;height:44px;padding:0 14px;border:1px solid #D0D6DE;border-radius:6px;background:#fff;color:#5D6B7E;box-sizing:border-box}
+.search input{border:0;outline:0;background:transparent;font:400 15px 'IBM Plex Sans',sans-serif;color:#101828;width:100%}
+.cat{all:unset;cursor:pointer;min-height:34px;padding:0 12px;border-radius:6px;font-weight:500;color:#475467;display:inline-flex;align-items:center}
+.cat.on{background:#101828;color:#fff}
+.li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 18px;border-top:1px solid #EDF0F4}
+.field{display:flex;flex-direction:column;gap:4px}
+.field label{font-size:12px;font-weight:500;color:#475467}
+.field select,.field input{min-height:36px;box-sizing:border-box;padding:0 10px;border:1px solid #D0D6DE;border-radius:6px;background:#fff;font:400 13px 'IBM Plex Sans',sans-serif;color:#101828}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #F4F6F9">
+  <aside style="flex: 1 1 240px; max-width: 100%; box-sizing: border-box; padding: 14px 14px 20px; display: flex; flex-direction: column; gap: 22px; background: #FFFFFF; border-right: 1px solid #E2E6EC">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 10px; height: 32px">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="#1F56B4"></rect><path d="M7 7h8M7 11h6M7 15h4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg>
+      <span style="font-size: 17px; font-weight: 600; letter-spacing: -0.01em">Folio</span>
+    </div>
+    <a href="Workspace.dc.html" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border: 1px solid #E2E6EC; border-radius: 6px; color: #101828">
+      <span style="display: flex; flex-direction: column; line-height: 1.35; min-width: 0"><span style="font-weight: 500">Northvale General</span><span style="color: #5D6B7E; font-size: 12px">Internal Medicine · 4B</span></span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5D6B7E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 9 5-5 5 5M7 15l5 5 5-5"></path></svg>
+    </a>
+    <nav class="nav" aria-label="Primary" style="display: flex; flex-direction: column; gap: 2px">
+      <a href="Dashboard.dc.html">Today</a>
+      <a href="Patients.dc.html" class="on">Patients <span class="count">8</span></a>
+      <a href="Schedule.dc.html">Schedule</a>
+      <a href="Results.dc.html">Results <span class="count">6</span></a>
+      <a href="Requests.dc.html">Medication requests <span class="count">4</span></a>
+    </nav>
+    <nav class="nav" aria-label="Organization" style="display: flex; flex-direction: column; gap: 2px">
+      <span class="cap" style="padding: 0 12px 6px">Organization</span>
+      <a href="Admin.dc.html">Facilities and access</a>
+    </nav>
+  </aside>
+
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+    <section style="background: #FFFFFF; border-bottom: 1px solid #E2E6EC; padding: 14px 32px 0" aria-label="Patient">
+      <div style="max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap">
+          <span style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+            <a href="Chart.dc.html" style="font-size: 17px; font-weight: 600; color: #101828">Ram Bahadur Thapa</a>
+            <span style="color: #475467; font-size: 13px">68 y · M · <span class="mono">NVG-204118</span> · Bed 4B-12 · 72 kg · eGFR 34</span>
+            <span class="tag alert">Penicillin</span>
+          </span>
+          <span style="font-size: 13px; color: #5D6B7E">Dr. Anaya Shrestha</span>
+        </div>
+        <nav class="ctabs" aria-label="Chart sections">
+          <a href="Chart.dc.html">Summary</a>
+          <a href="Note.dc.html">Notes</a>
+          <a href="Orders.dc.html" class="on" aria-current="page">Orders</a>
+          <a href="Results.dc.html">Results</a>
+          <a href="Requests.dc.html">Medications</a>
+        </nav>
+      </div>
+    </section>
+
+    <main style="box-sizing: border-box; padding: 24px 32px 64px">
+      <div style="max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap">
+          <h1 style="margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em">New lab order</h1>
+          <span style="font-size: 13px; color: #5D6B7E">Linked to consultation note · 20 Oct 09:05</span>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+          <section class="card" style="flex: 3 1 520px; min-width: 0; overflow: hidden" aria-label="Test catalogue">
+            <div style="padding: 16px 18px; display: flex; flex-direction: column; gap: 12px">
+              <label class="search">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m20 20-4.2-4.2"></path></svg>
+                <input type="search" value="renal" aria-label="Search lab tests">
+              </label>
+              <div style="display: flex; gap: 4px; flex-wrap: wrap">
+                <sc-for list="{{cats}}" as="c" hint-placeholder-count="5"><button type="button" class="{{c.cls}}" onClick="{{c.pick}}" aria-pressed="{{c.on}}">{{c.l}}</button></sc-for>
+              </div>
+            </div>
+            <div class="cap" style="padding: 8px 18px; background: #F8FAFC; border-top: 1px solid #EDF0F4">Order sets</div>
+            <div class="li"><span><span style="font-weight: 500">Hyperkalaemia work-up</span><br><span style="font-size: 13px; color: #5D6B7E">Renal panel, potassium, ECG, venous blood gas</span></span><button type="button" class="btn sm" onClick="{{addSet}}">Add set</button></div>
+            <div class="cap" style="padding: 8px 18px; background: #F8FAFC; border-top: 1px solid #EDF0F4">Tests</div>
+            <sc-for list="{{tests}}" as="t" hint-placeholder-count="6">
+              <div class="li">
+                <span style="display: flex; flex-direction: column; min-width: 0"><span style="font-weight: 500">{{t.name}}</span><span style="font-size: 13px; color: #5D6B7E">{{t.spec}} · Result in {{t.tat}}</span></span>
+                <button type="button" class="{{t.btnCls}}" onClick="{{t.toggle}}" aria-pressed="{{t.added}}">{{t.btn}}</button>
+              </div>
+            </sc-for>
+          </section>
+
+          <section class="card" style="flex: 2 1 360px; min-width: 0; overflow: hidden" aria-labelledby="bk">
+            <div style="padding: 16px 18px; display: flex; justify-content: space-between; align-items: center">
+              <h2 id="bk" style="margin: 0; font-size: 15px; font-weight: 600">Order basket</h2>
+              <span class="count">{{basketCount}} items</span>
+            </div>
+
+            <sc-if value="{{sent}}" hint-placeholder-val="{{ false }}">
+              <div role="status" style="margin: 0 18px 18px; padding: 14px; border-radius: 6px; background: #EAF1FC; color: #174595; display: flex; flex-direction: column; gap: 4px">
+                <strong style="font-weight: 600">Orders signed and sent to the laboratory</strong>
+                <span>Specimen labels printed at Ward 4B nurse station. Results will appear in the Results tab.</span>
+                <a href="Results.dc.html" style="font-weight: 500">Go to results</a>
+              </div>
+            </sc-if>
+
+            <sc-for list="{{basket}}" as="b" hint-placeholder-count="3">
+              <div style="padding: 14px 18px; border-top: 1px solid #EDF0F4; display: flex; flex-direction: column; gap: 10px">
+                <span style="display: flex; justify-content: space-between; gap: 8px; align-items: center"><span style="font-weight: 600">{{b.name}}</span><button type="button" class="btn sm" onClick="{{b.toggle}}" aria-label="Remove {{b.name}}" style="min-height: 32px; padding: 0 10px">Remove</button></span>
+                <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+                  <div class="field"><label>Priority</label><select aria-label="Priority"><option>Urgent</option><option>Routine</option><option>STAT</option></select></div>
+                  <div class="field"><label>Collect</label><select aria-label="Collection time"><option>Now (09:30)</option><option>Next draw 12:00</option><option>Tomorrow 06:00</option></select></div>
+                </div>
+                <sc-if value="{{b.warn}}" hint-placeholder-val="{{ false }}">
+                  <span style="font-size: 13px; padding: 8px 10px; border-radius: 6px; background: #FFFAEB; color: #93370D">{{b.warn}}</span>
+                </sc-if>
+              </div>
+            </sc-for>
+
+            <div style="padding: 14px 18px; border-top: 1px solid #EDF0F4; display: flex; flex-direction: column; gap: 10px">
+              <div class="field"><label for="ind">Clinical indication</label><input id="ind" value="Hyperkalaemia 6.1, CKD 3b, on treatment for pneumonia"></div>
+              <span style="font-size: 13px; color: #475467; display: flex; gap: 8px; align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F56B4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"></path></svg>Billing: covered by inpatient episode</span>
+            </div>
+            <div style="padding: 14px 18px; border-top: 1px solid #EDF0F4; background: #F8FAFC; display: flex; justify-content: flex-end; gap: 8px">
+              <button type="button" class="btn">Save for later</button>
+              <button type="button" class="btn pri" onClick="{{send}}">Sign and send</button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1240}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { cat: 'chem', added: ['rp', 'k'], sent: false }; }
+  renderVals() {
+    const st = this.state;
+    const T = [
+      { id: 'rp', name: 'Renal function panel', spec: 'Blood, gold top', tat: '2 h', warn: 'Already collected today at 06:10. Repeat allowed with indication.' },
+      { id: 'k', name: 'Potassium, plasma', spec: 'Blood, green top', tat: '1 h', warn: '' },
+      { id: 'vbg', name: 'Venous blood gas', spec: 'Blood, heparin syringe', tat: '15 min', warn: '' },
+      { id: 'mg', name: 'Magnesium', spec: 'Blood, gold top', tat: '2 h', warn: '' },
+      { id: 'ua', name: 'Urine albumin to creatinine ratio', spec: 'Urine, spot sample', tat: '6 h', warn: '' },
+      { id: 'ecg', name: '12-lead ECG', spec: 'Cardiology technician', tat: '20 min', warn: '' }
+    ];
+    const toggle = (id) => () => { const a = st.added.slice(); const i = a.indexOf(id); if (i > -1) a.splice(i, 1); else a.push(id); this.setState({ added: a, sent: false }); };
+    const tests = T.map(t => { const on = st.added.indexOf(t.id) > -1; return { ...t, added: on, btn: on ? 'Added' : 'Add', btnCls: on ? 'btn sm pri' : 'btn sm', toggle: toggle(t.id) }; });
+    const basket = tests.filter(t => t.added);
+    return {
+      tests, basket, basketCount: basket.length, sent: st.sent,
+      cats: [['chem', 'Chemistry'], ['haem', 'Haematology'], ['micro', 'Microbiology'], ['img', 'Imaging'], ['card', 'Cardiology']].map(([id, l]) => ({ l, on: st.cat === id, cls: st.cat === id ? 'cat on' : 'cat', pick: () => this.setState({ cat: id }) })),
+      addSet: () => this.setState({ added: ['rp', 'k', 'vbg', 'ecg'], sent: false }),
+      send: () => this.setState({ sent: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

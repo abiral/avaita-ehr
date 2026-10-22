@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Folio · My appointments</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F9;color:#101828;font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:#1F56B4;text-decoration:none}a:hover{color:#174595}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.cap{font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:#5D6B7E}
+.pnav{display:flex;gap:24px;flex-wrap:wrap}
+.pnav a{display:inline-flex;align-items:center;min-height:60px;color:#475467;font-weight:500;border-bottom:2px solid transparent;box-sizing:border-box}
+.pnav a:hover{color:#101828}
+.pnav a.on{color:#101828;border-bottom-color:#1F56B4}
+.btn{all:unset;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 16px;border-radius:6px;border:1px solid #D0D6DE;background:#fff;color:#101828;font:500 14px 'IBM Plex Sans',sans-serif;cursor:pointer;box-sizing:border-box;white-space:nowrap}
+.btn:hover{background:#F7F9FB;color:#101828}
+.btn.pri{background:#1F56B4;border-color:#1F56B4;color:#fff}
+.btn.pri:hover{background:#174595;color:#fff}
+.btn.danger{background:#B42318;border-color:#B42318;color:#fff}
+.btn.danger:hover{background:#912018;color:#fff}
+.card{background:#fff;border:1px solid #E2E6EC;border-radius:8px}
+.tag{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:4px;font-size:12px;font-weight:500;background:#EEF1F5;color:#344054;white-space:nowrap}
+.tag.blue{background:#EAF1FC;color:#174595}
+.tag.alert{background:#FEF3F2;color:#B42318}
+.tabs{display:flex;gap:24px;border-bottom:1px solid #E2E6EC}
+.tabs button{all:unset;cursor:pointer;min-height:44px;font-weight:500;color:#475467;border-bottom:2px solid transparent;margin-bottom:-1px;display:inline-flex;align-items:center;gap:8px}
+.tabs button.on{color:#101828;border-bottom-color:#1F56B4}
+.radio{display:flex;align-items:center;gap:10px;min-height:44px;padding:0 12px;border:1px solid #E2E6EC;border-radius:6px;cursor:pointer;color:#344054}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #F4F6F9; position: relative">
+  <header style="background: #FFFFFF; border-bottom: 1px solid #E2E6EC">
+    <div style="max-width: 1120px; margin: 0 auto; box-sizing: border-box; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 8px 32px; flex-wrap: wrap">
+      <div style="display: flex; align-items: center; gap: 32px; flex-wrap: wrap">
+        <a href="PtHome.dc.html" style="display: flex; align-items: center; gap: 10px; color: #101828; min-height: 60px">
+          <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="#1F56B4"></rect><path d="M7 7h8M7 11h6M7 15h4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg>
+          <span style="font-size: 17px; font-weight: 600; letter-spacing: -0.01em">Folio</span>
+        </a>
+        <nav class="pnav" aria-label="Patient portal">
+          <a href="PtHome.dc.html">Home</a>
+          <a href="Appointments.dc.html" class="on" aria-current="page">Appointments</a>
+          <a href="PtResults.dc.html">Lab reports</a>
+          <a href="PtMeds.dc.html">Medicines</a>
+        </nav>
+      </div>
+      <a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px; color: #101828; min-height: 60px">
+        <span style="width: 32px; height: 32px; border-radius: 50%; background: #E3E8EF; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">RP</span>
+        <span style="display: flex; flex-direction: column; line-height: 1.25"><span style="font-weight: 500">Ramesh Pandey</span><span class="mono" style="font-size: 12px; color: #5D6B7E">NVG-188240</span></span>
+      </a>
+    </div>
+  </header>
+
+  <main style="max-width: 1120px; margin: 0 auto; box-sizing: border-box; padding: 32px 24px 72px; display: flex; flex-direction: column; gap: 24px">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap">
+      <h1 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.015em">My appointments</h1>
+      <a class="btn pri" href="Book.dc.html" style="display: inline-flex">Book an appointment</a>
+    </div>
+
+    <sc-if value="{{toast}}" hint-placeholder-val="{{ false }}">
+      <div role="status" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 12px 16px; border-radius: 8px; background: #101828; color: #fff">
+        <span>Appointment on {{toast}} was cancelled. The slot has been released.</span>
+        <button type="button" class="btn" onClick="{{undo}}" style="background: transparent; color: #fff; border-color: #475467">Undo</button>
+      </div>
+    </sc-if>
+
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" class="{{upCls}}" aria-selected="{{isUp}}" onClick="{{toUp}}">Upcoming <span class="mono" style="font-size: 12px; color: #5D6B7E">{{upCount}}</span></button>
+      <button type="button" role="tab" class="{{pastCls}}" aria-selected="{{isPast}}" onClick="{{toPast}}">Past</button>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <sc-for list="{{rows}}" as="a" hint-placeholder-count="3">
+        <article class="card" style="padding: 18px 20px; display: flex; gap: 20px; align-items: center; flex-wrap: wrap; opacity: {{a.fade}}">
+          <div style="width: 64px; flex: none; text-align: center; border: 1px solid #E2E6EC; border-radius: 8px; overflow: hidden">
+            <div class="cap" style="background: #F8FAFC; padding: 3px 0; border-bottom: 1px solid #E2E6EC">{{a.mon}}</div>
+            <div class="mono" style="font-size: 22px; font-weight: 500; padding: 4px 0">{{a.d}}</div>
+          </div>
+          <div style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+            <span style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap"><span style="font-weight: 600; font-size: 15px">{{a.title}}</span><span class="{{a.tagCls}}">{{a.status}}</span></span>
+            <span style="color: #344054">{{a.when}}</span>
+            <span style="font-size: 13px; color: #5D6B7E">{{a.where}}</span>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap">
+            <sc-if value="{{a.canChange}}" hint-placeholder-val="{{ true }}">
+              <a class="btn" href="Book.dc.html">Reschedule</a>
+              <button type="button" class="btn" onClick="{{a.ask}}">Cancel</button>
+            </sc-if>
+            <sc-if value="{{a.summary}}" hint-placeholder-val="{{ false }}">
+              <a class="btn" href="#">Visit summary</a>
+            </sc-if>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </main>
+
+  <sc-if value="{{dialog}}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; background: rgba(16, 24, 40, 0.45); display: flex; align-items: flex-start; justify-content: center; padding: 120px 16px 16px; box-sizing: border-box">
+      <div role="dialog" aria-modal="true" aria-labelledby="ct" style="width: 100%; max-width: 460px; background: #fff; border-radius: 10px; box-shadow: 0 20px 48px rgba(16, 24, 40, 0.2); padding: 24px; display: flex; flex-direction: column; gap: 18px">
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <h2 id="ct" style="margin: 0; font-size: 18px; font-weight: 600">Cancel this appointment?</h2>
+          <p style="margin: 0; color: #475467">{{dialog.title}} · {{dialog.when}}</p>
+        </div>
+        <fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+          <legend style="font-size: 13px; font-weight: 500; color: #344054; margin-bottom: 8px">Reason</legend>
+          <label class="radio"><input type="radio" name="r" checked style="accent-color: #1F56B4">I feel better</label>
+          <label class="radio"><input type="radio" name="r" style="accent-color: #1F56B4">The time no longer works</label>
+          <label class="radio"><input type="radio" name="r" style="accent-color: #1F56B4">I will see another doctor</label>
+          <label class="radio"><input type="radio" name="r" style="accent-color: #1F56B4">Other</label>
+        </fieldset>
+        <p style="margin: 0; font-size: 13px; color: #5D6B7E; padding: 10px 12px; background: #F7F9FB; border-radius: 6px">More than 4 hours before the visit, so there is no cancellation charge.</p>
+        <div style="display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap">
+          <button type="button" class="btn" onClick="{{close}}">Keep appointment</button>
+          <button type="button" class="btn danger" onClick="{{confirm}}">Cancel appointment</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { tab: 'up', ask: null, cancelled: [], toast: null }; }
+  renderVals() {
+    const st = this.state;
+    const up = [
+      { id: 'a1', mon: 'Oct', d: '21', title: 'Dr. Prakash Karki', when: 'Wednesday 21 Oct, 10:20 · In person', where: 'Internal Medicine · OPD Block B, Room 5' },
+      { id: 'a2', mon: 'Nov', d: '03', title: 'Blood test: kidney function', when: 'Tuesday 3 Nov, 08:00 · Fasting', where: 'Laboratory · Ground floor, Block A' },
+      { id: 'a3', mon: 'Nov', d: '03', title: 'Dr. Prakash Karki', when: 'Tuesday 3 Nov, 09:30 · In person', where: 'Kidney follow-up · OPD Block B, Room 5' }
+    ];
+    const past = [
+      { mon: 'Oct', d: '20', title: 'Dr. Prakash Karki', when: 'Tuesday 20 Oct, 09:30', where: 'Follow-up · Completed', status: 'Completed', tagCls: 'tag', summary: true },
+      { mon: 'Oct', d: '19', title: 'Blood test: kidney function', when: 'Monday 19 Oct, 07:45', where: 'Report ready', status: 'Completed', tagCls: 'tag', summary: false },
+      { mon: 'Aug', d: '14', title: 'Dr. Anaya Shrestha', when: 'Friday 14 Aug, 11:00', where: 'Cancelled by you', status: 'Cancelled', tagCls: 'tag alert', summary: false }
+    ];
+    const rows = st.tab === 'up'
+      ? up.map(a => { const c = st.cancelled.indexOf(a.id) > -1; return { ...a, status: c ? 'Cancelled' : 'Confirmed', tagCls: c ? 'tag alert' : 'tag blue', canChange: !c, summary: false, fade: c ? 0.6 : 1, ask: () => this.setState({ ask: a }) }; })
+      : past.map(a => ({ ...a, canChange: false, fade: 1 }));
+    return {
+      rows, isUp: st.tab === 'up', isPast: st.tab === 'past',
+      upCls: st.tab === 'up' ? 'on' : '', pastCls: st.tab === 'past' ? 'on' : '',
+      toUp: () => this.setState({ tab: 'up' }), toPast: () => this.setState({ tab: 'past' }),
+      upCount: up.length - st.cancelled.length,
+      dialog: st.ask,
+      close: () => this.setState({ ask: null }),
+      confirm: () => this.setState({ cancelled: st.cancelled.concat(st.ask.id), toast: st.ask.when.split(',')[0], ask: null }),
+      toast: st.toast,
+      undo: () => this.setState({ cancelled: st.cancelled.slice(0, -1), toast: null })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Folio · Patient chart</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F9;color:#101828;font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:#1F56B4;text-decoration:none}a:hover{color:#174595}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.cap{font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:#5D6B7E}
+.nav a{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:38px;padding:0 12px;border-radius:6px;color:#344054;font-weight:500}
+.nav a:hover{background:#F2F4F7;color:#101828}
+.nav a.on{background:#EAF1FC;color:#174595}
+.count{font:500 12px 'IBM Plex Mono',monospace;color:#5D6B7E}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 16px;border-radius:6px;border:1px solid #D0D6DE;background:#fff;color:#101828;font:500 14px 'IBM Plex Sans',sans-serif;cursor:pointer;box-sizing:border-box;white-space:nowrap}
+.btn:hover{background:#F7F9FB;color:#101828}
+.btn.pri{background:#1F56B4;border-color:#1F56B4;color:#fff}
+.btn.pri:hover{background:#174595;color:#fff}
+.card{background:#fff;border:1px solid #E2E6EC;border-radius:8px}
+.tag{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:4px;font-size:12px;font-weight:500;background:#EEF1F5;color:#344054;white-space:nowrap}
+.tag.alert{background:#FEF3F2;color:#B42318}
+.tag.blue{background:#EAF1FC;color:#174595}
+.search{display:flex;align-items:center;gap:10px;height:38px;padding:0 12px;border:1px solid #E2E6EC;border-radius:6px;background:#F7F9FB;color:#5D6B7E;box-sizing:border-box}
+.search input{border:0;outline:0;background:transparent;font:400 14px 'IBM Plex Sans',sans-serif;color:#101828;width:100%}
+.ctabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid #E2E6EC}
+.ctabs a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;color:#475467;font-weight:500;border-bottom:2px solid transparent;margin-bottom:-1px}
+.ctabs a:hover{color:#101828}
+.ctabs a.on{color:#101828;border-bottom-color:#1F56B4}
+.li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 18px;border-top:1px solid #EDF0F4}
+.hd{display:flex;justify-content:space-between;align-items:center;padding:14px 18px}
+.hd h2{margin:0;font-size:15px;font-weight:600}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #F4F6F9">
+  <aside style="flex: 1 1 240px; max-width: 100%; box-sizing: border-box; padding: 14px 14px 20px; display: flex; flex-direction: column; gap: 22px; background: #FFFFFF; border-right: 1px solid #E2E6EC">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 10px; height: 32px">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="#1F56B4"></rect><path d="M7 7h8M7 11h6M7 15h4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg>
+      <span style="font-size: 17px; font-weight: 600; letter-spacing: -0.01em">Folio</span>
+    </div>
+    <a href="Workspace.dc.html" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border: 1px solid #E2E6EC; border-radius: 6px; color: #101828">
+      <span style="display: flex; flex-direction: column; line-height: 1.35; min-width: 0"><span style="font-weight: 500">Northvale General</span><span style="color: #5D6B7E; font-size: 12px">Internal Medicine · 4B</span></span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5D6B7E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 9 5-5 5 5M7 15l5 5 5-5"></path></svg>
+    </a>
+    <nav class="nav" aria-label="Primary" style="display: flex; flex-direction: column; gap: 2px">
+      <a href="Dashboard.dc.html">Today</a>
+      <a href="Patients.dc.html" class="on">Patients <span class="count">8</span></a>
+      <a href="Schedule.dc.html">Schedule</a>
+      <a href="Results.dc.html">Results <span class="count">6</span></a>
+      <a href="Requests.dc.html">Medication requests <span class="count">4</span></a>
+    </nav>
+    <nav class="nav" aria-label="Organization" style="display: flex; flex-direction: column; gap: 2px">
+      <span class="cap" style="padding: 0 12px 6px">Organization</span>
+      <a href="Admin.dc.html">Facilities and access</a>
+    </nav>
+  </aside>
+
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+    <header style="min-height: 60px; box-sizing: border-box; padding: 10px 32px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; background: #FFFFFF; border-bottom: 1px solid #E2E6EC">
+      <label class="search" style="width: 380px; max-width: 100%">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m20 20-4.2-4.2"></path></svg>
+        <input type="search" placeholder="Search patient, MRN or bed" aria-label="Search patients">
+      </label>
+      <span style="display: flex; align-items: center; gap: 10px">
+        <span style="width: 32px; height: 32px; border-radius: 50%; background: #E3E8EF; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">AS</span>
+        <span style="display: flex; flex-direction: column; line-height: 1.25"><span style="font-weight: 500">Dr. Anaya Shrestha</span><span style="font-size: 12px; color: #5D6B7E">Hospitalist</span></span>
+      </span>
+    </header>
+
+    <section style="background: #FFFFFF; border-bottom: 1px solid #E2E6EC; padding: 20px 32px 0" aria-label="Patient">
+      <div style="max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap">
+          <div style="display: flex; gap: 16px; align-items: center">
+            <span style="width: 52px; height: 52px; border-radius: 50%; background: #E3E8EF; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; flex: none">RT</span>
+            <div style="display: flex; flex-direction: column; gap: 4px">
+              <span style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap"><h1 style="margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em">Ram Bahadur Thapa</h1><span class="tag alert">Allergy: Penicillin (rash)</span><span class="tag">Full code</span></span>
+              <span style="color: #475467; display: flex; gap: 14px; flex-wrap: wrap; font-size: 13px"><span>68 y · Male</span><span class="mono">NVG-204118</span><span>Bed 4B-12</span><span>Admitted 17 Oct · Day 4</span><span>Attending Dr. Shrestha</span></span>
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap">
+            <a class="btn" href="Orders.dc.html">Order labs</a>
+            <a class="btn pri" href="Note.dc.html">New consultation note</a>
+          </div>
+        </div>
+        <nav class="ctabs" aria-label="Chart sections">
+          <a href="Chart.dc.html" class="on" aria-current="page">Summary</a>
+          <a href="Note.dc.html">Notes</a>
+          <a href="Orders.dc.html">Orders</a>
+          <a href="Results.dc.html">Results</a>
+          <a href="Requests.dc.html">Medications</a>
+          <a href="#">Documents</a>
+          <a href="#">Timeline</a>
+        </nav>
+      </div>
+    </section>
+
+    <main style="box-sizing: border-box; padding: 24px 32px 64px">
+      <div style="max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px">
+        <div role="alert" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding: 12px 16px; border-radius: 8px; background: #FEF3F2; border: 1px solid #FECDCA; color: #912018">
+          <span><strong style="font-weight: 600">Critical result · 06:10</strong> · Potassium 6.1 mmol/L (3.5 to 5.1). Lab called the ward at 06:14.</span>
+          <a href="Results.dc.html" style="color: #912018; font-weight: 600">Review result</a>
+        </div>
+
+        <section class="card" aria-labelledby="vit">
+          <div class="hd"><h2 id="vit">Vital signs</h2><span style="font-size: 13px; color: #5D6B7E">Last taken 08:10 by Nurse Pema</span></div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr)); border-top: 1px solid #EDF0F4">
+            <sc-for list="{{vitals}}" as="v" hint-placeholder-count="5">
+              <div style="padding: 14px 18px; display: flex; flex-direction: column; gap: 6px; border-right: 1px solid #EDF0F4">
+                <span style="font-size: 13px; color: #5D6B7E">{{v.label}}</span>
+                <span style="display: flex; align-items: baseline; gap: 6px"><span class="mono" style="font-size: 22px; font-weight: 500">{{v.value}}</span><span style="font-size: 12px; color: #5D6B7E">{{v.unit}}</span></span>
+                <svg width="120" height="28" viewBox="0 0 120 28" role="img" aria-label="{{v.aria}}"><title>{{v.aria}}</title><polyline points="{{v.pts}}" fill="none" stroke="#1F56B4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></polyline><circle cx="{{v.lx}}" cy="{{v.ly}}" r="4" fill="#1F56B4" stroke="#fff" stroke-width="2"></circle></svg>
+                <span style="font-size: 12px; color: #5D6B7E">{{v.note}}</span>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+          <div style="flex: 2 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+            <section class="card" style="overflow: hidden" aria-labelledby="prob">
+              <div class="hd"><h2 id="prob">Problems</h2><a href="#" style="font-size: 13px">Add problem</a></div>
+              <div class="li"><span><span style="font-weight: 500">Community-acquired pneumonia, right lower lobe</span><br><span style="font-size: 13px; color: #5D6B7E">Since 17 Oct · CURB-65 score 2</span></span><span class="tag blue">Active</span></div>
+              <div class="li"><span><span style="font-weight: 500">Hyperkalaemia</span><br><span style="font-size: 13px; color: #5D6B7E">Since 20 Oct</span></span><span class="tag alert">New</span></div>
+              <div class="li"><span><span style="font-weight: 500">Chronic kidney disease, stage 3b</span><br><span style="font-size: 13px; color: #5D6B7E">Since 2019 · eGFR 34</span></span><span class="tag">Chronic</span></div>
+              <div class="li"><span><span style="font-weight: 500">Type 2 diabetes</span><br><span style="font-size: 13px; color: #5D6B7E">Since 2012 · Last HbA1c 7.4%</span></span><span class="tag">Chronic</span></div>
+            </section>
+
+            <section class="card" style="overflow: hidden" aria-labelledby="notes">
+              <div class="hd"><h2 id="notes">Recent notes</h2><a href="Note.dc.html" style="font-size: 13px">All notes</a></div>
+              <a class="li" href="Note.dc.html" style="color: #101828"><span><span style="font-weight: 500">Progress note</span><br><span style="font-size: 13px; color: #5D6B7E">Dr. Shrestha · 19 Oct 09:40</span></span><span class="tag">Signed</span></a>
+              <a class="li" href="Note.dc.html" style="color: #101828"><span><span style="font-weight: 500">Nephrology consultation</span><br><span style="font-size: 13px; color: #5D6B7E">Dr. Prakash Karki · 18 Oct 15:05</span></span><span class="tag">Signed</span></a>
+              <a class="li" href="Note.dc.html" style="color: #101828"><span><span style="font-weight: 500">Admission history and physical</span><br><span style="font-size: 13px; color: #5D6B7E">Dr. Bijay Lama · 17 Oct 22:30</span></span><span class="tag">Signed</span></a>
+            </section>
+          </div>
+
+          <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+            <section class="card" style="overflow: hidden" aria-labelledby="meds">
+              <div class="hd"><h2 id="meds">Active medications</h2><a href="Orders.dc.html" style="font-size: 13px">Order</a></div>
+              <sc-for list="{{meds}}" as="m" hint-placeholder-count="5">
+                <div class="li" style="flex-direction: column; align-items: flex-start; gap: 0"><span style="font-weight: 500">{{m.n}}</span><span style="font-size: 13px; color: #5D6B7E">{{m.d}}</span></div>
+              </sc-for>
+            </section>
+            <section class="card" style="overflow: hidden" aria-labelledby="labs">
+              <div class="hd"><h2 id="labs">Latest results</h2><a href="Results.dc.html" style="font-size: 13px">All results</a></div>
+              <sc-for list="{{labs}}" as="l" hint-placeholder-count="5">
+                <div class="li"><span>{{l.n}}</span><span style="display: flex; gap: 8px; align-items: center"><span class="mono" style="font-weight: 500; color: {{l.c}}">{{l.v}}</span><span style="font-size: 12px; color: #5D6B7E; width: 52px">{{l.u}}</span><span style="font-size: 12px; font-weight: 600; color: #B42318; width: 12px">{{l.f}}</span></span></div>
+              </sc-for>
+            </section>
+            <section class="card" style="padding: 14px 18px; display: flex; flex-direction: column; gap: 10px" aria-labelledby="team">
+              <h2 id="team" style="margin: 0; font-size: 15px; font-weight: 600">Care team</h2>
+              <span style="display: flex; justify-content: space-between"><span>Dr. Anaya Shrestha</span><span style="color: #5D6B7E; font-size: 13px">Attending</span></span>
+              <span style="display: flex; justify-content: space-between"><span>Dr. Prakash Karki</span><span style="color: #5D6B7E; font-size: 13px">Nephrology</span></span>
+              <span style="display: flex; justify-content: space-between"><span>Pema Sherpa, RN</span><span style="color: #5D6B7E; font-size: 13px">Primary nurse</span></span>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1240}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const spark = (arr, label, unit) => {
+      const lo = Math.min(...arr), hi = Math.max(...arr), span = hi - lo || 1;
+      const xy = arr.map((v, i) => [6 + i * (108 / (arr.length - 1)), 22 - ((v - lo) / span) * 16]);
+      const last = xy[xy.length - 1];
+      return { pts: xy.map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' '), lx: last[0].toFixed(1), ly: last[1].toFixed(1), aria: label + ' over 4 days: ' + arr.join(', ') + ' ' + unit };
+    };
+    const V = [
+      ['Temperature', '37.8', '°C', [38.6, 38.2, 37.9, 37.8], 'Down from 38.6'],
+      ['Heart rate', '88', 'bpm', [104, 98, 92, 88], 'Down from 104'],
+      ['Blood pressure', '138/82', 'mmHg', [146, 142, 140, 138], 'Systolic shown'],
+      ['Respiratory rate', '20', '/min', [24, 22, 22, 20], 'Down from 24'],
+      ['SpO₂', '94', '%', [90, 92, 93, 94], 'On 2 L nasal oxygen']
+    ].map(([label, value, unit, arr, note]) => ({ label, value, unit, note, ...spark(arr, label, unit) }));
+    return {
+      vitals: V,
+      meds: [
+        { n: 'Ceftriaxone 1 g IV', d: 'Every 24 hours · Day 4 of 7' },
+        { n: 'Azithromycin 500 mg oral', d: 'Once daily · Day 4 of 5' },
+        { n: 'Insulin glargine 14 units SC', d: 'At 22:00' },
+        { n: 'Amlodipine 5 mg oral', d: 'Once daily' },
+        { n: 'Heparin 5,000 units SC', d: 'Every 12 hours' }
+      ],
+      labs: [
+        { n: 'Potassium', v: '6.1', u: 'mmol/L', f: 'H', c: '#B42318' },
+        { n: 'Creatinine', v: '168', u: 'µmol/L', f: 'H', c: '#B42318' },
+        { n: 'WBC', v: '13.2', u: '×10⁹/L', f: 'H', c: '#B42318' },
+        { n: 'CRP', v: '86', u: 'mg/L', f: 'H', c: '#B42318' },
+        { n: 'Sodium', v: '136', u: 'mmol/L', f: '', c: '#101828' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

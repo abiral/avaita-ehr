@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Folio · Patients</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F9;color:#101828;font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:#1F56B4;text-decoration:none}a:hover{color:#174595}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.cap{font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:#5D6B7E}
+.nav a{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:38px;padding:0 12px;border-radius:6px;color:#344054;font-weight:500}
+.nav a:hover{background:#F2F4F7;color:#101828}
+.nav a.on{background:#EAF1FC;color:#174595}
+.count{font:500 12px 'IBM Plex Mono',monospace;color:#5D6B7E}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 16px;border-radius:6px;border:1px solid #D0D6DE;background:#fff;color:#101828;font:500 14px 'IBM Plex Sans',sans-serif;cursor:pointer;box-sizing:border-box;white-space:nowrap}
+.btn:hover{background:#F7F9FB;color:#101828}
+.btn.pri{background:#1F56B4;border-color:#1F56B4;color:#fff}
+.btn.pri:hover{background:#174595;color:#fff}
+.ibtn{all:unset;cursor:pointer;width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;color:#344054}
+.ibtn:hover{background:#F2F4F7}
+.card{background:#fff;border:1px solid #E2E6EC;border-radius:8px}
+.tag{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:4px;font-size:12px;font-weight:500;background:#EEF1F5;color:#344054;white-space:nowrap}
+.tag.alert{background:#FEF3F2;color:#B42318}
+.tag.blue{background:#EAF1FC;color:#174595}
+.tag.line{background:transparent;box-shadow:inset 0 0 0 1px #D0D6DE}
+.search{display:flex;align-items:center;gap:10px;height:38px;padding:0 12px;border:1px solid #E2E6EC;border-radius:6px;background:#F7F9FB;color:#5D6B7E;box-sizing:border-box}
+.search input{border:0;outline:0;background:transparent;font:400 14px 'IBM Plex Sans',sans-serif;color:#101828;width:100%}
+.trow{display:grid;align-items:center;gap:16px;padding:12px 20px;border-top:1px solid #EDF0F4;color:#101828}
+a.trow:hover{background:#F7F9FB;color:#101828}
+.seg{display:inline-flex;padding:3px;border-radius:8px;background:#E9EDF2;gap:2px}
+.seg button{all:unset;cursor:pointer;min-height:34px;padding:0 14px;border-radius:6px;font-weight:500;color:#475467;display:inline-flex;align-items:center;gap:8px}
+.seg button.on{background:#fff;color:#101828;box-shadow:0 1px 2px rgba(16,24,40,.08)}
+.fchip{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:0 12px;border-radius:6px;border:1px dashed #B7C0CC;background:#fff;font-size:13px;color:#344054}
+.fchip:hover{border-style:solid}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #F4F6F9">
+  <aside style="flex: 1 1 240px; max-width: 100%; box-sizing: border-box; padding: 14px 14px 20px; display: flex; flex-direction: column; gap: 22px; background: #FFFFFF; border-right: 1px solid #E2E6EC">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 10px; height: 32px">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="#1F56B4"></rect><path d="M7 7h8M7 11h6M7 15h4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg>
+      <span style="font-size: 17px; font-weight: 600; letter-spacing: -0.01em">Folio</span>
+    </div>
+    <a href="Workspace.dc.html" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border: 1px solid #E2E6EC; border-radius: 6px; color: #101828">
+      <span style="display: flex; flex-direction: column; line-height: 1.35; min-width: 0"><span style="font-weight: 500">Northvale General</span><span style="color: #5D6B7E; font-size: 12px">Internal Medicine · 4B</span></span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5D6B7E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 9 5-5 5 5M7 15l5 5 5-5"></path></svg>
+    </a>
+    <nav class="nav" aria-label="Primary" style="display: flex; flex-direction: column; gap: 2px">
+      <a href="Dashboard.dc.html">Today</a>
+      <a href="Patients.dc.html" class="on" aria-current="page">Patients <span class="count">8</span></a>
+      <a href="Schedule.dc.html">Schedule</a>
+      <a href="Results.dc.html">Results <span class="count">6</span></a>
+      <a href="Requests.dc.html">Medication requests <span class="count">4</span></a>
+    </nav>
+    <nav class="nav" aria-label="Organization" style="display: flex; flex-direction: column; gap: 2px">
+      <span class="cap" style="padding: 0 12px 6px">Organization</span>
+      <a href="Admin.dc.html">Facilities and access</a>
+    </nav>
+  </aside>
+
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+    <header style="min-height: 60px; box-sizing: border-box; padding: 10px 32px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; background: #FFFFFF; border-bottom: 1px solid #E2E6EC">
+      <label class="search" style="width: 380px; max-width: 100%">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m20 20-4.2-4.2"></path></svg>
+        <input type="search" placeholder="Search patient, MRN or bed" aria-label="Search patients">
+      </label>
+      <div style="display: flex; align-items: center; gap: 8px">
+        <button type="button" class="ibtn" aria-label="Notifications"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15z"></path><path d="M10 20a2 2 0 0 0 4 0"></path></svg></button>
+        <span style="width: 1px; height: 24px; background: #E2E6EC"></span>
+        <span style="display: flex; align-items: center; gap: 10px; padding-left: 6px">
+          <span style="width: 32px; height: 32px; border-radius: 50%; background: #E3E8EF; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">AS</span>
+          <span style="display: flex; flex-direction: column; line-height: 1.25"><span style="font-weight: 500">Dr. Anaya Shrestha</span><span style="font-size: 12px; color: #5D6B7E">Hospitalist</span></span>
+        </span>
+      </div>
+    </header>
+
+    <main style="box-sizing: border-box; padding: 28px 32px 64px">
+      <div style="max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap">
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <span class="cap">Northvale General · Ward 4B</span>
+            <h1 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.2">Patients</h1>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap">
+            <a class="btn" href="#">Print handover</a>
+            <a class="btn pri" href="#">Register patient</a>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap">
+          <div class="seg" role="group" aria-label="Scope">
+            <sc-for list="{{scopes}}" as="s" hint-placeholder-count="3">
+              <button type="button" class="{{s.cls}}" onClick="{{s.pick}}" aria-pressed="{{s.on}}">{{s.label}} <span class="count">{{s.n}}</span></button>
+            </sc-for>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px">
+            <button type="button" class="fchip">+ Attending</button>
+            <button type="button" class="fchip">+ Allergies</button>
+            <button type="button" class="fchip">+ Isolation</button>
+            <button type="button" class="fchip">+ Discharge today</button>
+          </div>
+        </div>
+
+        <section class="card" style="overflow: hidden" aria-label="Patient list">
+          <div style="overflow-x: auto">
+            <div style="min-width: 920px">
+              <div class="trow cap" style="grid-template-columns: 48px minmax(0, 1.6fr) minmax(0, 1fr) 72px minmax(0, 1.5fr) minmax(0, 1.2fr) 150px; padding-top: 8px; padding-bottom: 8px; background: #F8FAFC; border-top: 0">
+                <span>Bed</span><span>Patient</span><span>Attending</span><span>Day</span><span>Diagnosis</span><span>Flags</span><span>Status</span>
+              </div>
+              <sc-for list="{{rows}}" as="p" hint-placeholder-count="10">
+                <a class="trow" href="Chart.dc.html" style="grid-template-columns: 48px minmax(0, 1.6fr) minmax(0, 1fr) 72px minmax(0, 1.5fr) minmax(0, 1.2fr) 150px">
+                  <span class="mono" style="color: #5D6B7E">{{p.bed}}</span>
+                  <span style="display: flex; flex-direction: column; line-height: 1.35"><span style="font-weight: 500">{{p.name}}</span><span class="mono" style="font-size: 12px; color: #5D6B7E">{{p.demo}}</span></span>
+                  <span style="color: #344054">{{p.att}}</span>
+                  <span class="mono" style="color: #344054; font-size: 13px">{{p.los}}</span>
+                  <span style="color: #344054">{{p.dx}}</span>
+                  <span style="display: flex; gap: 6px; flex-wrap: wrap">
+                    <sc-for list="{{p.flags}}" as="f" hint-placeholder-count="1"><span class="{{f.cls}}">{{f.label}}</span></sc-for>
+                  </span>
+                  <span><span class="{{p.tagCls}}">{{p.status}}</span></span>
+                </a>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; border-top: 1px solid #EDF0F4; color: #5D6B7E; font-size: 13px">
+            <span>{{shown}} of 24 beds occupied</span>
+            <span>Updated 08:12</span>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { scope: 'ward' }; }
+  renderVals() {
+    const t = (k) => k === 'alert' ? 'tag alert' : k === 'blue' ? 'tag blue' : 'tag';
+    const F = { pen: { label: 'Penicillin allergy', cls: 'tag alert' }, iso: { label: 'Contact isolation', cls: 'tag line' }, fall: { label: 'Falls risk', cls: 'tag line' }, dnr: { label: 'DNACPR', cls: 'tag line' }, nka: { label: 'NKDA', cls: 'tag line' } };
+    const all = [
+      ['12', 'Ram Bahadur Thapa', '68 M · NVG-204118', 'Dr. Shrestha', '4', 'Community-acquired pneumonia', ['pen'], 'Critical result', 'alert', true],
+      ['03', 'Sita Gurung', '54 F · NVG-198330', 'Dr. Shrestha', '2', 'Heart failure, acute on chronic', ['nka'], 'Med reconciliation', '', true],
+      ['05', 'Maya Tamang', '72 F · NVG-201907', 'Dr. Shrestha', '3', 'Hip fracture, post-op day 2', ['fall'], 'Family meeting', '', true],
+      ['07', 'Bikash Rai', '41 M · NVG-205662', 'Dr. Shrestha', '1', 'Diabetic ketoacidosis', ['nka'], 'Cosign note', '', true],
+      ['09', 'Kamala Adhikari', '63 F · NVG-187215', 'Dr. Shrestha', '5', 'COPD exacerbation', ['nka'], 'Discharge today', 'blue', true],
+      ['10', 'Nirmala Poudel', '47 F · NVG-203390', 'Dr. Karki', '2', 'Cellulitis, left leg', ['iso'], 'Stable', '', false],
+      ['14', 'Hari Prasad Joshi', '79 M · NVG-176044', 'Dr. Shrestha', '6', 'Delirium, urinary infection', ['fall', 'dnr'], 'Geriatrics consult', '', true],
+      ['16', 'Sunita Maharjan', '35 F · NVG-206001', 'Dr. Shrestha', '1', 'Pyelonephritis', ['nka'], 'Stable', '', true],
+      ['18', 'Deepak Basnet', '58 M · NVG-199478', 'Dr. Shrestha', '2', 'Upper GI bleed', ['nka'], 'Endoscopy 13:00', '', true],
+      ['21', 'Gopal Bhandari', '66 M · NVG-190812', 'Dr. Karki', '8', 'Stroke rehabilitation', ['fall'], 'Awaiting placement', '', false]
+    ].map(([bed, name, demo, att, los, dx, fl, status, k, mine]) => ({ bed, name, demo, att, los, dx, status, mine, tagCls: t(k), flags: fl.map(f => F[f]) }));
+    const rows = this.state.scope === 'mine' ? all.filter(r => r.mine) : all;
+    const scopes = [
+      { id: 'mine', label: 'My patients', n: all.filter(r => r.mine).length },
+      { id: 'ward', label: 'Ward 4B', n: all.length },
+      { id: 'fac', label: 'Whole facility', n: 287 }
+    ].map(s => ({ ...s, on: this.state.scope === s.id, cls: this.state.scope === s.id ? 'on' : '', pick: () => this.setState({ scope: s.id }) }));
+    return { rows, scopes, shown: all.length };
+  }
+}
+</script>
+</body>
+</html>

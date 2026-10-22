@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Folio · Create account</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F9;color:#101828;font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:#1F56B4;text-decoration:none}a:hover{color:#174595}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field label{font-size:13px;font-weight:500;color:#344054}
+.field input,.field select{height:44px;box-sizing:border-box;padding:0 12px;border:1px solid #D0D6DE;border-radius:6px;background:#fff;font:400 15px 'IBM Plex Sans',sans-serif;color:#101828;outline:none;width:100%}
+.field input:focus{border-color:#1F56B4;box-shadow:0 0 0 3px #DCE7F9}
+.hint{font-size:12px;color:#5D6B7E}
+.btn{all:unset;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:6px;border:1px solid #D0D6DE;background:#fff;color:#101828;font:500 14px 'IBM Plex Sans',sans-serif;cursor:pointer;box-sizing:border-box}
+.btn:hover{background:#F7F9FB;color:#101828}
+.btn.pri{background:#1F56B4;border-color:#1F56B4;color:#fff}
+.btn.pri:hover{background:#174595;color:#fff}
+.otp{width:48px;height:56px;box-sizing:border-box;border:1px solid #D0D6DE;border-radius:6px;text-align:center;font:500 22px 'IBM Plex Mono',monospace;color:#101828;background:#fff}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; padding: 48px 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; background: #F4F6F9; background-image: radial-gradient(#DDE3EA 1px, transparent 1px); background-size: 24px 24px">
+  <a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px; color: #101828">
+    <svg width="28" height="28" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="#1F56B4"></rect><path d="M7 7h8M7 11h6M7 15h4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    <span style="font-size: 22px; font-weight: 600; letter-spacing: -0.01em">Folio</span>
+  </a>
+
+  <div style="width: 100%; max-width: 520px; box-sizing: border-box; padding: 32px; background: #FFFFFF; border: 1px solid #E2E6EC; border-radius: 10px; box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 8px 24px rgba(16, 24, 40, 0.06); display: flex; flex-direction: column; gap: 24px">
+    <ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px" aria-label="Progress">
+      <sc-for list="{{steps}}" as="s" hint-placeholder-count="3">
+        <li style="display: flex; flex-direction: column; gap: 8px">
+          <span style="height: 3px; border-radius: 2px; background: {{s.bar}}"></span>
+          <span style="font-size: 12px; font-weight: 500; color: {{s.color}}">{{s.label}}</span>
+        </li>
+      </sc-for>
+    </ol>
+
+    <sc-if value="{{s1}}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; gap: 20px">
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <h1 style="margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em">Create your patient account</h1>
+          <p style="margin: 0; color: #5D6B7E">Already a Northvale patient? We will link your existing records.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 14px">
+          <div class="field"><label for="fn">First name</label><input id="fn" value="Ramesh"></div>
+          <div class="field"><label for="ln">Last name</label><input id="ln" value="Pandey"></div>
+          <div class="field"><label for="dob">Date of birth</label><input id="dob" value="12 / 03 / 1965"></div>
+          <div class="field"><label for="sx">Sex</label><select id="sx"><option>Male</option><option>Female</option><option>Other</option><option>Prefer not to say</option></select></div>
+        </div>
+        <div class="field"><label for="mob">Mobile number</label><input id="mob" value="+977 98XX XXX XXX"><span class="hint">We will send a 6-digit code to verify it.</span></div>
+        <div class="field"><label for="em">Email</label><input id="em" value="ramesh.pandey@mail.com"></div>
+        <div class="field"><label for="pw">Password</label><input id="pw" type="password" value="••••••••••••"><span class="hint">At least 10 characters, with a number.</span></div>
+        <div class="field"><label for="mrn">Hospital number (optional)</label><input id="mrn" placeholder="e.g. NVG-188240"><span class="hint">Found on your discharge papers or hospital card.</span></div>
+        <label style="display: flex; align-items: flex-start; gap: 10px; color: #344054; cursor: pointer">
+          <input type="checkbox" checked style="width: 18px; height: 18px; margin-top: 2px; accent-color: #1F56B4">
+          <span>I agree to the <a href="#">terms of use</a> and <a href="#">privacy notice</a>, including how my health information is shared with my care team.</span>
+        </label>
+        <button type="button" class="btn pri" onClick="{{next}}">Continue</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{s2}}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 20px">
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <h1 style="margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em">Verify your mobile</h1>
+          <p style="margin: 0; color: #5D6B7E">Enter the 6-digit code sent to +977 98XX XXX XXX.</p>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap" role="group" aria-label="Verification code">
+          <input class="otp" aria-label="Digit 1" value="4"><input class="otp" aria-label="Digit 2" value="8"><input class="otp" aria-label="Digit 3" value="1"><input class="otp" aria-label="Digit 4" value="0"><input class="otp" aria-label="Digit 5" value=""><input class="otp" aria-label="Digit 6" value="">
+        </div>
+        <p style="margin: 0; font-size: 13px; color: #5D6B7E">Did not get it? <a href="#">Resend code</a> in <span class="mono">0:42</span></p>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap">
+          <button type="button" class="btn" onClick="{{back}}">Back</button>
+          <button type="button" class="btn pri" onClick="{{next}}" style="flex: 1">Verify</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{s3}}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 20px; align-items: flex-start">
+        <span style="width: 44px; height: 44px; border-radius: 50%; background: #EAF1FC; display: inline-flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F56B4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"></path></svg></span>
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <h1 style="margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em">Your account is ready</h1>
+          <p style="margin: 0; color: #5D6B7E">We found and linked your records at Northvale General Hospital.</p>
+        </div>
+        <dl style="margin: 0; width: 100%; display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 10px 16px; padding: 16px; border-radius: 8px; background: #F7F9FB; border: 1px solid #EDF0F4">
+          <dt style="color: #5D6B7E">Patient ID</dt><dd class="mono" style="margin: 0">NVG-188240</dd>
+          <dt style="color: #5D6B7E">Linked records</dt><dd style="margin: 0">2 visits, 6 lab reports, 3 medicines</dd>
+        </dl>
+        <a class="btn pri" href="PtHome.dc.html" style="align-self: stretch">Go to my health</a>
+      </div>
+    </sc-if>
+  </div>
+
+  <p style="margin: 0; color: #475467">Have an account? <a href="Main.dc.html" style="font-weight: 500">Sign in</a></p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { step: 1 }; }
+  renderVals() {
+    const s = this.state.step;
+    return {
+      s1: s === 1, s2: s === 2, s3: s === 3,
+      next: () => this.setState({ step: Math.min(3, s + 1) }),
+      back: () => this.setState({ step: Math.max(1, s - 1) }),
+      steps: ['Your details', 'Verify', 'Done'].map((label, i) => ({ label, bar: i < s ? '#1F56B4' : '#E2E6EC', color: i < s ? '#101828' : '#5D6B7E' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

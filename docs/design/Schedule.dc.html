@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Folio · Clinic schedule</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F9;color:#101828;font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:#1F56B4;text-decoration:none}a:hover{color:#174595}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.cap{font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:#5D6B7E}
+.nav a{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:38px;padding:0 12px;border-radius:6px;color:#344054;font-weight:500}
+.nav a:hover{background:#F2F4F7;color:#101828}
+.nav a.on{background:#EAF1FC;color:#174595}
+.count{font:500 12px 'IBM Plex Mono',monospace;color:#5D6B7E}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 16px;border-radius:6px;border:1px solid #D0D6DE;background:#fff;color:#101828;font:500 14px 'IBM Plex Sans',sans-serif;cursor:pointer;box-sizing:border-box;white-space:nowrap}
+.btn:hover{background:#F7F9FB;color:#101828}
+.btn.pri{background:#1F56B4;border-color:#1F56B4;color:#fff}
+.btn.pri:hover{background:#174595;color:#fff}
+.ibtn{all:unset;cursor:pointer;width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;color:#344054;box-sizing:border-box}
+.ibtn:hover{background:#F2F4F7}
+.card{background:#fff;border:1px solid #E2E6EC;border-radius:8px}
+.tag{display:inline-flex;align-items:center;height:20px;padding:0 6px;border-radius:4px;font-size:11px;font-weight:500;background:rgba(255,255,255,.7);color:#344054;white-space:nowrap}
+.search{display:flex;align-items:center;gap:10px;height:38px;padding:0 12px;border:1px solid #E2E6EC;border-radius:6px;background:#F7F9FB;color:#5D6B7E;box-sizing:border-box}
+.search input{border:0;outline:0;background:transparent;font:400 14px 'IBM Plex Sans',sans-serif;color:#101828;width:100%}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:13px;font-weight:500;color:#344054}
+.field input,.field select,.field textarea{min-height:40px;box-sizing:border-box;padding:8px 12px;border:1px solid #D0D6DE;border-radius:6px;background:#fff;font:400 14px 'IBM Plex Sans',sans-serif;color:#101828}
+.slot{all:unset;cursor:pointer;display:inline-flex;align-items:center;min-height:40px;padding:0 12px;border-radius:6px;border:1px solid #D0D6DE;font:500 13px 'IBM Plex Mono',monospace;color:#101828}
+.slot.on{background:#1F56B4;color:#fff;border-color:#1F56B4}
+.day{all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:0;min-width:52px;padding:6px 8px;border-radius:6px;color:#475467}
+.day.on{background:#EAF1FC;color:#174595}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #F4F6F9">
+  <aside style="flex: 1 1 240px; max-width: 100%; box-sizing: border-box; padding: 14px 14px 20px; display: flex; flex-direction: column; gap: 22px; background: #FFFFFF; border-right: 1px solid #E2E6EC">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 10px; height: 32px">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="#1F56B4"></rect><path d="M7 7h8M7 11h6M7 15h4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg>
+      <span style="font-size: 17px; font-weight: 600; letter-spacing: -0.01em">Folio</span>
+    </div>
+    <a href="Workspace.dc.html" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border: 1px solid #E2E6EC; border-radius: 6px; color: #101828">
+      <span style="display: flex; flex-direction: column; line-height: 1.35; min-width: 0"><span style="font-weight: 500">Northvale General</span><span style="color: #5D6B7E; font-size: 12px">Internal Medicine · 4B</span></span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5D6B7E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 9 5-5 5 5M7 15l5 5 5-5"></path></svg>
+    </a>
+    <nav class="nav" aria-label="Primary" style="display: flex; flex-direction: column; gap: 2px">
+      <a href="Dashboard.dc.html">Today</a>
+      <a href="Patients.dc.html">Patients <span class="count">8</span></a>
+      <a href="Schedule.dc.html" class="on" aria-current="page">Schedule</a>
+      <a href="Results.dc.html">Results <span class="count">6</span></a>
+      <a href="Requests.dc.html">Medication requests <span class="count">4</span></a>
+    </nav>
+    <nav class="nav" aria-label="Organization" style="display: flex; flex-direction: column; gap: 2px">
+      <span class="cap" style="padding: 0 12px 6px">Organization</span>
+      <a href="Admin.dc.html">Facilities and access</a>
+    </nav>
+  </aside>
+
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+    <header style="min-height: 60px; box-sizing: border-box; padding: 10px 32px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; background: #FFFFFF; border-bottom: 1px solid #E2E6EC">
+      <label class="search" style="width: 380px; max-width: 100%">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m20 20-4.2-4.2"></path></svg>
+        <input type="search" placeholder="Search patient, MRN or bed" aria-label="Search patients">
+      </label>
+      <span style="display: flex; align-items: center; gap: 10px">
+        <span style="width: 32px; height: 32px; border-radius: 50%; background: #E3E8EF; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">AS</span>
+        <span style="display: flex; flex-direction: column; line-height: 1.25"><span style="font-weight: 500">Dr. Anaya Shrestha</span><span style="font-size: 12px; color: #5D6B7E">Hospitalist</span></span>
+      </span>
+    </header>
+
+    <main style="box-sizing: border-box; padding: 28px 32px 64px">
+      <div style="max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap">
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <span class="cap">Internal Medicine OPD</span>
+            <h1 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.2">Clinic schedule</h1>
+          </div>
+          <div style="display: flex; gap: 4px; align-items: center; background: #fff; border: 1px solid #E2E6EC; border-radius: 8px; padding: 4px">
+            <button type="button" class="ibtn" aria-label="Previous week"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"></path></svg></button>
+            <sc-for list="{{days}}" as="d" hint-placeholder-count="5">
+              <button type="button" class="{{d.cls}}" onClick="{{d.pick}}" aria-pressed="{{d.on}}"><span style="font-size: 11px">{{d.w}}</span><span class="mono" style="font-size: 15px; font-weight: 500">{{d.n}}</span></button>
+            </sc-for>
+            <button type="button" class="ibtn" aria-label="Next week"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg></button>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+          <section class="card" style="flex: 2 1 560px; min-width: 0; overflow: hidden" aria-label="Day schedule">
+            <div style="overflow-x: auto">
+              <div style="min-width: 620px">
+                <div style="display: grid; grid-template-columns: 64px minmax(0, 1fr) minmax(0, 1fr); border-bottom: 1px solid #E2E6EC; background: #F8FAFC">
+                  <span></span>
+                  <span style="padding: 12px 14px; display: flex; flex-direction: column; line-height: 1.3; border-left: 1px solid #EDF0F4"><span style="font-weight: 600">Dr. Anaya Shrestha</span><span style="font-size: 12px; color: #5D6B7E">Room 3</span></span>
+                  <span style="padding: 12px 14px; display: flex; flex-direction: column; line-height: 1.3; border-left: 1px solid #EDF0F4"><span style="font-weight: 600">Dr. Prakash Karki</span><span style="font-size: 12px; color: #5D6B7E">Room 5</span></span>
+                </div>
+                <div style="display: grid; grid-template-columns: 64px minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: repeat(18, 36px); background-image: repeating-linear-gradient(to bottom, #EDF0F4 0, #EDF0F4 1px, transparent 1px, transparent 72px); padding-bottom: 8px">
+                  <sc-for list="{{hours}}" as="h" hint-placeholder-count="9">
+                    <span class="mono" style="grid-column: 1; grid-row: {{h.row}}; font-size: 12px; color: #5D6B7E; padding: 4px 0 0 14px">{{h.t}}</span>
+                  </sc-for>
+                  <span style="grid-column: 2; grid-row: 1 / span 18; border-left: 1px solid #EDF0F4"></span>
+                  <span style="grid-column: 3; grid-row: 1 / span 18; border-left: 1px solid #EDF0F4"></span>
+                  <sc-for list="{{appts}}" as="a" hint-placeholder-count="12">
+                    <a href="Chart.dc.html" style="grid-column: {{a.col}}; grid-row: {{a.row}}; margin: 3px 8px; padding: 5px 10px; border-radius: 6px; display: flex; flex-direction: column; overflow: hidden; line-height: 1.3; {{a.look}}">
+                      <span style="display: flex; justify-content: space-between; gap: 8px; align-items: center"><span style="font-weight: 500; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-decoration: {{a.strike}}">{{a.name}}</span><sc-if value="{{a.tag}}" hint-placeholder-val="{{ false }}"><span class="tag">{{a.tag}}</span></sc-if></span>
+                      <span style="font-size: 12px; opacity: .85">{{a.what}}</span>
+                    </a>
+                  </sc-for>
+                  <span style="grid-column: 2 / span 2; grid-row: 13; align-self: start; margin-top: 14px; height: 2px; background: #B42318" aria-label="Current time 14:20"></span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" style="flex: 1 1 320px; min-width: 0; padding: 20px; display: flex; flex-direction: column; gap: 16px" aria-labelledby="book">
+            <div style="display: flex; flex-direction: column; gap: 2px">
+              <h2 id="book" style="margin: 0; font-size: 15px; font-weight: 600">Book on behalf of a patient</h2>
+              <span style="font-size: 13px; color: #5D6B7E">Front desk and nurses can book here</span>
+            </div>
+            <div class="field"><label for="pt">Patient</label><input id="pt" value="Kamala Adhikari · NVG-187215"></div>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+              <div class="field"><label for="vt">Visit type</label><select id="vt"><option>Follow-up, 20 min</option><option>New patient, 40 min</option><option>Video, 20 min</option></select></div>
+              <div class="field"><label for="cl">Clinician</label><select id="cl"><option>Dr. Shrestha</option><option>Dr. Karki</option><option>First available</option></select></div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <span style="font-size: 13px; font-weight: 500; color: #344054">Suggested times</span>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px">
+                <sc-for list="{{slots}}" as="s" hint-placeholder-count="4"><button type="button" class="{{s.cls}}" onClick="{{s.pick}}" aria-pressed="{{s.on}}">{{s.t}}</button></sc-for>
+              </div>
+            </div>
+            <div class="field"><label for="nt">Note</label><textarea id="nt" rows="2" style="resize: vertical">Post-discharge review, 7 days. Check inhaler technique.</textarea></div>
+            <label style="display: flex; align-items: center; gap: 10px; color: #344054; min-height: 40px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #1F56B4">Send SMS confirmation</label>
+            <a class="btn pri" href="#">Book {{slotLabel}}</a>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { day: 1, slot: 1 }; }
+  renderVals() {
+    const row = (t, m) => { const [h, mi] = t.split(':').map(Number); return ((h - 8) * 2 + mi / 30 + 1) + ' / span ' + Math.max(1, m / 30); };
+    const L = {
+      appt: 'background: #EAF1FC; color: #101828',
+      done: 'background: #F2F4F7; color: #475467',
+      block: 'background: repeating-linear-gradient(135deg, #F7F9FB 0, #F7F9FB 6px, #EDF0F4 6px, #EDF0F4 7px); color: #475467',
+      cxl: 'background: #FFFFFF; color: #5D6B7E; box-shadow: inset 0 0 0 1px #E2E6EC'
+    };
+    const ap = [
+      [2, '08:00', 120, 'Inpatient round', 'Blocked · Ward 4B', 'block', ''],
+      [2, '10:00', 30, 'Laxmi Thapa', '10:00 · New · Hypertension', 'done', 'Seen'],
+      [2, '10:30', 30, 'Rajan KC', '10:30 · Follow-up · Diabetes', 'done', 'Seen'],
+      [2, '11:30', 30, 'Family meeting', 'Blocked', 'block', ''],
+      [2, '13:00', 60, 'Multidisciplinary team', 'Blocked', 'block', ''],
+      [2, '14:00', 30, 'Anita Sherpa', '14:00 · Follow-up · Thyroid', 'appt', 'Arrived'],
+      [2, '15:00', 30, 'Prem Lama', '15:00 · Follow-up · Asthma', 'appt', 'Video'],
+      [2, '16:00', 30, 'Bhim Gurung', '16:00 · Post-discharge', 'appt', ''],
+      [3, '08:30', 60, 'Sarita Rana', '08:30 · New · Anaemia', 'done', 'Seen'],
+      [3, '09:30', 30, 'Ramesh Pandey', '09:30 · Follow-up · CKD', 'done', 'Seen'],
+      [3, '10:30', 30, 'Kiran Bista', '10:30 · Follow-up · Gout', 'done', 'Seen'],
+      [3, '11:00', 30, 'Usha Magar', '11:00 · Joint injection', 'done', 'Seen'],
+      [3, '14:00', 60, 'Admin time', 'Blocked', 'block', ''],
+      [3, '15:30', 30, 'Nabin Thakuri', 'Cancelled by patient · slot open', 'cxl', '']
+    ].map(([col, t, m, name, what, k, tag]) => ({ col, row: row(t, m), name, what, look: L[k], tag, strike: k === 'cxl' ? 'line-through' : 'none' }));
+    const hours = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00'].map((t, i) => ({ t, row: (i * 2 + 1) + ' / span 2' }));
+    const days = [['Mon', '19'], ['Tue', '20'], ['Wed', '21'], ['Thu', '22'], ['Fri', '23']].map(([w, n], i) => ({ w, n, on: this.state.day === i, cls: this.state.day === i ? 'day on' : 'day', pick: () => this.setState({ day: i }) }));
+    const st = ['Tue 15:30', 'Tue 16:30', 'Wed 09:00', 'Thu 10:20'];
+    const slots = st.map((t, i) => ({ t, on: this.state.slot === i, cls: this.state.slot === i ? 'slot on' : 'slot', pick: () => this.setState({ slot: i }) }));
+    return { appts: ap, hours, days, slots, slotLabel: st[this.state.slot] };
+  }
+}
+</script>
+</body>
+</html>

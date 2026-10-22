@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Folio · Consultation packages</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F9;color:#101828;font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:#1F56B4;text-decoration:none}a:hover{color:#174595}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.cap{font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:#5D6B7E}
+.pnav{display:flex;gap:24px;flex-wrap:wrap}
+.pnav a{display:inline-flex;align-items:center;min-height:60px;color:#475467;font-weight:500;border-bottom:2px solid transparent;box-sizing:border-box}
+.pnav a:hover{color:#101828}
+.pnav a.on{color:#101828;border-bottom-color:#1F56B4}
+.btn{all:unset;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:6px;border:1px solid #D0D6DE;background:#fff;color:#101828;font:500 14px 'IBM Plex Sans',sans-serif;cursor:pointer;box-sizing:border-box;white-space:nowrap}
+.btn:hover{background:#F7F9FB;color:#101828}
+.btn.pri{background:#1F56B4;border-color:#1F56B4;color:#fff}
+.btn.pri:hover{background:#174595;color:#fff}
+.btn.sm{min-height:38px;padding:0 14px}
+.card{background:#fff;border:1px solid #E2E6EC;border-radius:8px}
+.tag{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:4px;font-size:12px;font-weight:500;background:#EEF1F5;color:#344054;white-space:nowrap}
+.tag.blue{background:#EAF1FC;color:#174595}
+.search{display:flex;align-items:center;gap:10px;height:48px;padding:0 14px;border:1px solid #D0D6DE;border-radius:8px;background:#fff;color:#5D6B7E;box-sizing:border-box}
+.search:focus-within{border-color:#1F56B4;box-shadow:0 0 0 3px #DCE7F9}
+.search input{border:0;outline:0;background:transparent;font:400 15px 'IBM Plex Sans',sans-serif;color:#101828;width:100%}
+.chip{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 12px;border-radius:6px;border:1px solid #D0D6DE;background:#fff;font-weight:500;font-size:13px;color:#344054;white-space:nowrap}
+.chip.on{background:#101828;border-color:#101828;color:#fff}
+.tabs{display:flex;gap:24px;border-bottom:1px solid #E2E6EC}
+.tabs a{display:inline-flex;align-items:center;min-height:44px;font-weight:500;color:#475467;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs a.on{color:#101828;border-bottom-color:#1F56B4}
+.inc{display:flex;gap:10px;align-items:flex-start}
+.opt{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:2px;padding:14px 16px;border-radius:8px;background:#fff;border:1px solid #E2E6EC}
+.opt.on{border-color:#1F56B4;box-shadow:0 0 0 1px #1F56B4;background:#FAFCFF}
+.slot{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 14px;border-radius:6px;border:1px solid #D0D6DE;background:#fff;font:500 13px 'IBM Plex Mono',monospace}
+.slot.on{background:#1F56B4;border-color:#1F56B4;color:#fff}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #F4F6F9">
+  <header style="background: #FFFFFF; border-bottom: 1px solid #E2E6EC">
+    <div style="max-width: 1120px; margin: 0 auto; box-sizing: border-box; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 8px 32px; flex-wrap: wrap">
+      <div style="display: flex; align-items: center; gap: 32px; flex-wrap: wrap">
+        <a href="PtHome.dc.html" style="display: flex; align-items: center; gap: 10px; color: #101828; min-height: 60px">
+          <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="#1F56B4"></rect><path d="M7 7h8M7 11h6M7 15h4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg>
+          <span style="font-size: 17px; font-weight: 600; letter-spacing: -0.01em">Folio</span>
+        </a>
+        <nav class="pnav" aria-label="Patient portal">
+          <a href="PtHome.dc.html">Home</a>
+          <a href="Appointments.dc.html" class="on" aria-current="page">Appointments</a>
+          <a href="PtResults.dc.html">Lab reports</a>
+          <a href="PtMeds.dc.html">Medicines</a>
+        </nav>
+      </div>
+      <a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px; color: #101828; min-height: 60px">
+        <span style="width: 32px; height: 32px; border-radius: 50%; background: #E3E8EF; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">RP</span>
+        <span style="display: flex; flex-direction: column; line-height: 1.25"><span style="font-weight: 500">Ramesh Pandey</span><span class="mono" style="font-size: 12px; color: #5D6B7E">NVG-188240</span></span>
+      </a>
+    </div>
+  </header>
+
+  <main style="max-width: 1120px; margin: 0 auto; box-sizing: border-box; padding: 32px 24px 72px; display: flex; flex-direction: column; gap: 20px">
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <a href="Appointments.dc.html" style="font-size: 13px">Appointments</a>
+      <h1 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.015em">Book an appointment</h1>
+    </div>
+    <nav class="tabs" aria-label="Book by">
+      <a href="Book.dc.html">Doctors</a>
+      <a href="Packages.dc.html" class="on" aria-current="page">Consultation packages</a>
+    </nav>
+
+    <sc-if value="{{browse}}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; gap: 16px">
+        <p style="margin: 0; color: #475467">Packages bundle several consultations, tests and follow-ups with one doctor at a fixed price.</p>
+        <label class="search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m20 20-4.2-4.2"></path></svg>
+          <input type="search" value="{{q}}" onChange="{{onQ}}" placeholder="Search packages or doctors" aria-label="Search packages">
+        </label>
+        <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px" role="group" aria-label="Filter by category">
+          <sc-for list="{{cats}}" as="c" hint-placeholder-count="7"><button type="button" class="{{c.cls}}" onClick="{{c.pick}}" aria-pressed="{{c.on}}">{{c.l}}</button></sc-for>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 14px">
+          <sc-for list="{{list}}" as="p" hint-placeholder-count="6">
+            <article class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 12px">
+              <div style="display: flex; justify-content: space-between; gap: 8px; align-items: flex-start">
+                <span class="tag">{{p.cat}}</span>
+                <span class="tag blue">{{p.modeLabel}}</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 2px">
+                <h2 style="margin: 0; font-size: 17px; font-weight: 600">{{p.name}}</h2>
+                <span style="font-size: 13px; color: #475467">{{p.doc}}</span>
+              </div>
+              <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; color: #344054; font-size: 13px">
+                <sc-for list="{{p.top}}" as="i" hint-placeholder-count="3">
+                  <li class="inc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F56B4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-top: 3px; flex: none"><path d="m5 12 4.5 4.5L19 7"></path></svg>{{i}}</li>
+                </sc-for>
+              </ul>
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; border-top: 1px solid #EDF0F4; padding-top: 12px; margin-top: auto">
+                <span style="display: flex; flex-direction: column"><span style="font-weight: 600">[PACKAGE PRICE]</span><span style="font-size: 12px; color: #5D6B7E">Valid {{p.valid}}</span></span>
+                <button type="button" class="btn sm pri" onClick="{{p.open}}">View package</button>
+              </div>
+            </article>
+          </sc-for>
+        </div>
+        <sc-if value="{{empty}}" hint-placeholder-val="{{ false }}">
+          <div class="card" style="padding: 32px; text-align: center; color: #475467">No packages match. <a href="Book.dc.html">Book a single appointment instead</a>.</div>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{detail}}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+        <article class="card" style="flex: 2 1 520px; min-width: 0; padding: 24px; display: flex; flex-direction: column; gap: 20px">
+          <button type="button" class="btn sm" onClick="{{closeP}}" style="align-self: flex-start">All packages</button>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <span style="display: flex; gap: 8px; flex-wrap: wrap"><span class="tag">{{cur.cat}}</span><span class="tag blue">{{cur.modeLabel}}</span></span>
+            <h2 style="margin: 0; font-size: 22px; font-weight: 600">{{cur.name}}</h2>
+            <span style="color: #475467">{{cur.desc}}</span>
+          </div>
+          <div style="display: flex; gap: 14px; align-items: center; padding: 14px; border-radius: 8px; background: #F7F9FB">
+            <span style="width: 44px; height: 44px; border-radius: 50%; background: #E3E8EF; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; flex: none">{{cur.ini}}</span>
+            <span style="display: flex; flex-direction: column"><span style="font-weight: 600">{{cur.doc}}</span><span style="font-size: 13px; color: #5D6B7E">{{cur.cat}} · Northvale General</span></span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <span class="cap">What is included</span>
+            <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px">
+              <sc-for list="{{cur.inc}}" as="i" hint-placeholder-count="4">
+                <li class="inc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F56B4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-top: 3px; flex: none"><path d="m5 12 4.5 4.5L19 7"></path></svg>{{i}}</li>
+              </sc-for>
+            </ul>
+          </div>
+          <dl style="margin: 0; display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 8px 16px; padding-top: 16px; border-top: 1px solid #EDF0F4">
+            <dt style="color: #5D6B7E">Valid for</dt><dd style="margin: 0">{{cur.valid}} from the first visit</dd>
+            <dt style="color: #5D6B7E">Cancellation</dt><dd style="margin: 0">Full refund before the first visit. Unused visits are not refunded.</dd>
+          </dl>
+        </article>
+
+        <aside class="card" style="flex: 1 1 320px; min-width: 0; padding: 20px; display: flex; flex-direction: column; gap: 16px">
+          <sc-if value="{{notBooked}}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; flex-direction: column; gap: 16px">
+              <span style="display: flex; flex-direction: column"><span style="font-size: 20px; font-weight: 600">[PACKAGE PRICE]</span><span style="font-size: 13px; color: #5D6B7E">One payment for the whole package</span></span>
+              <div style="display: flex; flex-direction: column; gap: 8px">
+                <span style="font-size: 13px; font-weight: 500; color: #344054">How would you like your visits?</span>
+                <sc-for list="{{fmts}}" as="f" hint-placeholder-count="2">
+                  <button type="button" class="{{f.cls}}" onClick="{{f.pick}}" aria-pressed="{{f.on}}"><span style="font-weight: 600">{{f.l}}</span><span style="font-size: 12px; color: #5D6B7E">{{f.s}}</span></button>
+                </sc-for>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 8px">
+                <span style="font-size: 13px; font-weight: 500; color: #344054">First visit</span>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px">
+                  <sc-for list="{{firsts}}" as="t" hint-placeholder-count="4"><button type="button" class="{{t.cls}}" onClick="{{t.pick}}" aria-pressed="{{t.on}}">{{t.t}}</button></sc-for>
+                </div>
+                <span style="font-size: 12px; color: #5D6B7E">You can book the remaining visits later from My appointments.</span>
+              </div>
+              <button type="button" class="btn pri" onClick="{{book}}">Book package</button>
+            </div>
+          </sc-if>
+          <sc-if value="{{booked}}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start">
+              <span style="width: 44px; height: 44px; border-radius: 50%; background: #EAF1FC; display: inline-flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F56B4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"></path></svg></span>
+              <h3 style="margin: 0; font-size: 18px; font-weight: 600">Package booked</h3>
+              <p style="margin: 0; color: #475467">{{cur.name}} with {{cur.doc}}. First visit {{firstLabel}}, {{fmtLabel}}.</p>
+              <span style="font-size: 13px; color: #5D6B7E">Reference <span class="mono" style="color: #101828">PKG-2610-0417</span></span>
+              <a class="btn pri" href="Appointments.dc.html">Go to my appointments</a>
+            </div>
+          </sc-if>
+        </aside>
+      </div>
+    </sc-if>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1200}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { q: '', cat: 'all', sel: null, fmt: 'hy', first: 0, booked: false }; }
+  renderVals() {
+    const st = this.state;
+    const P = [
+      { id: 'kid', name: 'Kidney care, 3 months', doc: 'Dr. Prakash Karki', ini: 'PK', cat: 'Nephrology', mode: 'hy', valid: '90 days', desc: 'Regular review of kidney function with diet support and a direct line to your care team.', inc: ['3 consultations: 1 on-site, 2 by video', '2 kidney function panels', '1 session with a renal dietitian', 'Message your care team for 90 days'] },
+      { id: 'dia', name: 'Diabetes review', doc: 'Dr. Meena Rai', ini: 'MR', cat: 'Endocrinology', mode: 'both', valid: '60 days', desc: 'A focused check of blood sugar control and diabetes complications.', inc: ['2 consultations', 'HbA1c and lipid profile', 'Diabetic foot check', 'Eye screening referral'] },
+      { id: 'hrt', name: 'Heart health check', doc: 'Dr. Rohan Adhikari', ini: 'RA', cat: 'Cardiology', mode: 'on', valid: '30 days', desc: 'Tests and a cardiology review in one visit.', inc: ['1 on-site consultation', 'ECG and echocardiogram', 'Lipid profile and blood sugar', 'Written summary for your records'] },
+      { id: 'sec', name: 'Second opinion', doc: 'Dr. Anaya Shrestha', ini: 'AS', cat: 'Internal Medicine', mode: 're', valid: '14 days', desc: 'An independent review of your diagnosis and treatment plan.', inc: ['1 video consultation, 40 minutes', 'Review of reports you upload', 'Written opinion within 48 hours'] },
+      { id: 'bab', name: 'Baby’s first year', doc: 'Dr. Kabita Gurung', ini: 'KG', cat: 'Paediatrics', mode: 'on', valid: '12 months', desc: 'Well-baby visits through the first year.', inc: ['5 well-baby visits', 'Growth and development checks', 'Vaccination schedule reminders'] },
+      { id: 'skn', name: 'Skin care follow-up', doc: 'Dr. Nisha Pradhan', ini: 'NP', cat: 'Dermatology', mode: 're', valid: '45 days', desc: 'Track a skin condition with photo reviews between video visits.', inc: ['2 video consultations', 'Photo review between visits', 'Treatment plan updates'] }
+    ];
+    const ML = { hy: 'On-site and remote', both: 'On-site or remote', on: 'On-site', re: 'Remote' };
+    const q = st.q.trim().toLowerCase();
+    const list = P.filter(p => (st.cat === 'all' || p.cat === st.cat) && (!q || (p.name + ' ' + p.doc + ' ' + p.cat).toLowerCase().indexOf(q) > -1))
+      .map(p => ({ ...p, modeLabel: ML[p.mode], top: p.inc.slice(0, 3), open: () => this.setState({ sel: p.id, booked: false, fmt: p.mode === 'both' ? 'on' : p.mode, first: 0 }) }));
+    const cur = P.find(p => p.id === st.sel);
+    const F = { hy: ['Hybrid', 'First visit on-site, follow-ups by video'], on: ['On-site', 'All visits at Northvale General'], re: ['Remote', 'All visits by video call'] };
+    const fmtIds = !cur ? [] : cur.mode === 'both' ? ['on', 're'] : [cur.mode];
+    const FT = ['Wed 28 Oct, 09:20', 'Thu 29 Oct, 10:00', 'Mon 2 Nov, 09:40', 'Wed 4 Nov, 11:00'];
+    const cats = ['all', 'Internal Medicine', 'Nephrology', 'Cardiology', 'Endocrinology', 'Paediatrics', 'Dermatology'];
+    return {
+      browse: !cur, detail: !!cur, empty: list.length === 0,
+      q: st.q, onQ: (e) => this.setState({ q: e.target.value }),
+      cats: cats.map(c => ({ l: c === 'all' ? 'All' : c, on: st.cat === c, cls: st.cat === c ? 'chip on' : 'chip', pick: () => this.setState({ cat: c }) })),
+      list,
+      cur: cur ? { ...cur, modeLabel: ML[cur.mode] } : { name: '', doc: '', ini: '', cat: '', modeLabel: '', desc: '', inc: [], valid: '' },
+      closeP: () => this.setState({ sel: null }),
+      fmts: fmtIds.map(id => ({ l: F[id][0], s: F[id][1], on: st.fmt === id, cls: st.fmt === id ? 'opt on' : 'opt', pick: () => this.setState({ fmt: id }) })),
+      firsts: FT.map((t, i) => ({ t, on: st.first === i, cls: st.first === i ? 'slot on' : 'slot', pick: () => this.setState({ first: i }) })),
+      notBooked: !st.booked, booked: st.booked,
+      book: () => this.setState({ booked: true }),
+      firstLabel: FT[st.first], fmtLabel: F[st.fmt] ? F[st.fmt][0].toLowerCase() : ''
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Folio · Facilities and access</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F9;color:#101828;font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:#1F56B4;text-decoration:none}a:hover{color:#174595}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.cap{font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:#5D6B7E}
+.nav a{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:38px;padding:0 12px;border-radius:6px;color:#344054;font-weight:500}
+.nav a:hover{background:#F2F4F7;color:#101828}
+.nav a.on{background:#EAF1FC;color:#174595}
+.count{font:500 12px 'IBM Plex Mono',monospace;color:#5D6B7E}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 16px;border-radius:6px;border:1px solid #D0D6DE;background:#fff;color:#101828;font:500 14px 'IBM Plex Sans',sans-serif;cursor:pointer;box-sizing:border-box;white-space:nowrap}
+.btn:hover{background:#F7F9FB;color:#101828}
+.btn.pri{background:#1F56B4;border-color:#1F56B4;color:#fff}
+.btn.pri:hover{background:#174595;color:#fff}
+.card{background:#fff;border:1px solid #E2E6EC;border-radius:8px}
+.tag{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:4px;font-size:12px;font-weight:500;background:#EEF1F5;color:#344054;white-space:nowrap}
+.tag.blue{background:#EAF1FC;color:#174595}
+.tag.warn{background:#FFFAEB;color:#93370D}
+.trow{display:grid;align-items:center;gap:16px;padding:12px 20px;border-top:1px solid #EDF0F4}
+.hd{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px;flex-wrap:wrap}
+.hd h2{margin:0;font-size:15px;font-weight:600}
+.ctabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid #E2E6EC}
+.ctabs a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;color:#475467;font-weight:500;border-bottom:2px solid transparent;margin-bottom:-1px}
+.ctabs a.on{color:#101828;border-bottom-color:#1F56B4}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #F4F6F9">
+  <aside style="flex: 1 1 240px; max-width: 100%; box-sizing: border-box; padding: 14px 14px 20px; display: flex; flex-direction: column; gap: 22px; background: #FFFFFF; border-right: 1px solid #E2E6EC">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 10px; height: 32px">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="#1F56B4"></rect><path d="M7 7h8M7 11h6M7 15h4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg>
+      <span style="font-size: 17px; font-weight: 600; letter-spacing: -0.01em">Folio</span>
+    </div>
+    <a href="Workspace.dc.html" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border: 1px solid #E2E6EC; border-radius: 6px; color: #101828">
+      <span style="display: flex; flex-direction: column; line-height: 1.35; min-width: 0"><span style="font-weight: 500">Northvale Health</span><span style="color: #5D6B7E; font-size: 12px">Organization · all facilities</span></span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5D6B7E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 9 5-5 5 5M7 15l5 5 5-5"></path></svg>
+    </a>
+    <nav class="nav" aria-label="Scheduling" style="display: flex; flex-direction: column; gap: 2px">
+      <span class="cap" style="padding: 0 12px 6px">Scheduling</span>
+      <a href="AdminAvail.dc.html">Appointment blocks</a>
+      <a href="AdminLeave.dc.html">Leave and blocked time</a>
+    </nav>
+    <nav class="nav" aria-label="Services" style="display: flex; flex-direction: column; gap: 2px">
+      <span class="cap" style="padding: 0 12px 6px">Services</span>
+      <a href="AdminPackages.dc.html">Consultation packages</a>
+    </nav>
+    <nav class="nav" aria-label="Organization" style="display: flex; flex-direction: column; gap: 2px">
+      <span class="cap" style="padding: 0 12px 6px">Organization</span>
+      <a href="Admin.dc.html" class="on" aria-current="page">Facilities and access</a>
+    </nav>
+    <a href="Dashboard.dc.html" style="margin-top: auto; padding: 0 12px; font-size: 13px">Open clinician workspace</a>
+  </aside>
+
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+    <section style="background: #FFFFFF; border-bottom: 1px solid #E2E6EC; padding: 22px 32px 0">
+      <div style="max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap">
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <span class="cap">Organization settings</span>
+            <h1 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.015em">Northvale Health</h1>
+          </div>
+          <a class="btn pri" href="#">Add facility</a>
+        </div>
+        <nav class="ctabs" aria-label="Organization sections">
+          <a href="#" class="on" aria-current="page">Facilities</a>
+          <a href="#">Staff and roles</a>
+          <a href="#">Shared settings</a>
+          <a href="#">Integrations</a>
+          <a href="#">Audit log</a>
+        </nav>
+      </div>
+    </section>
+
+    <main style="box-sizing: border-box; padding: 24px 32px 64px">
+      <div style="max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px">
+        <section class="card" style="overflow: hidden" aria-labelledby="fac">
+          <div class="hd"><h2 id="fac">Facilities</h2><span style="font-size: 13px; color: #5D6B7E">One patient record across every facility</span></div>
+          <div style="overflow-x: auto">
+            <div style="min-width: 820px">
+              <div class="trow cap" style="grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) 90px 90px 90px 140px; background: #F8FAFC; padding-top: 8px; padding-bottom: 8px">
+                <span>Facility</span><span>Type</span><span style="text-align: right">Beds</span><span style="text-align: right">Staff</span><span style="text-align: right">Patients</span><span>Status</span>
+              </div>
+              <sc-for list="{{facilities}}" as="f" hint-placeholder-count="3">
+                <div class="trow" style="grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) 90px 90px 90px 140px">
+                  <span style="display: flex; flex-direction: column"><span style="font-weight: 500">{{f.name}}</span><span class="mono" style="font-size: 12px; color: #5D6B7E">{{f.code}}</span></span>
+                  <span style="color: #344054">{{f.type}}</span>
+                  <span class="mono" style="text-align: right">{{f.beds}}</span>
+                  <span class="mono" style="text-align: right">{{f.staff}}</span>
+                  <span class="mono" style="text-align: right">{{f.pts}}</span>
+                  <span><span class="{{f.tagCls}}">{{f.status}}</span></span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </section>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+          <section class="card" style="flex: 1 1 420px; min-width: 0; overflow: hidden" aria-labelledby="onb">
+            <div class="hd"><h2 id="onb">Lakeview Hospital onboarding</h2><span class="tag warn">Go-live 1 Dec</span></div>
+            <ol style="list-style: none; margin: 0; padding: 0">
+              <sc-for list="{{steps}}" as="s" hint-placeholder-count="5">
+                <li style="display: flex; gap: 14px; align-items: flex-start; padding: 12px 20px; border-top: 1px solid #EDF0F4">
+                  <span style="width: 22px; height: 22px; border-radius: 50%; flex: none; display: inline-flex; align-items: center; justify-content: center; font: 500 11px 'IBM Plex Mono', monospace; {{s.dot}}">{{s.n}}</span>
+                  <span style="display: flex; flex-direction: column; flex: 1; min-width: 0"><span style="font-weight: 500">{{s.t}}</span><span style="font-size: 13px; color: #5D6B7E">{{s.d}}</span></span>
+                  <span style="font-size: 12px; color: #5D6B7E">{{s.s}}</span>
+                </li>
+              </sc-for>
+            </ol>
+          </section>
+
+          <section class="card" style="flex: 1 1 420px; min-width: 0; overflow: hidden" aria-labelledby="shr">
+            <div class="hd"><h2 id="shr">What is shared, what is local</h2></div>
+            <div class="trow cap" style="grid-template-columns: minmax(0, 1.4fr) 1fr; background: #F8FAFC; padding-top: 8px; padding-bottom: 8px"><span>Setting</span><span>Scope</span></div>
+            <sc-for list="{{scopes}}" as="s" hint-placeholder-count="7">
+              <div class="trow" style="grid-template-columns: minmax(0, 1.4fr) 1fr"><span>{{s.n}}</span><span><span class="{{s.cls}}">{{s.v}}</span></span></div>
+            </sc-for>
+          </section>
+        </div>
+
+        <section class="card" style="overflow: hidden" aria-labelledby="roles">
+          <div class="hd"><h2 id="roles">Roles by facility</h2><a href="#" style="font-size: 13px">Edit roles</a></div>
+          <div style="overflow-x: auto">
+            <div style="min-width: 720px">
+              <div class="trow cap" style="grid-template-columns: minmax(0, 1.2fr) repeat(3, minmax(0, 1fr)); background: #F8FAFC; padding-top: 8px; padding-bottom: 8px"><span>Role</span><span>Northvale General</span><span>Eastside Clinic</span><span>Lakeview Hospital</span></div>
+              <sc-for list="{{roles}}" as="r" hint-placeholder-count="5">
+                <div class="trow" style="grid-template-columns: minmax(0, 1.2fr) repeat(3, minmax(0, 1fr))"><span style="font-weight: 500">{{r.n}}</span><span style="color: #344054">{{r.a}}</span><span style="color: #344054">{{r.b}}</span><span style="color: #344054">{{r.c}}</span></div>
+              </sc-for>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      facilities: [
+        { name: 'Northvale General Hospital', code: 'NVG', type: 'Acute care hospital', beds: '312', staff: '1,240', pts: '86,410', status: 'Live', tagCls: 'tag blue' },
+        { name: 'Northvale Eastside Clinic', code: 'NVE', type: 'Outpatient clinic', beds: 'n/a', staff: '96', pts: '14,902', status: 'Live', tagCls: 'tag blue' },
+        { name: 'Lakeview Hospital', code: 'LKV', type: 'Acute care hospital', beds: '180', staff: '410', pts: 'Migrating', status: 'Onboarding', tagCls: 'tag warn' }
+      ],
+      steps: [
+        { n: '1', t: 'Facility profile and departments', d: '14 departments, 9 wards', s: 'Done', dot: 'background: #1F56B4; color: #fff' },
+        { n: '2', t: 'Staff accounts and SSO', d: '410 of 410 staff invited', s: 'Done', dot: 'background: #1F56B4; color: #fff' },
+        { n: '3', t: 'Patient record migration', d: 'Matching against the shared patient index', s: '62%', dot: 'background: #EAF1FC; color: #174595; box-shadow: inset 0 0 0 1px #1F56B4' },
+        { n: '4', t: 'Lab and pharmacy interfaces', d: 'HL7 feeds to Lakeview laboratory', s: 'Next', dot: 'background: #EEF1F5; color: #475467' },
+        { n: '5', t: 'Training and go-live', d: 'Super-user sessions from 20 Nov', s: 'Planned', dot: 'background: #EEF1F5; color: #475467' }
+      ],
+      scopes: [
+        { n: 'Patient identity and medical record number', v: 'Organization', cls: 'tag blue' },
+        { n: 'Drug formulary and interaction rules', v: 'Organization', cls: 'tag blue' },
+        { n: 'Note templates and order sets', v: 'Organization, overridable', cls: 'tag' },
+        { n: 'Lab test catalogue and reference ranges', v: 'Per facility', cls: 'tag' },
+        { n: 'Clinic schedules and rooms', v: 'Per facility', cls: 'tag' },
+        { n: 'Patient portal branding', v: 'Organization', cls: 'tag blue' },
+        { n: 'Billing and price lists', v: 'Per facility', cls: 'tag' }
+      ],
+      roles: [
+        { n: 'Physician', a: 'Full chart, orders, prescribe', b: 'Full chart, orders, prescribe', c: 'After go-live' },
+        { n: 'Nurse', a: 'Chart, vitals, administer', b: 'Chart, vitals', c: 'After go-live' },
+        { n: 'Lab technician', a: 'Lab results entry', b: 'None', c: 'Lab results entry' },
+        { n: 'Front desk', a: 'Registration, scheduling', b: 'Registration, scheduling', c: 'Registration' },
+        { n: 'Pharmacist', a: 'Dispense, verify', b: 'Dispense', c: 'After go-live' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

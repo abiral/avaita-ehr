@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Folio · Reset password</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F9;color:#101828;font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:#1F56B4;text-decoration:none}a:hover{color:#174595}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:13px;font-weight:500;color:#344054}
+.field input{height:44px;box-sizing:border-box;padding:0 12px;border:1px solid #D0D6DE;border-radius:6px;background:#fff;font:400 15px 'IBM Plex Sans',sans-serif;color:#101828;outline:none}
+.field input:focus{border-color:#1F56B4;box-shadow:0 0 0 3px #DCE7F9}
+.btn{all:unset;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:6px;border:1px solid #D0D6DE;background:#fff;color:#101828;font:500 14px 'IBM Plex Sans',sans-serif;cursor:pointer;box-sizing:border-box}
+.btn:hover{background:#F7F9FB;color:#101828}
+.btn.pri{background:#1F56B4;border-color:#1F56B4;color:#fff}
+.btn.pri:hover{background:#174595;color:#fff}
+.rule{display:flex;align-items:center;gap:8px;font-size:13px}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; padding: 48px 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; background: #F4F6F9; background-image: radial-gradient(#DDE3EA 1px, transparent 1px); background-size: 24px 24px">
+  <a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px; color: #101828">
+    <svg width="28" height="28" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="#1F56B4"></rect><path d="M7 7h8M7 11h6M7 15h4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    <span style="font-size: 22px; font-weight: 600; letter-spacing: -0.01em">Folio</span>
+  </a>
+
+  <div style="width: 100%; max-width: 420px; box-sizing: border-box; padding: 32px; background: #FFFFFF; border: 1px solid #E2E6EC; border-radius: 10px; box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 8px 24px rgba(16, 24, 40, 0.06); display: flex; flex-direction: column; gap: 22px">
+    <span style="font-size: 12px; font-weight: 500; color: #5D6B7E">Step {{step}} of 3</span>
+
+    <sc-if value="{{s1}}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; gap: 20px">
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <h1 style="margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em">Reset your password</h1>
+          <p style="margin: 0; color: #5D6B7E">Enter the email or mobile number on your account. We will send a reset link.</p>
+        </div>
+        <div class="field"><label for="id">Email or mobile number</label><input id="id" value="ramesh.pandey@mail.com"></div>
+        <button type="button" class="btn pri" onClick="{{next}}">Send reset link</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{s2}}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 20px">
+        <span style="width: 44px; height: 44px; border-radius: 50%; background: #EAF1FC; display: inline-flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F56B4" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3.5 6.5 8.5 6 8.5-6"></path></svg></span>
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <h1 style="margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em">Check your email</h1>
+          <p style="margin: 0; color: #5D6B7E">We sent a link to <strong style="color: #101828; font-weight: 500">r•••••.pandey@mail.com</strong>. It expires in 30 minutes.</p>
+        </div>
+        <button type="button" class="btn pri" onClick="{{next}}">I have the link, set a new password</button>
+        <p style="margin: 0; font-size: 13px; color: #5D6B7E">Nothing arrived? Check spam, or <a href="#">send it by SMS instead</a>.</p>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{s3}}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 20px">
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <h1 style="margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em">Choose a new password</h1>
+          <p style="margin: 0; color: #5D6B7E">You will be signed out on other devices.</p>
+        </div>
+        <div class="field"><label for="p1">New password</label><input id="p1" type="password" value="••••••••••••"></div>
+        <div class="field"><label for="p2">Confirm new password</label><input id="p2" type="password" value="••••••••••••"></div>
+        <div style="display: flex; flex-direction: column; gap: 6px; padding: 12px 14px; border-radius: 6px; background: #F7F9FB">
+          <span class="rule" style="color: #174595"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"></path></svg>At least 10 characters</span>
+          <span class="rule" style="color: #174595"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"></path></svg>Contains a number</span>
+          <span class="rule" style="color: #174595"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"></path></svg>Passwords match</span>
+        </div>
+        <a class="btn pri" href="Main.dc.html">Update password and sign in</a>
+      </div>
+    </sc-if>
+  </div>
+
+  <a href="Main.dc.html" style="display: inline-flex; align-items: center; gap: 6px; min-height: 44px">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"></path></svg>
+    Back to sign in
+  </a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { step: 1 }; }
+  renderVals() {
+    const s = this.state.step;
+    return { step: s, s1: s === 1, s2: s === 2, s3: s === 3, next: () => this.setState({ step: Math.min(3, s + 1) }) };
+  }
+}
+</script>
+</body>
+</html>

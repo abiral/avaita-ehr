@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Folio · Lab report review</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F9;color:#101828;font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:#1F56B4;text-decoration:none}a:hover{color:#174595}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.cap{font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:#5D6B7E}
+.nav a{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:38px;padding:0 12px;border-radius:6px;color:#344054;font-weight:500}
+.nav a:hover{background:#F2F4F7;color:#101828}
+.nav a.on{background:#EAF1FC;color:#174595}
+.count{font:500 12px 'IBM Plex Mono',monospace;color:#5D6B7E}
+.btn{all:unset;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 16px;border-radius:6px;border:1px solid #D0D6DE;background:#fff;color:#101828;font:500 14px 'IBM Plex Sans',sans-serif;cursor:pointer;box-sizing:border-box;white-space:nowrap}
+.btn:hover{background:#F7F9FB;color:#101828}
+.btn.pri{background:#1F56B4;border-color:#1F56B4;color:#fff}
+.btn.pri:hover{background:#174595;color:#fff}
+.card{background:#fff;border:1px solid #E2E6EC;border-radius:8px}
+.tag{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:4px;font-size:12px;font-weight:500;background:#EEF1F5;color:#344054;white-space:nowrap}
+.tag.alert{background:#FEF3F2;color:#B42318}
+.tag.crit{background:#B42318;color:#fff}
+.tag.blue{background:#EAF1FC;color:#174595}
+.search{display:flex;align-items:center;gap:10px;height:38px;padding:0 12px;border:1px solid #E2E6EC;border-radius:6px;background:#F7F9FB;color:#5D6B7E;box-sizing:border-box}
+.search input{border:0;outline:0;background:transparent;font:400 14px 'IBM Plex Sans',sans-serif;color:#101828;width:100%}
+.inb{display:flex;flex-direction:column;gap:2px;padding:12px 16px;border-top:1px solid #EDF0F4;color:#101828}
+.inb:hover{background:#F7F9FB;color:#101828}
+.inb.on{background:#EAF1FC}
+.trow{display:grid;align-items:center;gap:12px;padding:11px 18px;border-top:1px solid #EDF0F4}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #F4F6F9">
+  <aside style="flex: 1 1 240px; max-width: 100%; box-sizing: border-box; padding: 14px 14px 20px; display: flex; flex-direction: column; gap: 22px; background: #FFFFFF; border-right: 1px solid #E2E6EC">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 10px; height: 32px">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="#1F56B4"></rect><path d="M7 7h8M7 11h6M7 15h4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg>
+      <span style="font-size: 17px; font-weight: 600; letter-spacing: -0.01em">Folio</span>
+    </div>
+    <a href="Workspace.dc.html" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border: 1px solid #E2E6EC; border-radius: 6px; color: #101828">
+      <span style="display: flex; flex-direction: column; line-height: 1.35; min-width: 0"><span style="font-weight: 500">Northvale General</span><span style="color: #5D6B7E; font-size: 12px">Internal Medicine · 4B</span></span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5D6B7E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 9 5-5 5 5M7 15l5 5 5-5"></path></svg>
+    </a>
+    <nav class="nav" aria-label="Primary" style="display: flex; flex-direction: column; gap: 2px">
+      <a href="Dashboard.dc.html">Today</a>
+      <a href="Patients.dc.html">Patients <span class="count">8</span></a>
+      <a href="Schedule.dc.html">Schedule</a>
+      <a href="Results.dc.html" class="on" aria-current="page">Results <span class="count">6</span></a>
+      <a href="Requests.dc.html">Medication requests <span class="count">4</span></a>
+    </nav>
+    <nav class="nav" aria-label="Organization" style="display: flex; flex-direction: column; gap: 2px">
+      <span class="cap" style="padding: 0 12px 6px">Organization</span>
+      <a href="Admin.dc.html">Facilities and access</a>
+    </nav>
+  </aside>
+
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+    <header style="min-height: 60px; box-sizing: border-box; padding: 10px 32px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; background: #FFFFFF; border-bottom: 1px solid #E2E6EC">
+      <label class="search" style="width: 380px; max-width: 100%">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m20 20-4.2-4.2"></path></svg>
+        <input type="search" placeholder="Search patient, MRN or bed" aria-label="Search patients">
+      </label>
+      <span style="display: flex; align-items: center; gap: 10px">
+        <span style="width: 32px; height: 32px; border-radius: 50%; background: #E3E8EF; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">AS</span>
+        <span style="display: flex; flex-direction: column; line-height: 1.25"><span style="font-weight: 500">Dr. Anaya Shrestha</span><span style="font-size: 12px; color: #5D6B7E">Hospitalist</span></span>
+      </span>
+    </header>
+
+    <main style="box-sizing: border-box; padding: 24px 32px 64px">
+      <div style="max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px">
+        <h1 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.015em">Results to review</h1>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+          <nav class="card" style="flex: 1 1 280px; min-width: 0; overflow: hidden" aria-label="Results inbox">
+            <div style="padding: 12px 16px; display: flex; justify-content: space-between"><span class="cap">Inbox</span><span class="count">{{left}} unreviewed</span></div>
+            <sc-for list="{{inbox}}" as="r" hint-placeholder-count="6">
+              <a href="#" class="{{r.cls}}">
+                <span style="display: flex; justify-content: space-between; gap: 8px; align-items: center"><span style="font-weight: 600">{{r.who}}</span><span class="mono" style="font-size: 12px; color: #5D6B7E">{{r.t}}</span></span>
+                <span style="display: flex; justify-content: space-between; gap: 8px; align-items: center"><span style="font-size: 13px; color: #475467">{{r.test}}</span><span class="{{r.tagCls}}">{{r.flag}}</span></span>
+              </a>
+            </sc-for>
+          </nav>
+
+          <article class="card" style="flex: 3 1 560px; min-width: 0; overflow: hidden">
+            <div style="padding: 18px; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap">
+              <div style="display: flex; flex-direction: column; gap: 4px">
+                <span style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap"><h2 style="margin: 0; font-size: 20px; font-weight: 600">Renal function panel</h2><span class="{{statusCls}}">{{status}}</span></span>
+                <span style="font-size: 13px; color: #5D6B7E"><a href="Chart.dc.html">Ram Bahadur Thapa</a> · <span class="mono">NVG-204118</span> · Collected 20 Oct 05:40 · Reported 06:10 · Accession <span class="mono">L-2610-55812</span></span>
+              </div>
+              <a class="btn" href="Orders.dc.html">Order follow-up</a>
+            </div>
+
+            <sc-if value="{{acked}}" hint-placeholder-val="{{ false }}">
+              <div role="status" style="margin: 0 18px 16px; padding: 12px 14px; border-radius: 6px; background: #EAF1FC; color: #174595">Acknowledged by Dr. Anaya Shrestha at 09:31. {{releasedText}}</div>
+            </sc-if>
+
+            <figure style="margin: 0 18px 18px; padding: 14px 16px; border: 1px solid #EDF0F4; border-radius: 8px; display: flex; flex-direction: column; gap: 8px">
+              <figcaption style="display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap"><span style="font-weight: 600">Potassium, last 4 days</span><span style="font-size: 12px; color: #5D6B7E">Shaded band: normal range 3.5 to 5.1 mmol/L</span></figcaption>
+              <svg viewBox="0 0 560 170" width="100%" height="170" role="img" aria-label="Potassium rising from 4.9 on 17 Oct to 6.1 on 20 Oct">
+                <rect x="44" y="{{band.y}}" width="500" height="{{band.h}}" fill="#EAF1FC"></rect>
+                <sc-for list="{{grid}}" as="g" hint-placeholder-count="4">
+                  <line x1="44" x2="544" y1="{{g.y}}" y2="{{g.y}}" stroke="#EDF0F4" stroke-width="1"></line>
+                  <text x="36" y="{{g.ty}}" text-anchor="end" font-size="11" fill="#5D6B7E" font-family="IBM Plex Mono, monospace">{{g.l}}</text>
+                </sc-for>
+                <polyline points="{{line}}" fill="none" stroke="#1F56B4" stroke-width="2" stroke-linejoin="round"></polyline>
+                <sc-for list="{{pts}}" as="p" hint-placeholder-count="4">
+                  <g>
+                    <title>{{p.d}}: {{p.v}} mmol/L</title>
+                    <circle cx="{{p.x}}" cy="{{p.y}}" r="12" fill="transparent"></circle>
+                    <circle cx="{{p.x}}" cy="{{p.y}}" r="4.5" fill="{{p.c}}" stroke="#fff" stroke-width="2"></circle>
+                    <text x="{{p.x}}" y="160" text-anchor="middle" font-size="11" fill="#5D6B7E" font-family="IBM Plex Sans, sans-serif">{{p.d}}</text>
+                  </g>
+                </sc-for>
+                <text x="{{lastX}}" y="{{lastLy}}" text-anchor="end" font-size="12" font-weight="600" fill="#101828" font-family="IBM Plex Mono, monospace">6.1</text>
+              </svg>
+            </figure>
+
+            <div style="overflow-x: auto">
+              <div style="min-width: 620px">
+                <div class="trow cap" style="grid-template-columns: minmax(0, 1.4fr) 110px minmax(0, 1fr) 70px 70px 70px; background: #F8FAFC; padding-top: 8px; padding-bottom: 8px">
+                  <span>Test</span><span>Result</span><span>Range</span><span style="text-align: right">17 Oct</span><span style="text-align: right">18 Oct</span><span style="text-align: right">19 Oct</span>
+                </div>
+                <sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
+                  <div class="trow" style="grid-template-columns: minmax(0, 1.4fr) 110px minmax(0, 1fr) 70px 70px 70px">
+                    <span style="font-weight: 500">{{r.n}}</span>
+                    <span style="display: flex; gap: 6px; align-items: center"><span class="mono" style="font-weight: 600; color: {{r.c}}">{{r.v}}</span><sc-if value="{{r.f}}" hint-placeholder-val="{{ false }}"><span class="{{r.fc}}">{{r.f}}</span></sc-if></span>
+                    <span class="mono" style="font-size: 13px; color: #5D6B7E">{{r.range}}</span>
+                    <span class="mono" style="text-align: right; color: #5D6B7E">{{r.a}}</span>
+                    <span class="mono" style="text-align: right; color: #5D6B7E">{{r.b}}</span>
+                    <span class="mono" style="text-align: right; color: #5D6B7E">{{r.p}}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="padding: 16px 18px; border-top: 1px solid #EDF0F4; display: flex; flex-direction: column; gap: 10px">
+              <label for="pc" style="font-size: 13px; font-weight: 600">Comment for the patient portal</label>
+              <textarea id="pc" rows="2" style="box-sizing: border-box; width: 100%; padding: 10px 12px; border: 1px solid #D0D6DE; border-radius: 6px; font: 400 14px 'IBM Plex Sans', sans-serif; resize: vertical">Your potassium is high. We have started treatment and will repeat the test today.</textarea>
+              <label style="display: flex; align-items: center; gap: 10px; color: #344054; min-height: 36px; cursor: pointer"><input type="checkbox" checked="{{release}}" onChange="{{toggleRelease}}" style="width: 16px; height: 16px; accent-color: #1F56B4">Release report and comment to the patient</label>
+            </div>
+            <div style="padding: 14px 18px; border-top: 1px solid #EDF0F4; background: #F8FAFC; display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap">
+              <button type="button" class="btn">Forward to nephrology</button>
+              <button type="button" class="btn pri" onClick="{{ack}}">{{ackLabel}}</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1240}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { acked: false, release: true }; }
+  renderVals() {
+    const st = this.state;
+    const yOf = (v) => 140 - ((v - 3) / 3.5) * 124;
+    const K = [['17 Oct', 4.9], ['18 Oct', 5.2], ['19 Oct', 5.6], ['20 Oct', 6.1]];
+    const pts = K.map(([d, v], i) => ({ d, v, x: 84 + i * 140, y: yOf(v).toFixed(1), c: v > 5.1 ? '#B42318' : '#1F56B4' }));
+    const t = (k) => k === 'crit' ? 'tag crit' : k === 'alert' ? 'tag alert' : 'tag';
+    const inbox = [
+      ['Ram Bahadur Thapa', '06:10', 'Renal function panel', 'Critical', 'crit', true],
+      ['Sita Gurung', '07:02', 'NT-proBNP', 'Abnormal', 'alert', false],
+      ['Deepak Basnet', '07:15', 'Haemoglobin', 'Abnormal', 'alert', false],
+      ['Bikash Rai', '07:40', 'Venous blood gas', 'Normal', '', false],
+      ['Kamala Adhikari', '06:30', 'Complete blood count', 'Normal', '', false],
+      ['Hari Prasad Joshi', '05:55', 'Urine culture', 'Preliminary', '', false]
+    ].map(([who, tm, test, flag, k, on]) => ({ who, t: tm, test, flag: on && st.acked ? 'Reviewed' : flag, tagCls: on && st.acked ? 'tag blue' : t(k), cls: on ? 'inb on' : 'inb' }));
+    return {
+      inbox, left: st.acked ? 5 : 6, acked: st.acked,
+      status: st.acked ? 'Reviewed' : 'Critical · unreviewed', statusCls: st.acked ? 'tag blue' : 'tag crit',
+      ackLabel: st.acked ? 'Acknowledged' : 'Acknowledge result',
+      ack: () => this.setState({ acked: true }),
+      release: st.release, toggleRelease: () => this.setState({ release: !st.release }),
+      releasedText: st.release ? 'Report and comment released to the patient portal.' : 'Not released to the patient.',
+      band: { y: yOf(5.1).toFixed(1), h: (yOf(3.5) - yOf(5.1)).toFixed(1) },
+      grid: [3.5, 4.5, 5.5, 6.5].map(v => ({ y: yOf(v).toFixed(1), ty: (yOf(v) + 4).toFixed(1), l: v.toFixed(1) })),
+      line: pts.map(p => p.x + ',' + p.y).join(' '), pts,
+      lastX: pts[3].x - 12, lastLy: (parseFloat(pts[3].y) + 4).toFixed(1),
+      rows: [
+        { n: 'Potassium', v: '6.1', f: 'Critical', fc: 'tag crit', c: '#B42318', range: '3.5 to 5.1', a: '4.9', b: '5.2', p: '5.6' },
+        { n: 'Creatinine', v: '168', f: 'High', fc: 'tag alert', c: '#B42318', range: '62 to 106', a: '171', b: '170', p: '166' },
+        { n: 'eGFR', v: '34', f: 'Low', fc: 'tag alert', c: '#B42318', range: 'Above 60', a: '33', b: '33', p: '35' },
+        { n: 'Urea', v: '11.4', f: 'High', fc: 'tag alert', c: '#B42318', range: '2.5 to 7.8', a: '12.1', b: '11.8', p: '11.2' },
+        { n: 'Sodium', v: '136', f: '', fc: '', c: '#101828', range: '135 to 145', a: '134', b: '135', p: '136' },
+        { n: 'Bicarbonate', v: '21', f: 'Low', fc: 'tag alert', c: '#B42318', range: '22 to 29', a: '22', b: '21', p: '21' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Folio · Medication requests</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F9;color:#101828;font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:#1F56B4;text-decoration:none}a:hover{color:#174595}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.cap{font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:#5D6B7E}
+.nav a{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:38px;padding:0 12px;border-radius:6px;color:#344054;font-weight:500}
+.nav a:hover{background:#F2F4F7;color:#101828}
+.nav a.on{background:#EAF1FC;color:#174595}
+.count{font:500 12px 'IBM Plex Mono',monospace;color:#5D6B7E}
+.btn{all:unset;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 16px;border-radius:6px;border:1px solid #D0D6DE;background:#fff;color:#101828;font:500 14px 'IBM Plex Sans',sans-serif;cursor:pointer;box-sizing:border-box;white-space:nowrap}
+.btn:hover{background:#F7F9FB;color:#101828}
+.btn.pri{background:#1F56B4;border-color:#1F56B4;color:#fff}
+.btn.pri:hover{background:#174595;color:#fff}
+.card{background:#fff;border:1px solid #E2E6EC;border-radius:8px}
+.tag{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:4px;font-size:12px;font-weight:500;background:#EEF1F5;color:#344054;white-space:nowrap}
+.tag.alert{background:#FEF3F2;color:#B42318}
+.tag.blue{background:#EAF1FC;color:#174595}
+.search{display:flex;align-items:center;gap:10px;height:38px;padding:0 12px;border:1px solid #E2E6EC;border-radius:6px;background:#F7F9FB;color:#5D6B7E;box-sizing:border-box}
+.search input{border:0;outline:0;background:transparent;font:400 14px 'IBM Plex Sans',sans-serif;color:#101828;width:100%}
+.rq{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:flex;flex-direction:column;gap:2px;padding:12px 16px;border-top:1px solid #EDF0F4}
+.rq:hover{background:#F7F9FB}
+.rq.on{background:#EAF1FC}
+.kv{display:grid;grid-template-columns:140px minmax(0,1fr);gap:4px 16px;padding:10px 0;border-top:1px solid #EDF0F4}
+.field{display:flex;flex-direction:column;gap:4px}
+.field label{font-size:12px;font-weight:500;color:#475467}
+.field select,.field input,.field textarea{min-height:38px;box-sizing:border-box;padding:0 10px;border:1px solid #D0D6DE;border-radius:6px;background:#fff;font:400 14px 'IBM Plex Sans',sans-serif;color:#101828}
+.seg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:3px;border-radius:8px;background:#E9EDF2;gap:3px}
+.seg button{all:unset;cursor:pointer;min-height:36px;border-radius:6px;font-weight:500;color:#475467;text-align:center}
+.seg button.on{background:#fff;color:#101828;box-shadow:0 1px 2px rgba(16,24,40,.08)}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #F4F6F9">
+  <aside style="flex: 1 1 240px; max-width: 100%; box-sizing: border-box; padding: 14px 14px 20px; display: flex; flex-direction: column; gap: 22px; background: #FFFFFF; border-right: 1px solid #E2E6EC">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 10px; height: 32px">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="#1F56B4"></rect><path d="M7 7h8M7 11h6M7 15h4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg>
+      <span style="font-size: 17px; font-weight: 600; letter-spacing: -0.01em">Folio</span>
+    </div>
+    <a href="Workspace.dc.html" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border: 1px solid #E2E6EC; border-radius: 6px; color: #101828">
+      <span style="display: flex; flex-direction: column; line-height: 1.35; min-width: 0"><span style="font-weight: 500">Northvale General</span><span style="color: #5D6B7E; font-size: 12px">Internal Medicine · 4B</span></span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5D6B7E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 9 5-5 5 5M7 15l5 5 5-5"></path></svg>
+    </a>
+    <nav class="nav" aria-label="Primary" style="display: flex; flex-direction: column; gap: 2px">
+      <a href="Dashboard.dc.html">Today</a>
+      <a href="Patients.dc.html">Patients <span class="count">8</span></a>
+      <a href="Schedule.dc.html">Schedule</a>
+      <a href="Results.dc.html">Results <span class="count">6</span></a>
+      <a href="Requests.dc.html" class="on" aria-current="page">Medication requests <span class="count">{{pending}}</span></a>
+    </nav>
+    <nav class="nav" aria-label="Organization" style="display: flex; flex-direction: column; gap: 2px">
+      <span class="cap" style="padding: 0 12px 6px">Organization</span>
+      <a href="Admin.dc.html">Facilities and access</a>
+    </nav>
+  </aside>
+
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+    <header style="min-height: 60px; box-sizing: border-box; padding: 10px 32px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; background: #FFFFFF; border-bottom: 1px solid #E2E6EC">
+      <label class="search" style="width: 380px; max-width: 100%">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m20 20-4.2-4.2"></path></svg>
+        <input type="search" placeholder="Search patient, MRN or bed" aria-label="Search patients">
+      </label>
+      <span style="display: flex; align-items: center; gap: 10px">
+        <span style="width: 32px; height: 32px; border-radius: 50%; background: #E3E8EF; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">AS</span>
+        <span style="display: flex; flex-direction: column; line-height: 1.25"><span style="font-weight: 500">Dr. Anaya Shrestha</span><span style="font-size: 12px; color: #5D6B7E">Hospitalist</span></span>
+      </span>
+    </header>
+
+    <main style="box-sizing: border-box; padding: 24px 32px 64px">
+      <div style="max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px">
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <span class="cap">Internal Medicine OPD · team queue</span>
+          <h1 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.015em">Medication requests</h1>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+          <nav class="card" style="flex: 1 1 280px; min-width: 0; overflow: hidden" aria-label="Requests">
+            <div style="padding: 12px 16px; display: flex; justify-content: space-between"><span class="cap">From patient portal</span><span class="count">{{pending}} pending</span></div>
+            <sc-for list="{{list}}" as="r" hint-placeholder-count="4">
+              <button type="button" class="{{r.cls}}" onClick="{{r.pick}}" aria-pressed="{{r.on}}">
+                <span style="display: flex; justify-content: space-between; gap: 8px"><span style="font-weight: 600">{{r.who}}</span><span style="font-size: 12px; color: #5D6B7E">{{r.when}}</span></span>
+                <span style="display: flex; justify-content: space-between; gap: 8px; align-items: center"><span style="font-size: 13px; color: #475467">{{r.med}}</span><span class="{{r.tagCls}}">{{r.state}}</span></span>
+              </button>
+            </sc-for>
+          </nav>
+
+          <article class="card" style="flex: 3 1 560px; min-width: 0; padding: 20px; display: flex; flex-direction: column; gap: 18px">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap">
+              <div style="display: flex; flex-direction: column; gap: 2px">
+                <span style="font-size: 13px; color: #5D6B7E">Refill request · {{cur.when}}</span>
+                <h2 style="margin: 0; font-size: 20px; font-weight: 600">{{cur.med}}</h2>
+                <span style="color: #475467">{{cur.sig}}</span>
+              </div>
+              <span class="{{cur.tagCls}}">{{cur.state}}</span>
+            </div>
+
+            <div>
+              <div class="kv"><span style="color: #5D6B7E">Patient</span><span><a href="Chart.dc.html" style="font-weight: 500">{{cur.who}}</a> · {{cur.demo}}</span></div>
+              <div class="kv"><span style="color: #5D6B7E">Indication</span><span>{{cur.why}}</span></div>
+              <div class="kv"><span style="color: #5D6B7E">Last dispensed</span><span>{{cur.last}}</span></div>
+              <div class="kv"><span style="color: #5D6B7E">Requested</span><span>{{cur.qty}} · collect from {{cur.at}}</span></div>
+              <div class="kv"><span style="color: #5D6B7E">Patient note</span><span style="font-style: italic; color: #344054">{{cur.note}}</span></div>
+              <div class="kv"><span style="color: #5D6B7E">Allergies</span><span style="color: #B42318; font-weight: 500">{{cur.allergy}}</span></div>
+            </div>
+
+            <sc-if value="{{cur.warn}}" hint-placeholder-val="{{ true }}">
+              <div style="padding: 12px 14px; border-radius: 6px; background: #FFFAEB; border: 1px solid #FEDF89; color: #93370D; display: flex; flex-direction: column; gap: 4px">
+                <strong style="font-weight: 600">Safety check</strong>
+                <span>{{cur.warn}}</span>
+                <a href="Results.dc.html" style="color: #93370D; font-weight: 500">View lab report</a>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{cur.open}}" hint-placeholder-val="{{ true }}">
+              <div style="display: flex; flex-direction: column; gap: 14px; padding-top: 16px; border-top: 1px solid #EDF0F4">
+                <div class="seg" role="group" aria-label="Decision">
+                  <sc-for list="{{decisions}}" as="d" hint-placeholder-count="3"><button type="button" class="{{d.cls}}" onClick="{{d.pick}}" aria-pressed="{{d.on}}">{{d.l}}</button></sc-for>
+                </div>
+                <sc-if value="{{isApprove}}" hint-placeholder-val="{{ true }}">
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr)); gap: 12px">
+                    <div class="field"><label for="q">Quantity</label><select id="q"><option>30 tablets</option><option>60 tablets</option><option>90 tablets</option></select></div>
+                    <div class="field"><label for="rf">Repeats</label><select id="rf"><option>None</option><option>1</option><option>2</option></select></div>
+                    <div class="field"><label for="ph">Send to</label><select id="ph"><option>Hospital pharmacy</option><option>Home delivery</option></select></div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{isChange}}" hint-placeholder-val="{{ false }}">
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 12px">
+                    <div class="field"><label for="nd">New dose</label><input id="nd" value="25 mg once daily"></div>
+                    <div class="field"><label for="lab">Attach lab order</label><select id="lab"><option>Potassium in 1 week</option><option>Renal panel in 1 week</option><option>None</option></select></div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{isDecline}}" hint-placeholder-val="{{ false }}">
+                  <div class="field"><label for="dr">Reason shown to the patient</label><select id="dr"><option>Please book a review appointment first</option><option>Medicine is no longer recommended</option><option>Duplicate request</option></select></div>
+                </sc-if>
+                <div class="field"><label for="msg">Message to patient (optional)</label><input id="msg" value="Approved. Please keep your blood test on 3 November."></div>
+                <div style="display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap">
+                  <button type="button" class="btn">Message patient</button>
+                  <button type="button" class="btn pri" onClick="{{submit}}">{{submitLabel}}</button>
+                </div>
+              </div>
+            </sc-if>
+            <sc-if value="{{cur.done}}" hint-placeholder-val="{{ false }}">
+              <div role="status" style="padding: 12px 14px; border-radius: 6px; background: #EAF1FC; color: #174595">{{cur.doneText}}</div>
+            </sc-if>
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1240}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { sel: 0, dec: 'approve', done: {} }; }
+  renderVals() {
+    const st = this.state;
+    const R = [
+      { who: 'Ramesh Pandey', demo: '61 y · M · NVG-188240', when: '19 Oct, 18:42', med: 'Losartan 50 mg tablet', sig: 'One tablet every morning', why: 'Hypertension, CKD stage 3a', last: '21 Sep 2026 · 30 tablets', qty: '30 days', at: 'hospital pharmacy', note: 'Running out next week.', allergy: 'Sulfa drugs', warn: 'Potassium 5.3 mmol/L and eGFR 42 on 19 Oct. Losartan can raise potassium. Consider a repeat potassium test.' },
+      { who: 'Ramesh Pandey', demo: '61 y · M · NVG-188240', when: '20 Oct, 08:15', med: 'Atorvastatin 20 mg tablet', sig: 'One tablet at night', why: 'Hyperlipidaemia', last: '25 Sep 2026 · 30 tablets', qty: '30 days', at: 'hospital pharmacy', note: 'No side effects.', allergy: 'Sulfa drugs', warn: '' },
+      { who: 'Laxmi Thapa', demo: '57 y · F · NVG-202214', when: '20 Oct, 07:50', med: 'Amlodipine 10 mg tablet', sig: 'One tablet every morning', why: 'Hypertension', last: '18 Sep 2026 · 30 tablets', qty: '90 days', at: 'home delivery', note: 'Ankle swelling sometimes.', allergy: 'No known drug allergies', warn: '' },
+      { who: 'Rajan KC', demo: '49 y · M · NVG-197731', when: '19 Oct, 21:05', med: 'Metformin 500 mg tablet', sig: 'One tablet twice daily with food', why: 'Type 2 diabetes', last: '20 Sep 2026 · 60 tablets', qty: '30 days', at: 'hospital pharmacy', note: '', allergy: 'No known drug allergies', warn: '' }
+    ];
+    const label = { approve: 'Approved', change: 'Changed', decline: 'Declined' };
+    const view = R.map((r, i) => { const d = st.done[i]; return { ...r, note: r.note || 'No note', state: d ? label[d] : 'Pending', tagCls: d === 'decline' ? 'tag alert' : d ? 'tag blue' : 'tag', open: !d, done: !!d, doneText: d ? label[d] + ' by Dr. Anaya Shrestha at 09:40. E-prescription sent to the pharmacy and the patient was notified in the portal.' : '' }; });
+    const list = view.map((r, i) => ({ ...r, on: st.sel === i, cls: st.sel === i ? 'rq on' : 'rq', pick: () => this.setState({ sel: i, dec: 'approve' }) }));
+    return {
+      list, cur: view[st.sel], pending: view.filter(v => !v.done).length,
+      decisions: [['approve', 'Approve'], ['change', 'Change dose'], ['decline', 'Decline']].map(([id, l]) => ({ l, on: st.dec === id, cls: st.dec === id ? 'on' : '', pick: () => this.setState({ dec: id }) })),
+      isApprove: st.dec === 'approve', isChange: st.dec === 'change', isDecline: st.dec === 'decline',
+      submitLabel: st.dec === 'approve' ? 'Approve and send' : st.dec === 'change' ? 'Send new prescription' : 'Decline request',
+      submit: () => { const d = { ...st.done }; d[st.sel] = st.dec; this.setState({ done: d }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Folio · Find a doctor</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F9;color:#101828;font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:#1F56B4;text-decoration:none}a:hover{color:#174595}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.cap{font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:#5D6B7E}
+.pnav{display:flex;gap:24px;flex-wrap:wrap}
+.pnav a{display:inline-flex;align-items:center;min-height:60px;color:#475467;font-weight:500;border-bottom:2px solid transparent;box-sizing:border-box}
+.pnav a:hover{color:#101828}
+.pnav a.on{color:#101828;border-bottom-color:#1F56B4}
+.btn{all:unset;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:6px;border:1px solid #D0D6DE;background:#fff;color:#101828;font:500 14px 'IBM Plex Sans',sans-serif;cursor:pointer;box-sizing:border-box;white-space:nowrap}
+.btn:hover{background:#F7F9FB;color:#101828}
+.btn.pri{background:#1F56B4;border-color:#1F56B4;color:#fff}
+.btn.pri:hover{background:#174595;color:#fff}
+.btn.sm{min-height:38px;padding:0 14px}
+.card{background:#fff;border:1px solid #E2E6EC;border-radius:8px}
+.tag{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:4px;font-size:12px;font-weight:500;background:#EEF1F5;color:#344054;white-space:nowrap}
+.tag.blue{background:#EAF1FC;color:#174595}
+.search{display:flex;align-items:center;gap:10px;height:48px;padding:0 14px;border:1px solid #D0D6DE;border-radius:8px;background:#fff;color:#5D6B7E;box-sizing:border-box}
+.search:focus-within{border-color:#1F56B4;box-shadow:0 0 0 3px #DCE7F9}
+.search input{border:0;outline:0;background:transparent;font:400 15px 'IBM Plex Sans',sans-serif;color:#101828;width:100%}
+.chip{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 12px;border-radius:6px;border:1px solid #D0D6DE;background:#fff;font-weight:500;font-size:13px;color:#344054;white-space:nowrap}
+.chip:hover{border-color:#98A2B3}
+.chip.on{background:#101828;border-color:#101828;color:#fff}
+.chip.on .n{color:#C9D2DE}
+.n{font:500 12px 'IBM Plex Mono',monospace;color:#5D6B7E}
+.doc{display:flex;gap:16px;align-items:center;padding:16px 18px;border-top:1px solid #EDF0F4;flex-wrap:wrap}
+.opt{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:8px;padding:18px;border-radius:8px;background:#fff;border:1px solid #E2E6EC;text-align:left}
+.opt:hover{border-color:#B7C0CC}
+.opt.on{border-color:#1F56B4;box-shadow:0 0 0 1px #1F56B4;background:#FAFCFF}
+.opt:disabled{cursor:not-allowed;background:#F7F9FB;color:#8792A2}
+.slot{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;min-height:44px;border-radius:6px;border:1px solid #D0D6DE;background:#fff;font:500 14px 'IBM Plex Mono',monospace;color:#101828}
+.slot:hover{border-color:#98A2B3}
+.slot.on{background:#1F56B4;border-color:#1F56B4;color:#fff}
+.slot:disabled{cursor:not-allowed;background:#F2F4F7;color:#98A2B3;border-color:#EDF0F4;text-decoration:line-through}
+.day{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:72px;padding:10px 8px;border-radius:8px;border:1px solid #E2E6EC;background:#fff;color:#344054}
+.day.on{border-color:#1F56B4;box-shadow:0 0 0 1px #1F56B4;color:#174595}
+.day:disabled{cursor:not-allowed;background:#F7F9FB;color:#98A2B3}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:13px;font-weight:500;color:#344054}
+.field textarea,.field input{box-sizing:border-box;padding:10px 12px;border:1px solid #D0D6DE;border-radius:6px;background:#fff;font:400 14px 'IBM Plex Sans',sans-serif;color:#101828}
+.sum{display:grid;grid-template-columns:96px minmax(0,1fr);gap:4px 12px;padding:12px 0;border-top:1px solid #EDF0F4}
+.tabs{display:flex;gap:24px;border-bottom:1px solid #E2E6EC}
+.tabs a{display:inline-flex;align-items:center;min-height:44px;font-weight:500;color:#475467;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs a.on{color:#101828;border-bottom-color:#1F56B4}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #F4F6F9">
+  <header style="background: #FFFFFF; border-bottom: 1px solid #E2E6EC">
+    <div style="max-width: 1120px; margin: 0 auto; box-sizing: border-box; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 8px 32px; flex-wrap: wrap">
+      <div style="display: flex; align-items: center; gap: 32px; flex-wrap: wrap">
+        <a href="PtHome.dc.html" style="display: flex; align-items: center; gap: 10px; color: #101828; min-height: 60px">
+          <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="#1F56B4"></rect><path d="M7 7h8M7 11h6M7 15h4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg>
+          <span style="font-size: 17px; font-weight: 600; letter-spacing: -0.01em">Folio</span>
+        </a>
+        <nav class="pnav" aria-label="Patient portal">
+          <a href="PtHome.dc.html">Home</a>
+          <a href="Appointments.dc.html" class="on" aria-current="page">Appointments</a>
+          <a href="PtResults.dc.html">Lab reports</a>
+          <a href="PtMeds.dc.html">Medicines</a>
+        </nav>
+      </div>
+      <a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px; color: #101828; min-height: 60px">
+        <span style="width: 32px; height: 32px; border-radius: 50%; background: #E3E8EF; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">RP</span>
+        <span style="display: flex; flex-direction: column; line-height: 1.25"><span style="font-weight: 500">Ramesh Pandey</span><span class="mono" style="font-size: 12px; color: #5D6B7E">NVG-188240</span></span>
+      </a>
+    </div>
+  </header>
+
+  <main style="max-width: 1120px; margin: 0 auto; box-sizing: border-box; padding: 32px 24px 72px; display: flex; flex-direction: column; gap: 24px">
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <a href="Appointments.dc.html" style="font-size: 13px">Appointments</a>
+      <h1 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.015em">Book an appointment</h1>
+    </div>
+
+    <ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr)); gap: 8px" aria-label="Booking steps">
+      <sc-for list="{{steps}}" as="s" hint-placeholder-count="4">
+        <li style="display: flex; flex-direction: column; gap: 8px">
+          <span style="height: 3px; border-radius: 2px; background: {{s.bar}}"></span>
+          <span style="font-size: 13px; font-weight: 500; color: {{s.color}}"><span class="mono">{{s.n}}</span> {{s.label}}</span>
+        </li>
+      </sc-for>
+    </ol>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+      <section style="flex: 2 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+
+        <sc-if value="{{s1}}" hint-placeholder-val="{{ true }}">
+          <div style="display: flex; flex-direction: column; gap: 16px">
+            <nav class="tabs" aria-label="Book by">
+              <a href="Book.dc.html" class="on" aria-current="page">Doctors</a>
+              <a href="Packages.dc.html">Consultation packages</a>
+            </nav>
+            <label class="search">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m20 20-4.2-4.2"></path></svg>
+              <input type="search" value="{{q}}" onChange="{{onQ}}" placeholder="Search by doctor name, speciality or concern (e.g. kidney)" aria-label="Search doctors">
+              <sc-if value="{{q}}" hint-placeholder-val="{{ false }}"><button type="button" class="chip" onClick="{{clearQ}}" style="min-height: 32px">Clear</button></sc-if>
+            </label>
+            <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px" role="group" aria-label="Filter by category">
+              <sc-for list="{{cats}}" as="c" hint-placeholder-count="8">
+                <button type="button" class="{{c.cls}}" onClick="{{c.pick}}" aria-pressed="{{c.on}}">{{c.l}} <span class="n">{{c.n}}</span></button>
+              </sc-for>
+            </div>
+
+            <div class="card" style="overflow: hidden">
+              <div style="padding: 12px 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap">
+                <span style="font-weight: 600">{{resultText}}</span>
+                <span style="font-size: 13px; color: #5D6B7E">Sorted by next available</span>
+              </div>
+              <sc-for list="{{docs}}" as="d" hint-placeholder-count="5">
+                <div class="doc">
+                  <span style="width: 48px; height: 48px; border-radius: 50%; background: #E3E8EF; flex: none; display: inline-flex; align-items: center; justify-content: center; font-weight: 600">{{d.ini}}</span>
+                  <span style="display: flex; flex-direction: column; gap: 2px; flex: 1 1 220px; min-width: 0">
+                    <span style="font-weight: 600; font-size: 15px">{{d.name}}</span>
+                    <span style="font-size: 13px; color: #475467">{{d.cat}} · {{d.qual}}</span>
+                    <span style="font-size: 13px; color: #5D6B7E">Speaks {{d.lang}}</span>
+                    <span style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px">
+                      <sc-for list="{{d.modeTags}}" as="m" hint-placeholder-count="2"><span class="tag">{{m}}</span></sc-for>
+                    </span>
+                  </span>
+                  <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px; margin-left: auto">
+                    <span style="text-align: right"><span style="font-size: 12px; color: #5D6B7E; display: block">Next available</span><span style="font-weight: 500">{{d.next}}</span></span>
+                    <button type="button" class="btn sm pri" onClick="{{d.pick}}">Select</button>
+                  </span>
+                </div>
+              </sc-for>
+              <sc-if value="{{empty}}" hint-placeholder-val="{{ false }}">
+                <div style="padding: 32px 18px; border-top: 1px solid #EDF0F4; text-align: center; color: #475467; display: flex; flex-direction: column; gap: 8px; align-items: center">
+                  <span style="font-weight: 600; color: #101828">No doctors match</span>
+                  <span>Try another name, or clear the category filter.</span>
+                  <button type="button" class="btn sm" onClick="{{reset}}">Show all doctors</button>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{s2}}" hint-placeholder-val="{{ false }}">
+          <div class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 18px">
+            <div style="display: flex; flex-direction: column; gap: 2px">
+              <h2 style="margin: 0; font-size: 18px; font-weight: 600">How would you like to see {{docName}}?</h2>
+              <span style="color: #5D6B7E">Choose an on-site visit at the hospital or a remote video consultation.</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 12px">
+              <sc-for list="{{modes}}" as="m" hint-placeholder-count="2">
+                <button type="button" class="{{m.cls}}" onClick="{{m.pick}}" aria-pressed="{{m.on}}" disabled="{{m.off}}">
+                  <span style="width: 40px; height: 40px; border-radius: 8px; background: #EAF1FC; color: #1F56B4; display: inline-flex; align-items: center; justify-content: center">
+                    <sc-if value="{{m.onsite}}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V8l8-5 8 5v13"></path><path d="M9 21v-6h6v6M12 8v4M10 10h4"></path></svg></sc-if>
+                    <sc-if value="{{m.remote}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"></rect><path d="m16 10 5-3v10l-5-3"></path></svg></sc-if>
+                  </span>
+                  <span style="font-size: 16px; font-weight: 600">{{m.name}}</span>
+                  <span style="font-size: 13px; color: #475467">{{m.desc}}</span>
+                  <span style="font-size: 13px; color: #5D6B7E; border-top: 1px solid #EDF0F4; padding-top: 10px">{{m.meta}}</span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{s3}}" hint-placeholder-val="{{ false }}">
+          <div class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 20px">
+            <div style="display: flex; flex-direction: column; gap: 2px">
+              <h2 style="margin: 0; font-size: 18px; font-weight: 600">Pick a date and time</h2>
+              <span style="color: #5D6B7E">{{slotHint}}</span>
+            </div>
+            <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px">
+              <sc-for list="{{days}}" as="d" hint-placeholder-count="7">
+                <button type="button" class="{{d.cls}}" onClick="{{d.pick}}" aria-pressed="{{d.on}}" disabled="{{d.off}}"><span style="font-size: 12px">{{d.w}}</span><span class="mono" style="font-size: 18px; font-weight: 500">{{d.n}}</span><span style="font-size: 11px; color: {{d.freeColor}}">{{d.free}}</span></button>
+              </sc-for>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px">
+              <sc-for list="{{slots}}" as="t" hint-placeholder-count="8"><button type="button" class="{{t.cls}}" onClick="{{t.pick}}" disabled="{{t.off}}" aria-pressed="{{t.on}}">{{t.t}}</button></sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{s4}}" hint-placeholder-val="{{ false }}">
+          <div class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 18px">
+            <h2 style="margin: 0; font-size: 18px; font-weight: 600">Confirm details</h2>
+            <div class="field"><label for="why">Reason for visit</label><textarea id="why" rows="3">Swelling in both ankles for a week. Want to review my kidney report.</textarea></div>
+            <div class="field"><label for="ph">Contact number for reminders</label><input id="ph" value="+977 98XX XXX XXX"></div>
+            <label style="display: flex; align-items: center; gap: 10px; color: #344054; min-height: 40px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #1F56B4">Share my latest lab reports with the doctor</label>
+            <sc-if value="{{isRemote}}" hint-placeholder-val="{{ false }}">
+              <p style="margin: 0; padding: 12px 14px; border-radius: 6px; background: #F7F9FB; color: #344054">You will get a video link by SMS 15 minutes before the call. Use a phone or computer with a camera, in a quiet room.</p>
+            </sc-if>
+            <p style="margin: 0; font-size: 13px; color: #5D6B7E">Free cancellation up to 4 hours before the appointment.</p>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{s5}}" hint-placeholder-val="{{ false }}">
+          <div class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 18px; align-items: flex-start">
+            <span style="width: 44px; height: 44px; border-radius: 50%; background: #EAF1FC; display: inline-flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F56B4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"></path></svg></span>
+            <div style="display: flex; flex-direction: column; gap: 4px">
+              <h2 style="margin: 0; font-size: 20px; font-weight: 600">Appointment booked</h2>
+              <p style="margin: 0; color: #475467">{{modeName}} with {{docName}}, {{when}}. We sent a confirmation by SMS.</p>
+            </div>
+            <span style="font-size: 13px; color: #5D6B7E">Reference <span class="mono" style="color: #101828">APT-2410-0982</span></span>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap">
+              <a class="btn pri" href="Appointments.dc.html">View my appointments</a>
+              <button type="button" class="btn">Add to calendar</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{showNav}}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; justify-content: space-between; gap: 10px">
+            <button type="button" class="btn" onClick="{{back}}">Back</button>
+            <button type="button" class="btn pri" onClick="{{next}}" disabled="{{blockNext}}">{{nextLabel}}</button>
+          </div>
+        </sc-if>
+      </section>
+
+      <aside class="card" style="flex: 1 1 280px; min-width: 0; padding: 20px; display: flex; flex-direction: column" aria-label="Summary">
+        <h2 style="margin: 0 0 8px; font-size: 15px; font-weight: 600">Summary</h2>
+        <div class="sum"><span style="color: #5D6B7E">Hospital</span><span>Northvale General</span></div>
+        <div class="sum"><span style="color: #5D6B7E">Doctor</span><span>{{docName}}</span></div>
+        <div class="sum"><span style="color: #5D6B7E">Speciality</span><span>{{docCat}}</span></div>
+        <div class="sum"><span style="color: #5D6B7E">Visit</span><span>{{modeName}}</span></div>
+        <div class="sum"><span style="color: #5D6B7E">When</span><span>{{when}}</span></div>
+        <div class="sum"><span style="color: #5D6B7E">Fee</span><span>{{fee}}</span></div>
+      </aside>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1200}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { step: 1, q: '', cat: 'all', doc: null, mode: null, day: 0, time: '10:20' }; }
+  renderVals() {
+    const st = this.state, s = st.step;
+    const DR = [
+      { id: 'np', ini: 'NP', name: 'Dr. Nisha Pradhan', cat: 'Dermatology', qual: 'MD Dermatology', lang: 'Nepali, English', on: false, re: true, next: 'Today, 17:40', kw: 'skin rash acne' },
+      { id: 'pk', ini: 'PK', name: 'Dr. Prakash Karki', cat: 'Nephrology', qual: 'MD, DM Nephrology', lang: 'Nepali, English', on: true, re: true, next: 'Wed 21 Oct', kw: 'kidney ckd dialysis' },
+      { id: 'mr', ini: 'MR', name: 'Dr. Meena Rai', cat: 'Endocrinology', qual: 'MD, DM Endocrinology', lang: 'Nepali, English', on: true, re: true, next: 'Wed 21 Oct', kw: 'diabetes thyroid sugar' },
+      { id: 'kg', ini: 'KG', name: 'Dr. Kabita Gurung', cat: 'Paediatrics', qual: 'MD Paediatrics', lang: 'Nepali, English', on: true, re: true, next: 'Wed 21 Oct', kw: 'child baby vaccine' },
+      { id: 'as', ini: 'AS', name: 'Dr. Anaya Shrestha', cat: 'Internal Medicine', qual: 'MD Internal Medicine', lang: 'Nepali, English, Hindi', on: true, re: true, next: 'Thu 22 Oct', kw: 'fever general bp' },
+      { id: 'sb', ini: 'SB', name: 'Dr. Suresh Bhattarai', cat: 'Orthopaedics', qual: 'MS Orthopaedics', lang: 'Nepali, English', on: true, re: false, next: 'Thu 22 Oct', kw: 'bone joint knee back' },
+      { id: 'ra', ini: 'RA', name: 'Dr. Rohan Adhikari', cat: 'Cardiology', qual: 'MD, DM Cardiology', lang: 'Nepali, English', on: true, re: true, next: 'Fri 23 Oct', kw: 'heart chest bp' },
+      { id: 'sm', ini: 'ST', name: 'Dr. Sabina Thapa Magar', cat: 'Internal Medicine', qual: 'MD Internal Medicine', lang: 'Nepali, English', on: true, re: false, next: 'Mon 26 Oct', kw: 'fever general' }
+    ];
+    const q = st.q.trim().toLowerCase();
+    const matchQ = (d) => !q || (d.name + ' ' + d.cat + ' ' + d.kw).toLowerCase().indexOf(q) > -1;
+    const CATS = ['Internal Medicine', 'Nephrology', 'Cardiology', 'Endocrinology', 'Orthopaedics', 'Paediatrics', 'Dermatology'];
+    const byQ = DR.filter(matchQ);
+    const list = byQ.filter(d => st.cat === 'all' || d.cat === st.cat);
+    const doc = DR.find(d => d.id === st.doc);
+    const pickDoc = (d) => () => this.setState({ doc: d.id, mode: d.on ? 'on' : 're', step: 2, day: 0, time: d.on ? '10:20' : '15:00' });
+    const DY = [['Wed', '21'], ['Thu', '22'], ['Fri', '23'], ['Sat', '24'], ['Sun', '25'], ['Mon', '26'], ['Tue', '27']];
+    const leave = doc && doc.id === 'pk' ? ['26', '27'] : [];
+    const days = DY.map(([w, n], i) => {
+      const closed = w === 'Sat', away = leave.indexOf(n) > -1;
+      return { w, n, off: closed || away, free: closed ? 'Closed' : away ? 'On leave' : (i % 3 === 1 ? '3 free' : '6 free'), freeColor: away ? '#B42318' : '#5D6B7E', on: st.day === i, cls: st.day === i ? 'day on' : 'day', pick: () => this.setState({ day: i }) };
+    });
+    const isRemote = st.mode === 're';
+    const times = isRemote ? ['15:00', '15:20', '15:40', '16:00', '16:20', '16:40', '17:00', '17:20'] : ['09:00', '09:20', '09:40', '10:00', '10:20', '10:40', '11:00', '11:20', '11:40'];
+    const taken = ['09:40', '11:00', '15:20', '16:40'];
+    const slots = times.map(t => ({ t, off: taken.indexOf(t) > -1, on: st.time === t, cls: st.time === t ? 'slot on' : 'slot', pick: () => this.setState({ time: t }) }));
+    const day = DY[st.day];
+    const modeName = !doc ? 'Not chosen yet' : isRemote ? 'Remote video consultation' : 'On-site visit';
+    return {
+      s1: s === 1, s2: s === 2, s3: s === 3, s4: s === 4, s5: s === 5,
+      showNav: s > 1 && s < 5, blockNext: s === 3 && days[st.day].off,
+      next: () => this.setState({ step: s + 1 }), back: () => this.setState({ step: Math.max(1, s - 1) }),
+      nextLabel: s === 4 ? 'Confirm booking' : 'Continue',
+      steps: ['Find a doctor', 'On-site or remote', 'Date and time', 'Confirm'].map((label, i) => ({ n: '0' + (i + 1), label, bar: i < s ? '#1F56B4' : '#E2E6EC', color: i < s ? '#101828' : '#5D6B7E' })),
+      q: st.q, onQ: (e) => this.setState({ q: e.target.value }), clearQ: () => this.setState({ q: '' }),
+      reset: () => this.setState({ q: '', cat: 'all' }),
+      cats: [{ id: 'all', l: 'All', n: byQ.length }].concat(CATS.map(c => ({ id: c, l: c, n: byQ.filter(d => d.cat === c).length }))).map(c => ({ ...c, on: st.cat === c.id, cls: st.cat === c.id ? 'chip on' : 'chip', pick: () => this.setState({ cat: c.id }) })),
+      docs: list.map(d => ({ ...d, modeTags: [d.on ? 'On-site' : null, d.re ? 'Remote video' : null].filter(Boolean), pick: pickDoc(d) })),
+      empty: list.length === 0,
+      resultText: list.length + (list.length === 1 ? ' doctor' : ' doctors') + (st.cat === 'all' ? '' : ' in ' + st.cat),
+      modes: [
+        { id: 'on', name: 'On-site visit', desc: 'See the doctor in person at OPD Block B, Northvale General Hospital.', meta: 'Bring your ID and any reports · [ON-SITE FEE]', onsite: true, remote: false, ok: doc && doc.on },
+        { id: 're', name: 'Remote video consultation', desc: 'Talk to the doctor by video from your phone or computer.', meta: 'Video link sent by SMS · [REMOTE FEE]', onsite: false, remote: true, ok: doc && doc.re }
+      ].map(m => ({ ...m, off: !m.ok, on: st.mode === m.id, cls: st.mode === m.id ? 'opt on' : 'opt', meta: m.ok ? m.meta : 'Not offered by this doctor', pick: () => this.setState({ mode: m.id, time: m.id === 're' ? '15:00' : '10:20' }) })),
+      days, slots, isRemote,
+      slotHint: (doc ? doc.name : '') + (isRemote ? ' · remote video times' : ' · on-site times') + (leave.length ? '. On leave 26 to 27 Oct.' : ''),
+      docName: doc ? doc.name : 'Not chosen yet', docCat: doc ? doc.cat : 'Any', modeName,
+      when: s >= 3 ? day[0] + ' ' + day[1] + ' Oct, ' + st.time : 'Not chosen yet',
+      fee: !doc ? 'Shown after you choose' : isRemote ? '[REMOTE FEE]' : '[ON-SITE FEE]'
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Folio · Sign in</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F9;color:#101828;font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:#1F56B4;text-decoration:none}a:hover{color:#174595}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:13px;font-weight:500;color:#344054}
+.field input{height:44px;box-sizing:border-box;padding:0 12px;border:1px solid #D0D6DE;border-radius:6px;background:#fff;font:400 15px 'IBM Plex Sans',sans-serif;color:#101828;outline:none}
+.field input:focus{border-color:#1F56B4;box-shadow:0 0 0 3px #DCE7F9}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:6px;border:1px solid #D0D6DE;background:#fff;color:#101828;font:500 14px 'IBM Plex Sans',sans-serif;cursor:pointer;box-sizing:border-box}
+.btn:hover{background:#F7F9FB;color:#101828}
+.btn.pri{background:#1F56B4;border-color:#1F56B4;color:#fff}
+.btn.pri:hover{background:#174595;color:#fff}
+.seg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding:3px;border-radius:8px;background:#EEF1F5;gap:3px}
+.seg button{all:unset;cursor:pointer;min-height:38px;border-radius:6px;font-weight:500;color:#475467;text-align:center}
+.seg button.on{background:#fff;color:#101828;box-shadow:0 1px 2px rgba(16,24,40,.08)}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; padding: 48px 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; background: #F4F6F9; background-image: radial-gradient(#DDE3EA 1px, transparent 1px); background-size: 24px 24px">
+  <div style="display: flex; align-items: center; gap: 10px">
+    <svg width="28" height="28" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="#1F56B4"></rect><path d="M7 7h8M7 11h6M7 15h4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    <span style="font-size: 22px; font-weight: 600; letter-spacing: -0.01em">Folio</span>
+  </div>
+
+  <form style="width: 100%; max-width: 400px; box-sizing: border-box; padding: 32px; background: #FFFFFF; border: 1px solid #E2E6EC; border-radius: 10px; box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 8px 24px rgba(16, 24, 40, 0.06); display: flex; flex-direction: column; gap: 22px">
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <h1 style="margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em">Sign in to Northvale Health</h1>
+      <p style="margin: 0; color: #5D6B7E">{{sub}}</p>
+    </div>
+    <div class="seg" role="group" aria-label="Account type">
+      <button type="button" class="{{ptCls}}" onClick="{{toPatient}}" aria-pressed="{{isPatient}}">Patient</button>
+      <button type="button" class="{{stCls}}" onClick="{{toStaff}}" aria-pressed="{{isStaff}}">Hospital staff</button>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <div class="field">
+        <label for="email">{{idLabel}}</label>
+        <input id="email" value="{{idValue}}" autocomplete="username">
+      </div>
+      <div class="field">
+        <div style="display: flex; justify-content: space-between; align-items: baseline">
+          <label for="pw">Password</label>
+          <a href="Forgot.dc.html" style="font-size: 13px">Forgot password?</a>
+        </div>
+        <input id="pw" type="password" value="••••••••••••" autocomplete="current-password">
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <a class="btn pri" href="{{dest}}">Sign in</a>
+      <sc-if value="{{isStaff}}" hint-placeholder-val="{{ false }}">
+        <a class="btn" href="Workspace.dc.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>
+          Continue with hospital SSO
+        </a>
+      </sc-if>
+    </div>
+    <sc-if value="{{isPatient}}" hint-placeholder-val="{{ true }}">
+      <p style="margin: 0; padding-top: 18px; border-top: 1px solid #E2E6EC; color: #475467; text-align: center">New to Northvale? <a href="Register.dc.html" style="font-weight: 500">Create an account</a></p>
+    </sc-if>
+  </form>
+
+  <p style="margin: 0; max-width: 400px; text-align: center; font-size: 12px; color: #5D6B7E; line-height: 1.6">Your health information is encrypted. Every access to a record is audited.</p>
+  <div style="display: flex; gap: 20px; font-size: 12px">
+    <a href="#" style="color: #5D6B7E">Help</a>
+    <a href="#" style="color: #5D6B7E">System status</a>
+    <a href="#" style="color: #5D6B7E">Privacy</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { role: 'patient' }; }
+  renderVals() {
+    const p = this.state.role === 'patient';
+    return {
+      isPatient: p, isStaff: !p,
+      ptCls: p ? 'on' : '', stCls: p ? '' : 'on',
+      toPatient: () => this.setState({ role: 'patient' }),
+      toStaff: () => this.setState({ role: 'staff' }),
+      sub: p ? 'Appointments, lab reports and medicines in one place.' : 'Use your hospital staff account.',
+      idLabel: p ? 'Email or mobile number' : 'Work email',
+      idValue: p ? 'ramesh.pandey@mail.com' : 'anaya.shrestha@northvale.health',
+      dest: p ? 'PtHome.dc.html' : 'Workspace.dc.html'
+    };
+  }
+}
+</script>
+</body>
+</html>

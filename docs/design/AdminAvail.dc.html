@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Folio Admin · Appointment blocks</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F9;color:#101828;font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:#1F56B4;text-decoration:none}a:hover{color:#174595}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.cap{font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:#5D6B7E}
+.nav a{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:38px;padding:0 12px;border-radius:6px;color:#344054;font-weight:500}
+.nav a:hover{background:#F2F4F7;color:#101828}
+.nav a.on{background:#EAF1FC;color:#174595}
+.btn{all:unset;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 16px;border-radius:6px;border:1px solid #D0D6DE;background:#fff;color:#101828;font:500 14px 'IBM Plex Sans',sans-serif;cursor:pointer;box-sizing:border-box;white-space:nowrap}
+.btn:hover{background:#F7F9FB;color:#101828}
+.btn.pri{background:#1F56B4;border-color:#1F56B4;color:#fff}
+.btn.pri:hover{background:#174595;color:#fff}
+.btn.sm{min-height:34px;padding:0 12px;font-size:13px}
+.card{background:#fff;border:1px solid #E2E6EC;border-radius:8px}
+.tag{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:4px;font-size:12px;font-weight:500;background:#EEF1F5;color:#344054;white-space:nowrap}
+.tag.blue{background:#EAF1FC;color:#174595}
+.search{display:flex;align-items:center;gap:10px;height:38px;padding:0 12px;border:1px solid #E2E6EC;border-radius:6px;background:#F7F9FB;color:#5D6B7E;box-sizing:border-box}
+.search input{border:0;outline:0;background:transparent;font:400 14px 'IBM Plex Sans',sans-serif;color:#101828;width:100%}
+.dr{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:flex;gap:12px;align-items:center;padding:10px 14px;border-top:1px solid #EDF0F4}
+.dr:hover{background:#F7F9FB}
+.dr.on{background:#EAF1FC}
+.blk{display:flex;flex-direction:column;gap:2px;padding:8px 12px;border-radius:6px;min-width:180px;box-sizing:border-box}
+.blk.on{background:#F2F4F7;box-shadow:inset 0 0 0 1px #E2E6EC}
+.blk.re{background:#EAF1FC;box-shadow:inset 0 0 0 1px #C9DAF5}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field label,.field .l{font-size:12px;font-weight:500;color:#475467}
+.field select,.field input{min-height:38px;box-sizing:border-box;padding:0 10px;border:1px solid #D0D6DE;border-radius:6px;background:#fff;font:400 14px 'IBM Plex Sans',sans-serif;color:#101828;width:100%}
+.dchip{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:36px;border-radius:6px;border:1px solid #D0D6DE;font-weight:500;font-size:13px}
+.dchip.on{background:#1F56B4;border-color:#1F56B4;color:#fff}
+.seg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:3px;border-radius:8px;background:#E9EDF2;gap:3px}
+.seg button{all:unset;cursor:pointer;min-height:34px;border-radius:6px;font-weight:500;color:#475467;text-align:center;font-size:13px}
+.seg button.on{background:#fff;color:#101828;box-shadow:0 1px 2px rgba(16,24,40,.08)}
+.rule{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 18px;border-top:1px solid #EDF0F4}
+.rule select{min-height:34px;padding:0 8px;border:1px solid #D0D6DE;border-radius:6px;font:400 13px 'IBM Plex Sans',sans-serif;background:#fff}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #F4F6F9">
+  <aside style="flex: 1 1 240px; max-width: 100%; box-sizing: border-box; padding: 14px 14px 20px; display: flex; flex-direction: column; gap: 22px; background: #FFFFFF; border-right: 1px solid #E2E6EC">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 10px; height: 32px">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="#1F56B4"></rect><path d="M7 7h8M7 11h6M7 15h4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg>
+      <span style="font-size: 17px; font-weight: 600; letter-spacing: -0.01em">Folio</span>
+      <span class="tag" style="margin-left: auto">Admin</span>
+    </div>
+    <a href="Workspace.dc.html" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border: 1px solid #E2E6EC; border-radius: 6px; color: #101828">
+      <span style="display: flex; flex-direction: column; line-height: 1.35; min-width: 0"><span style="font-weight: 500">Northvale General</span><span style="color: #5D6B7E; font-size: 12px">Admin console</span></span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5D6B7E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 9 5-5 5 5M7 15l5 5 5-5"></path></svg>
+    </a>
+    <nav class="nav" aria-label="Scheduling" style="display: flex; flex-direction: column; gap: 2px">
+      <span class="cap" style="padding: 0 12px 6px">Scheduling</span>
+      <a href="AdminAvail.dc.html" class="on" aria-current="page">Appointment blocks</a>
+      <a href="AdminLeave.dc.html">Leave and blocked time</a>
+    </nav>
+    <nav class="nav" aria-label="Services" style="display: flex; flex-direction: column; gap: 2px">
+      <span class="cap" style="padding: 0 12px 6px">Services</span>
+      <a href="AdminPackages.dc.html">Consultation packages</a>
+    </nav>
+    <nav class="nav" aria-label="Organization" style="display: flex; flex-direction: column; gap: 2px">
+      <span class="cap" style="padding: 0 12px 6px">Organization</span>
+      <a href="Admin.dc.html">Facilities and access</a>
+    </nav>
+    <a href="Dashboard.dc.html" style="margin-top: auto; padding: 0 12px; font-size: 13px">Open clinician workspace</a>
+  </aside>
+
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+    <header style="min-height: 60px; box-sizing: border-box; padding: 10px 32px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; background: #FFFFFF; border-bottom: 1px solid #E2E6EC">
+      <label class="search" style="width: 380px; max-width: 100%">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m20 20-4.2-4.2"></path></svg>
+        <input type="search" placeholder="Search doctors, staff or services" aria-label="Search">
+      </label>
+      <span style="display: flex; align-items: center; gap: 10px">
+        <span style="width: 32px; height: 32px; border-radius: 50%; background: #E3E8EF; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">SJ</span>
+        <span style="display: flex; flex-direction: column; line-height: 1.25"><span style="font-weight: 500">Sarita Joshi</span><span style="font-size: 12px; color: #5D6B7E">Facility admin</span></span>
+      </span>
+    </header>
+
+    <main style="box-sizing: border-box; padding: 28px 32px 64px">
+      <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap">
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <span class="cap">Scheduling</span>
+            <h1 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.015em">Appointment blocks</h1>
+            <span style="color: #475467">Set when each doctor can be booked, on-site or remote. Patients only see open slots inside these blocks.</span>
+          </div>
+          <a class="btn" href="AdminLeave.dc.html">Block time or add leave</a>
+        </div>
+
+        <sc-if value="{{toast}}" hint-placeholder-val="{{ false }}">
+          <div role="status" style="padding: 12px 16px; border-radius: 8px; background: #101828; color: #fff">{{toast}}</div>
+        </sc-if>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+          <nav class="card" style="flex: 1 1 240px; min-width: 0; overflow: hidden" aria-label="Doctors">
+            <div style="padding: 12px 14px; display: flex; flex-direction: column; gap: 10px">
+              <label class="search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m20 20-4.2-4.2"></path></svg><input type="search" value="{{q}}" onChange="{{onQ}}" placeholder="Find a doctor" aria-label="Find a doctor"></label>
+            </div>
+            <sc-for list="{{docs}}" as="d" hint-placeholder-count="6">
+              <button type="button" class="{{d.cls}}" onClick="{{d.pick}}" aria-pressed="{{d.on}}">
+                <span style="width: 32px; height: 32px; border-radius: 50%; background: #E3E8EF; flex: none; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">{{d.ini}}</span>
+                <span style="display: flex; flex-direction: column; min-width: 0; line-height: 1.35"><span style="font-weight: 500">{{d.name}}</span><span style="font-size: 12px; color: #5D6B7E">{{d.cat}}</span></span>
+              </button>
+            </sc-for>
+          </nav>
+
+          <div style="flex: 3 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+            <section class="card" style="overflow: hidden" aria-labelledby="wk">
+              <div style="padding: 16px 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap">
+                <div style="display: flex; flex-direction: column">
+                  <h2 id="wk" style="margin: 0; font-size: 16px; font-weight: 600">{{doc.name}} · weekly template</h2>
+                  <span style="font-size: 13px; color: #5D6B7E">{{weekSummary}}</span>
+                </div>
+                <span style="display: flex; gap: 6px"><span class="tag">On-site</span><span class="tag blue">Remote</span></span>
+              </div>
+              <sc-for list="{{week}}" as="w" hint-placeholder-count="7">
+                <div style="display: flex; gap: 16px; align-items: flex-start; padding: 12px 18px; border-top: 1px solid #EDF0F4; flex-wrap: wrap">
+                  <span style="width: 44px; font-weight: 600; padding-top: 8px">{{w.d}}</span>
+                  <div style="flex: 1; min-width: 0; display: flex; gap: 8px; flex-wrap: wrap">
+                    <sc-for list="{{w.blocks}}" as="b" hint-placeholder-count="1">
+                      <div class="{{b.cls}}">
+                        <span class="mono" style="font-weight: 500; font-size: 13px">{{b.time}}</span>
+                        <span style="font-size: 12px; color: #475467">{{b.meta}}</span>
+                      </div>
+                    </sc-for>
+                    <sc-if value="{{w.none}}" hint-placeholder-val="{{ false }}"><span style="padding-top: 8px; color: #5D6B7E">Not bookable</span></sc-if>
+                  </div>
+                  <button type="button" class="btn sm" onClick="{{w.add}}">Add block</button>
+                </div>
+              </sc-for>
+            </section>
+
+            <section class="card" style="overflow: hidden" aria-labelledby="rules">
+              <div style="padding: 16px 18px"><h2 id="rules" style="margin: 0; font-size: 16px; font-weight: 600">Booking rules</h2></div>
+              <div class="rule"><span><span style="font-weight: 500">Patients can book up to</span><br><span style="font-size: 13px; color: #5D6B7E">How far ahead slots are shown</span></span><select aria-label="Booking window"><option>60 days ahead</option><option>30 days ahead</option><option>90 days ahead</option></select></div>
+              <div class="rule"><span><span style="font-weight: 500">Minimum notice</span><br><span style="font-size: 13px; color: #5D6B7E">Latest a patient can book before a slot</span></span><select aria-label="Minimum notice"><option>2 hours</option><option>4 hours</option><option>Same day not allowed</option></select></div>
+              <div class="rule"><span><span style="font-weight: 500">Free cancellation until</span><br><span style="font-size: 13px; color: #5D6B7E">After this, the visit is charged</span></span><select aria-label="Cancellation cut-off"><option>4 hours before</option><option>24 hours before</option></select></div>
+              <div class="rule"><span><span style="font-weight: 500">Gap between appointments</span><br><span style="font-size: 13px; color: #5D6B7E">Buffer added after each slot</span></span><select aria-label="Buffer"><option>None</option><option>5 minutes</option><option>10 minutes</option></select></div>
+            </section>
+          </div>
+
+          <aside class="card" style="flex: 1 1 300px; min-width: 0; padding: 18px; display: flex; flex-direction: column; gap: 16px" aria-labelledby="nb">
+            <div style="display: flex; flex-direction: column">
+              <h2 id="nb" style="margin: 0; font-size: 16px; font-weight: 600">New appointment block</h2>
+              <span style="font-size: 13px; color: #5D6B7E">For {{doc.name}}</span>
+            </div>
+            <div class="field">
+              <span class="l">Days</span>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap" role="group" aria-label="Days">
+                <sc-for list="{{dayChips}}" as="c" hint-placeholder-count="7"><button type="button" class="{{c.cls}}" onClick="{{c.toggle}}" aria-pressed="{{c.on}}">{{c.l}}</button></sc-for>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+              <div class="field"><label for="st">Start</label><select id="st" onChange="{{onStart}}"><sc-for list="{{startOpts}}" as="o" hint-placeholder-count="6"><option value="{{o.v}}" selected="{{o.sel}}">{{o.v}}</option></sc-for></select></div>
+              <div class="field"><label for="en">End</label><select id="en" onChange="{{onEnd}}"><sc-for list="{{endOpts}}" as="o" hint-placeholder-count="6"><option value="{{o.v}}" selected="{{o.sel}}">{{o.v}}</option></sc-for></select></div>
+            </div>
+            <div class="field">
+              <span class="l">Visit type</span>
+              <div class="seg" role="group" aria-label="Visit type">
+                <sc-for list="{{modes}}" as="m" hint-placeholder-count="3"><button type="button" class="{{m.cls}}" onClick="{{m.pick}}" aria-pressed="{{m.on}}">{{m.l}}</button></sc-for>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+              <div class="field"><label for="sl">Slot length</label><select id="sl" onChange="{{onLen}}"><option value="15">15 min</option><option value="20" selected>20 min</option><option value="30">30 min</option><option value="40">40 min</option></select></div>
+              <div class="field"><label for="rm">Room</label><select id="rm"><option>Room 5, OPD B</option><option>Room 3, OPD B</option><option>Video only</option></select></div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+              <div class="field"><label for="rp">Repeats</label><select id="rp"><option>Every week</option><option>Every 2 weeks</option><option>One time only</option></select></div>
+              <div class="field"><label for="ef">Starts</label><input id="ef" value="26 Oct 2026"></div>
+            </div>
+            <p style="margin: 0; padding: 10px 12px; border-radius: 6px; background: #F7F9FB; color: #344054; font-size: 13px">{{preview}}</p>
+            <button type="button" class="btn pri" onClick="{{save}}" disabled="{{noDays}}">Save block</button>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1200}}'>
+class Component extends DCLogic {
+  constructor(p) {
+    super(p);
+    const B = (s, e, m, len, room) => ({ s, e, m, len, room });
+    this.state = {
+      q: '', doc: 'pk', days: ['Tue'], start: '09:00', end: '12:00', mode: 'on', len: 20, toast: '',
+      blocks: {
+        pk: { Mon: [B('09:00', '12:00', 'on', 20, 'Room 5'), B('14:00', '16:00', 're', 20, '')], Tue: [B('14:00', '17:00', 're', 20, '')], Wed: [B('09:00', '12:00', 'on', 20, 'Room 5')], Thu: [B('09:00', '12:00', 'on', 20, 'Room 5'), B('15:00', '17:00', 're', 20, '')], Fri: [B('09:00', '11:00', 'on', 20, 'Room 5')], Sat: [], Sun: [B('10:00', '12:00', 're', 20, '')] }
+      }
+    };
+  }
+  renderVals() {
+    const st = this.state;
+    const D = [
+      { id: 'pk', ini: 'PK', name: 'Dr. Prakash Karki', cat: 'Nephrology' },
+      { id: 'as', ini: 'AS', name: 'Dr. Anaya Shrestha', cat: 'Internal Medicine' },
+      { id: 'sm', ini: 'ST', name: 'Dr. Sabina Thapa Magar', cat: 'Internal Medicine' },
+      { id: 'ra', ini: 'RA', name: 'Dr. Rohan Adhikari', cat: 'Cardiology' },
+      { id: 'mr', ini: 'MR', name: 'Dr. Meena Rai', cat: 'Endocrinology' },
+      { id: 'sb', ini: 'SB', name: 'Dr. Suresh Bhattarai', cat: 'Orthopaedics' },
+      { id: 'kg', ini: 'KG', name: 'Dr. Kabita Gurung', cat: 'Paediatrics' },
+      { id: 'np', ini: 'NP', name: 'Dr. Nisha Pradhan', cat: 'Dermatology' }
+    ];
+    const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const generic = { Mon: [{ s: '09:00', e: '13:00', m: 'on', len: 20, room: 'Room 3' }], Tue: [{ s: '09:00', e: '13:00', m: 'on', len: 20, room: 'Room 3' }], Wed: [{ s: '14:00', e: '16:00', m: 're', len: 20, room: '' }], Thu: [{ s: '09:00', e: '13:00', m: 'on', len: 20, room: 'Room 3' }], Fri: [{ s: '09:00', e: '13:00', m: 'on', len: 20, room: 'Room 3' }], Sat: [], Sun: [] };
+    const mine = st.blocks[st.doc] || generic;
+    const mins = (t) => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
+    const count = (b) => Math.max(0, Math.floor((mins(b.e) - mins(b.s)) / b.len));
+    const ML = { on: 'On-site', re: 'Remote', both: 'On-site or remote' };
+    let total = 0, reTotal = 0;
+    const week = DAYS.map(d => {
+      const bl = (mine[d] || []).map(b => { const n = count(b); total += n; if (b.m === 're') reTotal += n; return { time: b.s + ' to ' + b.e, meta: ML[b.m] + (b.room ? ' · ' + b.room : '') + ' · ' + b.len + ' min · ' + n + ' slots', cls: b.m === 're' ? 'blk re' : 'blk on' }; });
+      return { d, blocks: bl, none: bl.length === 0, add: () => this.setState({ days: [d] }) };
+    });
+    const doc = D.find(x => x.id === st.doc);
+    const q = st.q.trim().toLowerCase();
+    const times = ['07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'];
+    const per = count({ s: st.start, e: st.end, len: st.len });
+    const toggleDay = (d) => () => { const a = st.days.slice(); const i = a.indexOf(d); if (i > -1) a.splice(i, 1); else a.push(d); this.setState({ days: a }); };
+    return {
+      q: st.q, onQ: (e) => this.setState({ q: e.target.value }),
+      docs: D.filter(x => !q || (x.name + ' ' + x.cat).toLowerCase().indexOf(q) > -1).map(x => ({ ...x, on: st.doc === x.id, cls: st.doc === x.id ? 'dr on' : 'dr', pick: () => this.setState({ doc: x.id, toast: '' }) })),
+      doc, week,
+      weekSummary: total + ' bookable slots a week · ' + (total - reTotal) + ' on-site, ' + reTotal + ' remote',
+      dayChips: DAYS.map(d => ({ l: d, on: st.days.indexOf(d) > -1, cls: st.days.indexOf(d) > -1 ? 'dchip on' : 'dchip', toggle: toggleDay(d) })),
+      startOpts: times.map(v => ({ v, sel: v === st.start })), endOpts: times.map(v => ({ v, sel: v === st.end })),
+      onStart: (e) => this.setState({ start: e.target.value }), onEnd: (e) => this.setState({ end: e.target.value }),
+      onLen: (e) => this.setState({ len: Number(e.target.value) }),
+      modes: [['on', 'On-site'], ['re', 'Remote'], ['both', 'Both']].map(([id, l]) => ({ l, on: st.mode === id, cls: st.mode === id ? 'on' : '', pick: () => this.setState({ mode: id }) })),
+      preview: st.days.length ? 'Creates ' + per + ' slots of ' + st.len + ' min on ' + st.days.join(', ') + ', ' + st.start + ' to ' + st.end + ' · ' + ML[st.mode] + '.' : 'Choose at least one day.',
+      noDays: st.days.length === 0 || per === 0,
+      toast: st.toast,
+      save: () => {
+        const all = { ...st.blocks }; const cur = {}; DAYS.forEach(d => { cur[d] = (mine[d] || []).slice(); });
+        st.days.forEach(d => { cur[d].push({ s: st.start, e: st.end, m: st.mode, len: st.len, room: st.mode === 're' ? '' : 'Room 5' }); cur[d].sort((a, b) => mins(a.s) - mins(b.s)); });
+        all[st.doc] = cur;
+        this.setState({ blocks: all, toast: 'Block saved for ' + doc.name + ' on ' + st.days.join(', ') + '. New slots are live in the patient portal.' });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

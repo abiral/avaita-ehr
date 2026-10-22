@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Folio · Lab reports</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F9;color:#101828;font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:#1F56B4;text-decoration:none}a:hover{color:#174595}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.cap{font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:#5D6B7E}
+.pnav{display:flex;gap:24px;flex-wrap:wrap}
+.pnav a{display:inline-flex;align-items:center;min-height:60px;color:#475467;font-weight:500;border-bottom:2px solid transparent;box-sizing:border-box}
+.pnav a:hover{color:#101828}
+.pnav a.on{color:#101828;border-bottom-color:#1F56B4}
+.btn{all:unset;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 16px;border-radius:6px;border:1px solid #D0D6DE;background:#fff;color:#101828;font:500 14px 'IBM Plex Sans',sans-serif;cursor:pointer;box-sizing:border-box;white-space:nowrap}
+.btn:hover{background:#F7F9FB;color:#101828}
+.card{background:#fff;border:1px solid #E2E6EC;border-radius:8px}
+.tag{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:4px;font-size:12px;font-weight:500;background:#EEF1F5;color:#344054;white-space:nowrap}
+.tag.alert{background:#FEF3F2;color:#B42318}
+.tag.blue{background:#EAF1FC;color:#174595}
+.rep{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:4px;padding:14px 16px;border-top:1px solid #EDF0F4;width:100%}
+.rep:hover{background:#F7F9FB}
+.rep.on{background:#EAF1FC}
+.trow{display:grid;align-items:center;gap:16px;padding:14px 20px;border-top:1px solid #EDF0F4}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #F4F6F9">
+  <header style="background: #FFFFFF; border-bottom: 1px solid #E2E6EC">
+    <div style="max-width: 1120px; margin: 0 auto; box-sizing: border-box; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 8px 32px; flex-wrap: wrap">
+      <div style="display: flex; align-items: center; gap: 32px; flex-wrap: wrap">
+        <a href="PtHome.dc.html" style="display: flex; align-items: center; gap: 10px; color: #101828; min-height: 60px">
+          <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="#1F56B4"></rect><path d="M7 7h8M7 11h6M7 15h4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg>
+          <span style="font-size: 17px; font-weight: 600; letter-spacing: -0.01em">Folio</span>
+        </a>
+        <nav class="pnav" aria-label="Patient portal">
+          <a href="PtHome.dc.html">Home</a>
+          <a href="Appointments.dc.html">Appointments</a>
+          <a href="PtResults.dc.html" class="on" aria-current="page">Lab reports</a>
+          <a href="PtMeds.dc.html">Medicines</a>
+        </nav>
+      </div>
+      <a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px; color: #101828; min-height: 60px">
+        <span style="width: 32px; height: 32px; border-radius: 50%; background: #E3E8EF; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">RP</span>
+        <span style="display: flex; flex-direction: column; line-height: 1.25"><span style="font-weight: 500">Ramesh Pandey</span><span class="mono" style="font-size: 12px; color: #5D6B7E">NVG-188240</span></span>
+      </a>
+    </div>
+  </header>
+
+  <main style="max-width: 1120px; margin: 0 auto; box-sizing: border-box; padding: 32px 24px 72px; display: flex; flex-direction: column; gap: 24px">
+    <h1 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.015em">Lab reports</h1>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+      <nav class="card" style="flex: 1 1 260px; min-width: 0; overflow: hidden" aria-label="Reports">
+        <div class="cap" style="padding: 12px 16px">All reports</div>
+        <sc-for list="{{reports}}" as="r" hint-placeholder-count="4">
+          <button type="button" class="{{r.cls}}" onClick="{{r.pick}}" aria-pressed="{{r.on}}">
+            <span style="display: flex; justify-content: space-between; gap: 8px; align-items: center"><span style="font-weight: 600">{{r.name}}</span><sc-if value="{{r.isNew}}" hint-placeholder-val="{{ false }}"><span class="tag blue">New</span></sc-if></span>
+            <span style="font-size: 13px; color: #5D6B7E">{{r.date}} · {{r.flagText}}</span>
+          </button>
+        </sc-for>
+      </nav>
+
+      <article class="card" style="flex: 3 1 560px; min-width: 0; overflow: hidden">
+        <div style="padding: 20px; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap">
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <h2 style="margin: 0; font-size: 20px; font-weight: 600">{{cur.name}}</h2>
+            <span style="color: #5D6B7E; font-size: 13px">Collected {{cur.date}}, 07:45 · Ordered by Dr. Prakash Karki · Northvale General laboratory</span>
+          </div>
+          <div style="display: flex; gap: 8px">
+            <button type="button" class="btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>
+              Download PDF
+            </button>
+          </div>
+        </div>
+
+        <sc-if value="{{cur.comment}}" hint-placeholder-val="{{ true }}">
+          <div style="margin: 0 20px 20px; padding: 14px 16px; border-radius: 8px; background: #F7F9FB; border: 1px solid #EDF0F4; display: flex; flex-direction: column; gap: 6px">
+            <span style="font-size: 12px; font-weight: 600; color: #475467">Note from Dr. Prakash Karki</span>
+            <span style="color: #344054">{{cur.comment}}</span>
+          </div>
+        </sc-if>
+
+        <div style="overflow-x: auto">
+          <div style="min-width: 640px">
+            <div class="trow cap" style="grid-template-columns: minmax(0, 1.3fr) 130px minmax(0, 1.4fr) 110px; padding-top: 8px; padding-bottom: 8px; background: #F8FAFC">
+              <span>Test</span><span>Result</span><span>Normal range</span><span>Flag</span>
+            </div>
+            <sc-for list="{{cur.tests}}" as="t" hint-placeholder-count="5">
+              <div class="trow" style="grid-template-columns: minmax(0, 1.3fr) 130px minmax(0, 1.4fr) 110px">
+                <span style="font-weight: 500">{{t.name}}</span>
+                <span><span class="mono" style="font-size: 15px; font-weight: 500; color: {{t.color}}">{{t.v}}</span> <span style="font-size: 12px; color: #5D6B7E">{{t.u}}</span></span>
+                <span style="display: flex; flex-direction: column; gap: 6px">
+                  <span style="position: relative; height: 8px; border-radius: 4px; background: #EEF1F5" role="img" aria-label="{{t.aria}}">
+                    <span style="position: absolute; left: 25%; width: 50%; top: 0; bottom: 0; background: #D5E2F6; border-radius: 4px"></span>
+                    <span style="position: absolute; top: -3px; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: {{t.dot}}; box-shadow: 0 0 0 2px #fff; left: {{t.pos}}"></span>
+                  </span>
+                  <span class="mono" style="font-size: 12px; color: #5D6B7E">{{t.range}}</span>
+                </span>
+                <span><sc-if value="{{t.flag}}" hint-placeholder-val="{{ false }}"><span class="tag alert">{{t.flag}}</span></sc-if><sc-if value="{{t.ok}}" hint-placeholder-val="{{ true }}"><span class="tag">Normal</span></sc-if></span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <p style="margin: 0; padding: 14px 20px; border-top: 1px solid #EDF0F4; font-size: 13px; color: #5D6B7E">Results outside the normal range are not always a problem. Questions? <a href="#">Message your care team</a>.</p>
+      </article>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { sel: 0 }; }
+  renderVals() {
+    const T = (name, v, u, lo, hi, rangeTxt) => {
+      const n = parseFloat(v); const pos = Math.max(3, Math.min(97, 25 + 50 * (n - lo) / (hi - lo)));
+      const flag = n > hi ? 'High' : n < lo ? 'Low' : '';
+      return { name, v, u, range: rangeTxt || (lo + ' to ' + hi + ' ' + u), pos: pos + '%', flag, ok: !flag, color: flag ? '#B42318' : '#101828', dot: flag ? '#B42318' : '#1F56B4', aria: name + ' ' + v + ' ' + u + (flag ? ', ' + flag.toLowerCase() : ', normal') };
+    };
+    const R = [
+      { name: 'Kidney function panel', date: '19 Oct 2026', isNew: true, comment: 'Your kidney numbers are a little higher than in August and potassium is slightly high. Please cut down on salty food and bananas, keep taking Losartan, and we will talk on 3 November.', tests: [T('Creatinine', '152', 'µmol/L', 62, 106), T('eGFR', '42', 'mL/min', 60, 120, 'Above 60 mL/min'), T('Urea', '9.1', 'mmol/L', 2.5, 7.8), T('Potassium', '5.3', 'mmol/L', 3.5, 5.1), T('Sodium', '139', 'mmol/L', 135, 145)] },
+      { name: 'Complete blood count', date: '19 Oct 2026', isNew: false, comment: 'Haemoglobin is slightly low, which is common with kidney disease. No action needed for now.', tests: [T('Haemoglobin', '12.8', 'g/dL', 13, 17), T('White cells', '7.2', '×10⁹/L', 4, 11), T('Platelets', '248', '×10⁹/L', 150, 400)] },
+      { name: 'Lipid profile', date: '2 Sep 2026', isNew: false, comment: '', tests: [T('Total cholesterol', '4.6', 'mmol/L', 0, 5.2, 'Below 5.2 mmol/L'), T('LDL', '2.4', 'mmol/L', 0, 3.4, 'Below 3.4 mmol/L'), T('HDL', '1.2', 'mmol/L', 1, 2), T('Triglycerides', '1.6', 'mmol/L', 0, 1.7, 'Below 1.7 mmol/L')] },
+      { name: 'HbA1c', date: '2 Sep 2026', isNew: false, comment: '', tests: [T('HbA1c', '5.6', '%', 4, 5.7, 'Below 5.7 %')] }
+    ];
+    const reports = R.map((r, i) => { const n = r.tests.filter(t => t.flag).length; return { ...r, flagText: n ? n + ' outside range' : 'All in range', on: this.state.sel === i, cls: this.state.sel === i ? 'rep on' : 'rep', pick: () => this.setState({ sel: i }) }; });
+    return { reports, cur: R[this.state.sel] };
+  }
+}
+</script>
+</body>
+</html>
